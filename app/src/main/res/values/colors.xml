@@ -7,4 +7,28 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="light_gray">#DFDBDB</color>
+    <color name="light_black">#1B1B1B</color>
+    <color name="background_top_ranking">#256D85</color>
+    <color name="bottom_nav">#47B5FF</color>
+    <color name="icon_bottom_nav">#BFFFDC00</color>
+    <color name="tv_ranking">#f5562f</color>
+    <color name="background_middle_ranking">#DFF6FF</color>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#1a76d3</color>
+
+    <color name="textcolor">#89C5CC</color>
+    <!--    color for button style-->
+    <color name="start_color">#FFFFFFFF</color>
+    <color name="end_color">#89C5CC</color>
+    <color name="dot_color">#00BCD4</color>
+    <!--    color for tab and screen text-->
+    <color name="tab_indicator">#c0c0c0</color>
+    <color name="intro_title_color">#000000</color>
+    <color name="intro_description_color">#656565</color>
+    <color name="chuyen_mau_btn_truyen_activity">#CADAD9D9</color>
+    <color name="chuyen_mau_btn_truyen_activity1">#ECEBEB</color>
+    <color name="chuyen_mau_btn_truyen_activity2">@null</color>
+
 </resources>
