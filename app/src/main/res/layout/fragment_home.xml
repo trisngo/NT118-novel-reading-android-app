@@ -29,35 +29,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="8dp">
-
-                        <TextView
-                            android:id="@+id/tv_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Read Novel"
-                            android:textColor="#000000"
-                            android:textSize="24sp"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:id="@+id/iv_avatar"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
-                            android:layout_alignParentTop="true"
-                            android:layout_alignParentEnd="true"
-                            android:src="@drawable/account_circle" />
-
-                    </RelativeLayout>
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="10dp"
                         android:layout_marginBottom="16dp"
                         android:orientation="horizontal"
                         android:weightSum="100">
@@ -70,9 +46,9 @@
                             android:background="@drawable/gray_rounded_shape"
                             android:drawableLeft="@drawable/ic_search_gray_24dp"
                             android:drawablePadding="8dp"
-
                             android:hint="Bạn muốn đọc gì?"
                             android:padding="12dp"
+                            android:layout_marginEnd="10dp"
                             android:textColorHint="#9ea1b0" />
 
 
@@ -82,7 +58,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginEnd="8dp"
-                            android:layout_weight="10">
+                            android:layout_weight="5">
 
                             <ImageView
                                 android:id="@+id/iv_bell"
@@ -92,7 +68,7 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/bell" />
+                                app:srcCompat="@drawable/bell_solid" />
 
                             <ImageView
                                 android:id="@+id/iv_red_circle"
@@ -100,19 +76,19 @@
                                 android:layout_height="wrap_content"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/red_circle" />
+                                app:srcCompat="@drawable/circle_solid" />
 
-                            <TextView
-                                android:id="@+id/tv_noti"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="1"
-                                android:textSize="10sp"
-                                app:layout_constraintBottom_toBottomOf="@+id/iv_red_circle"
-                                app:layout_constraintEnd_toEndOf="@+id/iv_red_circle"
-                                app:layout_constraintStart_toStartOf="@+id/iv_red_circle"
-                                app:layout_constraintTop_toTopOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <ImageView
+                            android:id="@+id/iv_avatar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="5dp"
+                            android:layout_weight="5"
+                            android:src="@drawable/user_solid"
+                            android:onClick="login"/>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -136,16 +112,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:background="@drawable/world_book_fun_billboard_08">
-
-
-                    <!--                    <ImageView-->
-                    <!--                        android:id="@+id/imageView4"-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                        app:srcCompat="@drawable/world_book_fun_billboard_08" />-->
-
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -312,7 +278,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -322,444 +287,289 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="8dp">
+                        android:padding="4dp">
 
                         <androidx.cardview.widget.CardView
-                            android:layout_width="300dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:cardCornerRadius="4dp"
-                            app:cardElevation="4dp"
-                            app:cardUseCompatPadding="true"
-                            app:contentPadding="16dp">
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp"
+                            app:cardUseCompatPadding="true">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="266dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/truong_sinh_vo_dao_300"
+                                    android:onClick="callReadLayout"/>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="-16dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginBottom="4dp">
+
+                                    <TextView
+                                        android:layout_width="64dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentLeft="true"
+                                        android:drawableStart="@drawable/caret_up_solid_24_15"
+                                        android:background="@drawable/light_orange_rounded_shape"
+                                        android:drawablePadding="8dp"
+                                        android:padding="8dp"
+                                        android:text="500"
+                                        android:textColor="#FFAB2D"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <ImageView
+                                        android:layout_alignParentRight="true"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:layout_marginRight="4dp"
+                                        android:src="@drawable/bookmark_solid_blue" />
+
+                                </RelativeLayout>
+
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="8dp"
-                                    android:orientation="horizontal"
-                                    android:weightSum="100">
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:orientation="vertical">
 
                                     <TextView
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="90"
+                                        android:layout_marginBottom="4dp"
 
                                         android:text="Trường Sinh Võ Đạo"
                                         android:textColor="#000000"
-                                        android:textSize="18sp"
+                                        android:textSize="16sp"
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="10"
-                                        android:background="@drawable/light_orange_rounded_shape"
-                                        android:drawableLeft="@drawable/ic_star_yellow_24dp"
-
-                                        android:padding="6dp"
-                                        android:text="4.5"
-                                        android:textAlignment="textEnd"
-                                        android:textColor="#ffc32d"
-                                        android:textSize="14sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="8dp"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginRight="4dp"
 
                                         android:text="Huyền Huyễn"
                                         android:textColor="#a4a7b5"
-                                        android:textSize="14sp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginRight="4dp"
-
-                                        android:text="•"
-                                        android:textColor="#a4a7b5"
-                                        android:textSize="14sp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginRight="4dp"
-
-                                        android:text="Thiết Huyết"
-                                        android:textColor="#a4a7b5"
-                                        android:textSize="14sp" />
+                                        android:textSize="12sp" />
 
                                 </LinearLayout>
 
-                                <ImageView
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="160dp"
-                                    android:layout_marginBottom="8dp"
-                                    android:scaleType="fitCenter"
-                                    android:src="@drawable/truong_sinh_vo_dao_300" />
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="4dp">
 
-                                <androidx.constraintlayout.widget.ConstraintLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        android:id="@+id/textView1"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-
-                                        android:text="605.1K"
-                                        android:textColor="#3f9dff"
-                                        android:textSize="24sp"
-                                        android:textStyle="bold"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintLeft_toLeftOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="5dp"
-
-                                        android:text="lượt xem"
-                                        android:textColor="#8ac3ff"
-                                        android:textSize="14sp"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintStart_toEndOf="@id/textView1"
-                                        app:layout_constraintTop_toTopOf="parent" />
 
                                     <ImageView
-                                        android:layout_width="36dp"
-                                        android:layout_height="36dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
                                         android:layout_alignParentRight="true"
-                                        android:src="@drawable/bookmark"
-                                        app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="0dp"
+                                        android:src="@drawable/ic_more_horizon_24dp" />
 
-
-                                </androidx.constraintlayout.widget.ConstraintLayout>
-
+                                </RelativeLayout>
                             </LinearLayout>
-
-
                         </androidx.cardview.widget.CardView>
-
                         <androidx.cardview.widget.CardView
-                            android:layout_width="300dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:cardCornerRadius="4dp"
-                            app:cardElevation="4dp"
-                            app:cardUseCompatPadding="true"
-                            app:contentPadding="16dp">
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp"
+                            app:cardUseCompatPadding="true">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="266dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/truong_sinh_vo_dao_300"
+                                    android:onClick="callReadLayout"/>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="-16dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginBottom="4dp">
+
+                                    <TextView
+                                        android:layout_width="64dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentLeft="true"
+                                        android:drawableStart="@drawable/caret_up_solid_24_15"
+                                        android:background="@drawable/light_orange_rounded_shape"
+                                        android:drawablePadding="8dp"
+                                        android:padding="8dp"
+                                        android:text="500"
+                                        android:textColor="#FFAB2D"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <ImageView
+                                        android:layout_alignParentRight="true"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:layout_marginRight="4dp"
+                                        android:src="@drawable/bookmark_solid_blue" />
+
+                                </RelativeLayout>
+
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="8dp"
-                                    android:orientation="horizontal"
-                                    android:weightSum="100">
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:orientation="vertical">
 
                                     <TextView
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="90"
+                                        android:layout_marginBottom="4dp"
 
                                         android:text="Trường Sinh Võ Đạo"
                                         android:textColor="#000000"
-                                        android:textSize="18sp"
+                                        android:textSize="16sp"
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="10"
-                                        android:background="@drawable/light_orange_rounded_shape"
-                                        android:drawableLeft="@drawable/ic_star_yellow_24dp"
-
-                                        android:padding="6dp"
-                                        android:text="4.5"
-                                        android:textAlignment="textEnd"
-                                        android:textColor="#ffc32d"
-                                        android:textSize="14sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="8dp"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginRight="4dp"
 
                                         android:text="Huyền Huyễn"
                                         android:textColor="#a4a7b5"
-                                        android:textSize="14sp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginRight="4dp"
-
-                                        android:text="•"
-                                        android:textColor="#a4a7b5"
-                                        android:textSize="14sp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginRight="4dp"
-
-                                        android:text="Thiết Huyết"
-                                        android:textColor="#a4a7b5"
-                                        android:textSize="14sp" />
+                                        android:textSize="12sp" />
 
                                 </LinearLayout>
 
-                                <ImageView
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="160dp"
-                                    android:layout_marginBottom="8dp"
-                                    android:scaleType="fitCenter"
-                                    android:src="@drawable/truong_sinh_vo_dao_300" />
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="4dp">
 
-                                <androidx.constraintlayout.widget.ConstraintLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        android:id="@+id/textView2"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-
-                                        android:text="605.1K"
-                                        android:textColor="#3f9dff"
-                                        android:textSize="24sp"
-                                        android:textStyle="bold"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintLeft_toLeftOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="5dp"
-
-                                        android:text="lượt xem"
-                                        android:textColor="#8ac3ff"
-                                        android:textSize="14sp"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintStart_toEndOf="@id/textView2"
-                                        app:layout_constraintTop_toTopOf="parent" />
 
                                     <ImageView
-                                        android:layout_width="36dp"
-                                        android:layout_height="36dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
                                         android:layout_alignParentRight="true"
-                                        android:src="@drawable/bookmark"
-                                        app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="0dp"
+                                        android:src="@drawable/ic_more_horizon_24dp" />
 
-                                </androidx.constraintlayout.widget.ConstraintLayout>
-
+                                </RelativeLayout>
                             </LinearLayout>
-
-
                         </androidx.cardview.widget.CardView>
-
                         <androidx.cardview.widget.CardView
-                            android:layout_width="300dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:cardCornerRadius="4dp"
-                            app:cardElevation="4dp"
-                            app:cardUseCompatPadding="true"
-                            app:contentPadding="16dp">
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp"
+                            app:cardUseCompatPadding="true">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="266dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/truong_sinh_vo_dao_300"
+                                    android:onClick="callReadLayout"/>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="-16dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginBottom="4dp">
+
+                                    <TextView
+                                        android:layout_width="64dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentLeft="true"
+                                        android:drawableStart="@drawable/caret_up_solid_24_15"
+                                        android:background="@drawable/light_orange_rounded_shape"
+                                        android:drawablePadding="8dp"
+                                        android:padding="8dp"
+                                        android:text="500"
+                                        android:textColor="#FFAB2D"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <ImageView
+                                        android:layout_alignParentRight="true"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:layout_marginRight="4dp"
+                                        android:src="@drawable/bookmark_solid_blue" />
+
+                                </RelativeLayout>
+
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="8dp"
-                                    android:orientation="horizontal"
-                                    android:weightSum="100">
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:orientation="vertical">
 
                                     <TextView
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="90"
+                                        android:layout_marginBottom="4dp"
 
                                         android:text="Trường Sinh Võ Đạo"
                                         android:textColor="#000000"
-                                        android:textSize="18sp"
+                                        android:textSize="16sp"
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="10"
-                                        android:background="@drawable/light_orange_rounded_shape"
-                                        android:drawableLeft="@drawable/ic_star_yellow_24dp"
-
-                                        android:padding="6dp"
-                                        android:text="4.5"
-                                        android:textAlignment="textEnd"
-                                        android:textColor="#ffc32d"
-                                        android:textSize="14sp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="8dp"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginRight="4dp"
 
                                         android:text="Huyền Huyễn"
                                         android:textColor="#a4a7b5"
-                                        android:textSize="14sp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginRight="4dp"
-
-                                        android:text="•"
-                                        android:textColor="#a4a7b5"
-                                        android:textSize="14sp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginRight="4dp"
-
-                                        android:text="Thiết Huyết"
-                                        android:textColor="#a4a7b5"
-                                        android:textSize="14sp" />
+                                        android:textSize="12sp" />
 
                                 </LinearLayout>
 
-                                <ImageView
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="160dp"
-                                    android:layout_marginBottom="8dp"
-                                    android:scaleType="fitCenter"
-                                    android:src="@drawable/truong_sinh_vo_dao_300" />
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="4dp">
 
-                                <androidx.constraintlayout.widget.ConstraintLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        android:id="@+id/textView3"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-
-                                        android:text="605.1K"
-                                        android:textColor="#3f9dff"
-                                        android:textSize="24sp"
-                                        android:textStyle="bold"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintLeft_toLeftOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="5dp"
-
-                                        android:text="lượt xem"
-                                        android:textColor="#8ac3ff"
-                                        android:textSize="14sp"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintStart_toEndOf="@id/textView3"
-                                        app:layout_constraintTop_toTopOf="parent" />
 
                                     <ImageView
-                                        android:layout_width="36dp"
-                                        android:layout_height="36dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
                                         android:layout_alignParentRight="true"
-                                        android:src="@drawable/bookmark"
-                                        app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="0dp"
+                                        android:src="@drawable/ic_more_horizon_24dp" />
 
-                                </androidx.constraintlayout.widget.ConstraintLayout>
-
+                                </RelativeLayout>
                             </LinearLayout>
-
-
                         </androidx.cardview.widget.CardView>
-
-
                     </LinearLayout>
-
                 </HorizontalScrollView>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Last News"
-                        android:textColor="#000000"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/textView9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="See all"
-                        android:textAlignment="viewEnd"
-                        android:textColor="#B24FA9"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -781,12 +591,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
-
-                            android:text="Biên tập viên đề cử"
+                            android:text="Dành cho bạn"
                             android:textColor="#000000"
                             android:textSize="18sp"
                             android:textStyle="bold" />
-
 
                     </LinearLayout>
 
@@ -806,478 +614,634 @@
                     </LinearLayout>
 
                 </LinearLayout>
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="4dp">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp"
+                            app:cardUseCompatPadding="true">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="266dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/truong_sinh_vo_dao_300"
+                                    android:onClick="callReadLayout"/>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="-16dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginBottom="4dp">
+
+                                    <TextView
+                                        android:layout_width="64dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentLeft="true"
+                                        android:drawableStart="@drawable/caret_up_solid_24_15"
+                                        android:background="@drawable/light_orange_rounded_shape"
+                                        android:drawablePadding="8dp"
+                                        android:padding="8dp"
+                                        android:text="500"
+                                        android:textColor="#FFAB2D"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <ImageView
+                                        android:layout_alignParentRight="true"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:layout_marginRight="4dp"
+                                        android:src="@drawable/bookmark_solid_blue" />
+
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="4dp"
+
+                                        android:text="Trường Sinh Võ Đạo"
+                                        android:textColor="#000000"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+
+                                        android:text="Huyền Huyễn"
+                                        android:textColor="#a4a7b5"
+                                        android:textSize="12sp" />
+
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="4dp">
+
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="0dp"
+                                        android:src="@drawable/ic_more_horizon_24dp" />
+
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp"
+                            app:cardUseCompatPadding="true">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="266dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/truong_sinh_vo_dao_300"
+                                    android:onClick="callReadLayout"/>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="-16dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginBottom="4dp">
+
+                                    <TextView
+                                        android:layout_width="64dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentLeft="true"
+                                        android:drawableStart="@drawable/caret_up_solid_24_15"
+                                        android:background="@drawable/light_orange_rounded_shape"
+                                        android:drawablePadding="8dp"
+                                        android:padding="8dp"
+                                        android:text="500"
+                                        android:textColor="#FFAB2D"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <ImageView
+                                        android:layout_alignParentRight="true"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:layout_marginRight="4dp"
+                                        android:src="@drawable/bookmark_solid_blue" />
+
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="4dp"
+
+                                        android:text="Trường Sinh Võ Đạo"
+                                        android:textColor="#000000"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+
+                                        android:text="Huyền Huyễn"
+                                        android:textColor="#a4a7b5"
+                                        android:textSize="12sp" />
+
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="4dp">
+
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="0dp"
+                                        android:src="@drawable/ic_more_horizon_24dp" />
+
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp"
+                            app:cardUseCompatPadding="true">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="266dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/truong_sinh_vo_dao_300"
+                                    android:onClick="callReadLayout"/>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="-16dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginBottom="4dp">
+
+                                    <TextView
+                                        android:layout_width="64dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentLeft="true"
+                                        android:drawableStart="@drawable/caret_up_solid_24_15"
+                                        android:background="@drawable/light_orange_rounded_shape"
+                                        android:drawablePadding="8dp"
+                                        android:padding="8dp"
+                                        android:text="500"
+                                        android:textColor="#FFAB2D"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <ImageView
+                                        android:layout_alignParentRight="true"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:layout_marginRight="4dp"
+                                        android:src="@drawable/bookmark_solid_blue" />
+
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="4dp"
+
+                                        android:text="Trường Sinh Võ Đạo"
+                                        android:textColor="#000000"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+
+                                        android:text="Huyền Huyễn"
+                                        android:textColor="#a4a7b5"
+                                        android:textSize="12sp" />
+
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="4dp">
+
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="0dp"
+                                        android:src="@drawable/ic_more_horizon_24dp" />
+
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+                </HorizontalScrollView>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="8dp"
                     android:orientation="horizontal"
-                    android:padding="8dp"
                     android:weightSum="100">
 
-                    <androidx.cardview.widget.CardView
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="50"
-                        app:cardCornerRadius="4dp"
-                        app:cardElevation="4dp"
-                        app:cardUseCompatPadding="true">
+                        android:layout_weight="70"
+                        android:orientation="vertical">
 
-                        <LinearLayout
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_marginBottom="4dp"
+                            android:text="Mới ra mắt"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="300dp"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/truong_sinh_vo_dao_300" />
+                    </LinearLayout>
 
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:layout_marginTop="-16dp"
-                                android:layout_marginRight="8dp"
-                                android:layout_marginBottom="8dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentLeft="true"
-                                    android:background="@drawable/light_orange_rounded_shape"
-                                    android:drawableLeft="@drawable/ic_star_yellow_24dp"
-
-                                    android:padding="8dp"
-                                    android:text="4.5"
-                                    android:textAlignment="textEnd"
-                                    android:textColor="#ffc32d"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:background="@drawable/blue_rounded_shape"
-
-                                    android:padding="8dp"
-                                    android:text="605.1K"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="14sp" />
-
-                            </RelativeLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="4dp"
-
-                                    android:text="Trường Sinh Võ Đạo"
-                                    android:textColor="#000000"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-
-                                    android:text="Huyền Huyễn"
-                                    android:textColor="#a4a7b5"
-                                    android:textSize="12sp" />
-
-                            </LinearLayout>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp">
-
-                                <ImageView
-                                    android:layout_width="36dp"
-                                    android:layout_height="36dp"
-                                    android:layout_marginRight="4dp"
-                                    android:src="@drawable/bookmark" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginLeft="44dp"
-                                    android:src="@drawable/ic_timeline_gray_24dp" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginRight="0dp"
-                                    android:src="@drawable/ic_more_horiz_gray_24dp" />
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="50"
-                        app:cardCornerRadius="4dp"
-                        app:cardElevation="4dp"
-                        app:cardUseCompatPadding="true">
+                        android:layout_weight="30">
 
-                        <LinearLayout
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="300dp"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/truong_sinh_vo_dao_300" />
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:layout_marginTop="-16dp"
-                                android:layout_marginRight="8dp"
-                                android:layout_marginBottom="8dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentLeft="true"
-                                    android:background="@drawable/light_orange_rounded_shape"
-                                    android:drawableLeft="@drawable/ic_star_yellow_24dp"
-
-                                    android:padding="8dp"
-                                    android:text="4.5"
-                                    android:textAlignment="textEnd"
-                                    android:textColor="#ffc32d"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:background="@drawable/blue_rounded_shape"
-
-                                    android:padding="8dp"
-                                    android:text="605.1K"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="14sp" />
-
-                            </RelativeLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="4dp"
-
-                                    android:text="Trường Sinh Võ Đạo"
-                                    android:textColor="#000000"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-
-                                    android:text="Huyền Huyễn"
-                                    android:textColor="#a4a7b5"
-                                    android:textSize="12sp" />
-
-                            </LinearLayout>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp">
-
-                                <ImageView
-                                    android:layout_width="36dp"
-                                    android:layout_height="36dp"
-                                    android:layout_marginRight="4dp"
-                                    android:src="@drawable/bookmark" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginLeft="44dp"
-                                    android:src="@drawable/ic_timeline_gray_24dp" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginRight="0dp"
-                                    android:src="@drawable/ic_more_horiz_gray_24dp" />
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-
-                    </androidx.cardview.widget.CardView>
+                            android:text="Xem Thêm"
+                            android:textAlignment="textEnd"
+                            android:textColor="#3f9dff"
+                            android:textSize="16sp" />
+                    </LinearLayout>
 
                 </LinearLayout>
-
-                <LinearLayout
+                <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:paddingBottom="8dp"
-                    android:weightSum="100">
+                    android:scrollbars="none">
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="50"
-                        app:cardCornerRadius="4dp"
-                        app:cardElevation="4dp"
-                        app:cardUseCompatPadding="true">
+                        android:orientation="horizontal"
+                        android:padding="4dp">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="300dp"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/truong_sinh_vo_dao_300" />
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:layout_marginTop="-16dp"
-                                android:layout_marginRight="8dp"
-                                android:layout_marginBottom="8dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentLeft="true"
-                                    android:background="@drawable/light_orange_rounded_shape"
-                                    android:drawableLeft="@drawable/ic_star_yellow_24dp"
-
-                                    android:padding="8dp"
-                                    android:text="4.5"
-                                    android:textAlignment="textEnd"
-                                    android:textColor="#ffc32d"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:background="@drawable/blue_rounded_shape"
-
-                                    android:padding="8dp"
-                                    android:text="605.1K"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="14sp" />
-
-                            </RelativeLayout>
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp"
+                            app:cardUseCompatPadding="true">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
                                 android:orientation="vertical">
 
-                                <TextView
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="266dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/truong_sinh_vo_dao_300"
+                                    android:onClick="callReadLayout"/>
+
+                                <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="4dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="-16dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginBottom="4dp">
 
-                                    android:text="Trường Sinh Võ Đạo"
-                                    android:textColor="#000000"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="64dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentLeft="true"
+                                        android:drawableStart="@drawable/caret_up_solid_24_15"
+                                        android:background="@drawable/light_orange_rounded_shape"
+                                        android:drawablePadding="8dp"
+                                        android:padding="8dp"
+                                        android:text="500"
+                                        android:textColor="#FFAB2D"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
 
-                                <TextView
+                                    <ImageView
+                                        android:layout_alignParentRight="true"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:layout_marginRight="4dp"
+                                        android:src="@drawable/bookmark_solid_blue" />
+
+                                </RelativeLayout>
+
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:orientation="vertical">
 
-                                    android:text="Huyền Huyễn"
-                                    android:textColor="#a4a7b5"
-                                    android:textSize="12sp" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="4dp"
 
+                                        android:text="Trường Sinh Võ Đạo"
+                                        android:textColor="#000000"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+
+                                        android:text="Huyền Huyễn"
+                                        android:textColor="#a4a7b5"
+                                        android:textSize="12sp" />
+
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="4dp">
+
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="0dp"
+                                        android:src="@drawable/ic_more_horizon_24dp" />
+
+                                </RelativeLayout>
                             </LinearLayout>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp">
-
-                                <ImageView
-                                    android:layout_width="36dp"
-                                    android:layout_height="36dp"
-                                    android:layout_marginRight="4dp"
-                                    android:src="@drawable/bookmark" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginLeft="44dp"
-                                    android:src="@drawable/ic_timeline_gray_24dp" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginRight="0dp"
-                                    android:src="@drawable/ic_more_horiz_gray_24dp" />
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="50"
-                        app:cardCornerRadius="4dp"
-                        app:cardElevation="4dp"
-                        app:cardUseCompatPadding="true">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="300dp"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/truong_sinh_vo_dao_300" />
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:layout_marginTop="-16dp"
-                                android:layout_marginRight="8dp"
-                                android:layout_marginBottom="8dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentLeft="true"
-                                    android:background="@drawable/light_orange_rounded_shape"
-                                    android:drawableLeft="@drawable/ic_star_yellow_24dp"
-
-                                    android:padding="8dp"
-                                    android:text="4.5"
-                                    android:textAlignment="textEnd"
-                                    android:textColor="#ffc32d"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:background="@drawable/blue_rounded_shape"
-
-                                    android:padding="8dp"
-                                    android:text="605.1K"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="14sp" />
-
-                            </RelativeLayout>
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp"
+                            app:cardUseCompatPadding="true">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
                                 android:orientation="vertical">
 
-                                <TextView
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="266dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/truong_sinh_vo_dao_300"
+                                    android:onClick="callReadLayout"/>
+
+                                <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="4dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="-16dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginBottom="4dp">
 
-                                    android:text="Trường Sinh Võ Đạo"
-                                    android:textColor="#000000"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="64dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentLeft="true"
+                                        android:drawableStart="@drawable/caret_up_solid_24_15"
+                                        android:background="@drawable/light_orange_rounded_shape"
+                                        android:drawablePadding="8dp"
+                                        android:padding="8dp"
+                                        android:text="500"
+                                        android:textColor="#FFAB2D"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
 
-                                <TextView
+                                    <ImageView
+                                        android:layout_alignParentRight="true"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:layout_marginRight="4dp"
+                                        android:src="@drawable/bookmark_solid_blue" />
+
+                                </RelativeLayout>
+
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:orientation="vertical">
 
-                                    android:text="Huyền Huyễn"
-                                    android:textColor="#a4a7b5"
-                                    android:textSize="12sp" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="4dp"
 
+                                        android:text="Trường Sinh Võ Đạo"
+                                        android:textColor="#000000"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+
+                                        android:text="Huyền Huyễn"
+                                        android:textColor="#a4a7b5"
+                                        android:textSize="12sp" />
+
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="4dp">
+
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="0dp"
+                                        android:src="@drawable/ic_more_horizon_24dp" />
+
+                                </RelativeLayout>
                             </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp"
+                            app:cardUseCompatPadding="true">
 
-                            <RelativeLayout
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="8dp">
+                                android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="36dp"
-                                    android:layout_height="36dp"
-                                    android:layout_marginRight="4dp"
-                                    android:src="@drawable/bookmark" />
+                                    android:layout_width="200dp"
+                                    android:layout_height="266dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/truong_sinh_vo_dao_300"
+                                    android:onClick="callReadLayout"/>
 
-                                <ImageView
-                                    android:layout_width="wrap_content"
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginLeft="44dp"
-                                    android:src="@drawable/ic_timeline_gray_24dp" />
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="-16dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginBottom="4dp">
 
-                                <ImageView
-                                    android:layout_width="wrap_content"
+                                    <TextView
+                                        android:layout_width="64dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentLeft="true"
+                                        android:drawableStart="@drawable/caret_up_solid_24_15"
+                                        android:background="@drawable/light_orange_rounded_shape"
+                                        android:drawablePadding="8dp"
+                                        android:padding="8dp"
+                                        android:text="500"
+                                        android:textColor="#FFAB2D"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <ImageView
+                                        android:layout_alignParentRight="true"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:layout_marginRight="4dp"
+                                        android:src="@drawable/bookmark_solid_blue" />
+
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginRight="0dp"
-                                    android:src="@drawable/ic_more_horiz_gray_24dp" />
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:orientation="vertical">
 
-                            </RelativeLayout>
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="4dp"
 
-                        </LinearLayout>
+                                        android:text="Trường Sinh Võ Đạo"
+                                        android:textColor="#000000"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+
+                                        android:text="Huyền Huyễn"
+                                        android:textColor="#a4a7b5"
+                                        android:textSize="12sp" />
+
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="4dp">
 
 
-                    </androidx.cardview.widget.CardView>
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="0dp"
+                                        android:src="@drawable/ic_more_horizon_24dp" />
 
-                </LinearLayout>
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+                </HorizontalScrollView>
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

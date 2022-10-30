@@ -60,7 +60,12 @@ public class MainActivity extends AppCompatActivity {
     public void login(View view){
         Intent intent = new Intent(MainActivity.this, Login.class);
         startActivity(intent);
-        finish();
+//        finish();
+    }
+
+    public void callReadLayout(View view){
+        Intent intent = new Intent(MainActivity.this, ReadingActivity.class);
+        startActivity(intent);
     }
 
     //Hàm thể hiện fragment
