@@ -41,7 +41,7 @@ public class Register extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Register.this, HomeFragment.class);
+                Intent intent = new Intent(Register.this, MainActivity.class);
                 startActivity(intent);
        }});
     }
