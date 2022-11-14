@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.appmanga.databinding.ActivityMainBinding;
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button a;
     ActivityMainBinding binding;
     private String key;
     private int flag=0;
