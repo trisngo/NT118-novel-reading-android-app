@@ -58,8 +58,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginEnd="8dp"
-                            android:layout_weight="5"
-                            android:onClick="search">
+                            android:layout_weight="5">
+
 
                             <ImageView
                                 android:id="@+id/iv_bell"

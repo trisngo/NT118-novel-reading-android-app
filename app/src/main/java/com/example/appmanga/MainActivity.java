@@ -62,11 +62,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 //        finish();
     }
-    public void search(View view){
+    /*public void search(View view){
         Intent intent = new Intent(MainActivity.this, introActivity.class);
         startActivity(intent);
-//        finish();
-    }
+//        finish();*/
+   // }
 
     public void callReadLayout(View view){
         Intent intent = new Intent(MainActivity.this, ReadingActivity.class);
