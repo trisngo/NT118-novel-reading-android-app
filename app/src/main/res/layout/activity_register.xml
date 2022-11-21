@@ -48,7 +48,6 @@
             android:layout_height="wrap_content"
             android:theme="@style/Myeditext"
             android:padding="5dp">
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tk"
                 android:layout_width="match_parent"
@@ -73,6 +72,23 @@
                 android:textSize="15dp"
                 android:id="@+id/mk"
                 android:hint="Mật khẩu"
+                android:textColor="@color/black"
+                android:inputType="textPassword"></com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
+            android:theme="@style/Myeditext"
+            android:padding="5dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:drawablePadding="20dp"
+                android:textSize="15dp"
+                android:id="@+id/nhaplai_mk"
+                android:hint="Nhập lại Mật khẩu"
                 android:textColor="@color/black"
                 android:inputType="textPassword"></com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
