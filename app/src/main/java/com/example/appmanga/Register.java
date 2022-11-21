@@ -34,18 +34,6 @@ public class Register extends AppCompatActivity {
     DatabaseReference root = db.getReference();
     DatabaseReference usersRef = root.child("users");
 
-    public class User {
-        public String username;
-        public String password;
-        public String email;
-
-        public User(String username, String password, String email) {
-            this.username = username;
-            this.password = password;
-            this.email = email;
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
