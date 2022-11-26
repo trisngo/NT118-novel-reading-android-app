@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "40327039050",
+    "firebase_url": "https://reading-app-ecab7-default-rtdb.firebaseio.com",
+    "project_id": "reading-app-ecab7",
+    "storage_bucket": "reading-app-ecab7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:40327039050:android:fab0a3aea0e8e7aab7beb3",
+        "android_client_info": {
+          "package_name": "com.example.appmanga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "40327039050-t6ovjkj3qcnncpkp349k0n4205hp7bq1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0RHMaeveJpBKjYt8FaC45khxTLSdSMn0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "40327039050-t6ovjkj3qcnncpkp349k0n4205hp7bq1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
