@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SearchActivity"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="8dp">
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="37dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/txtbookshelf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginLeft="30dp"
+            android:textSize="30dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
+        android:background="@drawable/custom_radius"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spn_category"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:dropDownVerticalOffset="40dp"
+            android:background="@android:color/transparent"
+            android:popupBackground="@drawable/custom_popup_spinner"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="0.5dp">
+
+            <EditText
+                android:id="@+id/searchEt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="4"
+                android:background="@drawable/edit_edittext"
+                android:hint="Search author, book..."
+                android:paddingVertical="6dp"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textColor="#045B8A"
+                android:textColorHint="#067691"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/hinh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/custom_iconsearch"
+                android:src="@drawable/ic_baseline_search_24"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/edit_line"
+        android:orientation="vertical"
+        android:layout_marginTop="12dp"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_book"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+</LinearLayout>
