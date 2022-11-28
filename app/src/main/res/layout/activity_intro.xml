@@ -34,6 +34,7 @@
                 android:textColor="#141313"
                 android:textSize="30sp"
                 android:textStyle="bold"></TextView>
+
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
