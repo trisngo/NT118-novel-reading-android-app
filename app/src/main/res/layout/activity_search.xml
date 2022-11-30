@@ -109,7 +109,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imageView4"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
@@ -339,7 +340,7 @@
 
                         <TextView
                             android:id="@+id/textView8"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_margin="15dp"
@@ -349,7 +350,7 @@
                             android:textColor="#5E4386"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            tools:ignore="RtlCompat" />
+                            tools:ignore="HardcodedText,NestedWeights,RtlCompat" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
