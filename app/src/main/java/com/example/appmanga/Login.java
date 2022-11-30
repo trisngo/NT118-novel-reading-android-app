@@ -21,10 +21,10 @@ public class Login extends AppCompatActivity {
 
     Button btndn, btnhuy;
     TextInputEditText username, password;
+
+    // firebase authentication
     private FirebaseAuth firebaseAuth;
-
     private ProgressDialog progressDialog;
-
     private static final int REQUEST_PERMISSION = 0;
 
     @Override
@@ -35,7 +35,6 @@ public class Login extends AppCompatActivity {
 
         //init firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
-
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Load...");
         progressDialog.setCanceledOnTouchOutside(false);
