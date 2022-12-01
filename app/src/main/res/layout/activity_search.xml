@@ -44,7 +44,8 @@
                     app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/imageView3"
-                    app:layout_constraintVertical_bias="0.26999998" />
+                    app:layout_constraintVertical_bias="0.26999998"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -57,28 +58,57 @@
                     app:layout_constraintBottom_toBottomOf="@+id/textView4"
                     app:layout_constraintStart_toEndOf="@+id/textView4"
                     app:layout_constraintTop_toTopOf="@+id/textView4"
-                    app:layout_constraintVertical_bias="0.269" />
+                    app:layout_constraintVertical_bias="0.269"
+                    tools:ignore="HardcodedText" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <EditText
-                android:id="@+id/search"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/search_edt_background"
-                android:drawableEnd="@drawable/search_icon"
-                android:drawablePadding="8dp"
-                android:elevation="3dp"
-                android:ems="10"
-                android:hint="Search for..."
-                android:inputType="textPersonName"
-                android:padding="8dp"
-                android:textColorHint="#8d8d8d"
-                android:textStyle="italic"
-                tools:ignore="HardcodedText" />
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="29dp"
+                android:background="@drawable/custom_radius"
+                android:orientation="horizontal">
 
+                <Spinner
+                    android:id="@+id/spn_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:dropDownVerticalOffset="40dp"
+                    android:background="@android:color/transparent"
+                    android:popupBackground="@drawable/custom_popup_spinner"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="0.5dp">
+
+                    <EditText
+                        android:id="@+id/searchEt"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:paddingLeft="10dp"
+                        android:paddingVertical="6dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColorHint="#DFABCE"
+                        android:textColor="#fa71cd"
+                        android:background="@drawable/edit_edittext"
+                        android:hint="Search book..."
+                        android:singleLine="true"
+                        tools:ignore="HardcodedText" />
+
+                    <ImageView
+                        android:onClick="search"
+                        android:id="@+id/hinh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/custom_iconsearch"
+                        android:src="@drawable/ic_baseline_search_24"/>
+                </LinearLayout>
+            </LinearLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="114dp"
