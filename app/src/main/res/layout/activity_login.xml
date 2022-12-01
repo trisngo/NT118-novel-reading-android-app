@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="15dp"
-                android:hint="Tài khoản"
+                android:hint="Email"
                 android:singleLine="true"
                 android:id="@+id/username"></com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
