@@ -18,4 +18,7 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
     <string name="third_text_des">Ứng dụng đảm bảo quá trình hoạt động luôn mượt mà nhất có thể</string>
     // xoá mấy cái này sau khi đăng nhập
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open_full_screen">Open full screen</string>
+    <string name="next_chap">Next</string>
+    <string name="previous_chap">Previous</string>
 </resources>
