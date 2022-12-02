@@ -13,8 +13,10 @@ public class Book {
     public ArrayList<String> categories;
     public Map<String,String> comments;
     public Map<String,String> chapters;
+    public int likes;
+    public int views;
 
-    public Book(String book_title, String book_description, String thumbnail, String created_time, String updated_time, String author_name, ArrayList<String> categories, Map<String, String> comments, Map<String, String> chapters) {
+    public Book(String book_title, String book_description, String thumbnail, String created_time, String updated_time, String author_name, ArrayList<String> categories, Map<String, String> comments, Map<String, String> chapters, int likes, int views) {
         this.book_title = book_title;
         this.book_description = book_description;
         this.thumbnail = thumbnail;
@@ -24,7 +26,8 @@ public class Book {
         this.categories = categories;
         this.comments = comments;
         this.chapters = chapters;
-
+        this.likes = likes;
+        this.views = views;
     }
 
 }
