@@ -21,4 +21,5 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
     <string name="open_full_screen">Open full screen</string>
     <string name="next_chap">Next</string>
     <string name="previous_chap">Previous</string>
+    <string name="settings">Settings</string>
 </resources>
