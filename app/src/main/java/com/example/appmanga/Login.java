@@ -61,8 +61,6 @@ public class Login extends AppCompatActivity {
         btnhuy = findViewById(R.id.btnhuy);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
-
-
     }
 
     // click btn dang ki
@@ -78,7 +76,6 @@ public class Login extends AppCompatActivity {
         // get data
         email = username.getText().toString().trim();
         password1 = password.getText().toString().trim();
-
         // validate data
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(Login.this, "Nhập Email...", Toast.LENGTH_SHORT).show();
@@ -92,12 +89,10 @@ public class Login extends AppCompatActivity {
     private void loginUser() {
         progressDialog.setMessage("Đang đăng nhập...");
         progressDialog.show();
-
         firebaseAuth.signInWithEmailAndPassword(email, password1)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-
                         Intent intent = new Intent(
                                 Login.this, MainActivity.class
                         );

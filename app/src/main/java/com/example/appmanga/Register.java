@@ -17,13 +17,16 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Register extends AppCompatActivity {
     TextView textv;
-    TextInputEditText et_tk, et_mk, et_nhaplaimk;
+    TextInputEditText et_tk, et_mk, et_nhaplaimk, et_username;
     Button btndk, btnhuy;
     TextView textclick;
     private FirebaseAuth firebaseAuth;
@@ -70,6 +73,7 @@ public class Register extends AppCompatActivity {
         et_tk = findViewById(R.id.tk);
         et_mk = findViewById(R.id.mk);
         et_nhaplaimk = findViewById(R.id.nhaplai_mk);
+        et_username = findViewById(R.id.username);
         btndk = findViewById(R.id.btndk);
         btnhuy = findViewById(R.id.btnhuy);
         textclick = findViewById(R.id.textlogin);
@@ -117,7 +121,15 @@ public class Register extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-
+                        FirebaseDatabase db = FirebaseDatabase.getInstance();
+                        DatabaseReference root = db.getReference();
+                        DatabaseReference usersRef = root.child("users");
+                        User newUser = new User(et_username.getText().toString().trim(),email);
+                        Map<String, Object> register_user = new HashMap<>();
+                        Long tsLong = System.currentTimeMillis()/1000;
+                        String ts = tsLong.toString();
+                        register_user.put("user" + ts, newUser);
+                        usersRef.updateChildren(register_user);
                         Intent intent = new Intent(
                                 Register.this, MainActivity.class
                         );

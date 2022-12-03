@@ -20,9 +20,20 @@ import android.widget.Toast;
 import com.example.appmanga.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,10 +41,10 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button a;
     ActivityMainBinding binding;
     private String key;
     private int flag=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,26 +115,26 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+
     // Gọi hàm này để thêm sách vào database
     void init_database() {
-        String book_title = "Arya-san bàn bên thi thoảng lại thả thính tôi bằng tiếng Nga";
-        String book_description = "Đây là một câu truyện romcom tuổi trẻ với một cô nàng JK người Nga siêu cao cấp, là đối tượng của sự ngưỡng mộ của mọi học sinh trong trường!";
-        String thumbnail = "https://i.docln.net/lightnovel/illusts/u67551-23879fcc-7c33-4966-a87b-4be1f5be5c60.jpg";
-        String created_time = "21/11/2022";
-        String updated_time = "21/11/2022";
-        String author_name = "Sun";
+        String book_title = "Angel Of Death";
+        String book_description = "Thiếu nữ 13 tuổi Rachel tỉnh dậy và nhận ra mình đang bị nhốt dưới tầng hầm của một tòa nhà bỏ hoang. Không chút ký ức, cũng như manh mối về nơi mình đang ở, lạc lối và choáng váng, cô lang thang khắp tòa nhà. Trong lúc tìm kiếm manh mối tại nơi đây, cô chạm mặt một người đàn ông được bao phủ bởi băng gạc. Hắn là một kẻ mang lưỡi hái, tự nhận mình tên Zack. Họ bắt đầu một mối quan hệ kỳ lạ, được thắt chặt bằng những lời hứa điên rồ";
+        String thumbnail = "https://m.media-amazon.com/images/M/MV5BOWRjMzU2NTYtMGRlOS00YjQwLWFiYWQtODFlOGNiNmU4OTVlXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_FMjpg_UX1000_.jpg";
+        String created_time = "01/12/2022";
+        String updated_time = "01/12/2022";
+        String author_name = "Chiren Kina";
+        int likes = 43;
+        int views = 561;
         ArrayList<String> categories = new ArrayList<>();
-        categories.add("Comedy");
-        categories.add("Romance");
-        categories.add("School Life");
+        categories.add("Action");
+        categories.add("Horror");
+        categories.add("Tragedy");
         Map<String, String> comments = new HashMap<>();
-        comments.put("BuiDucAnh","Gái Nga xinh quá hehe");
+        comments.put("BuiDucAnh","Cũng hay hé hé hé");
         Map<String,String> chapters = new HashMap<>();
-        chapters.put("chapter1","Nội dung chapter 1");
-        chapters.put("chapter2","Nội dung chapter 2");
-        chapters.put("chapter3","Nội dung chapter 3");
-        chapters.put("chapter4","Nội dung chapter 4");
-        Book exampleSach = new Book(book_title,book_description,thumbnail,created_time,updated_time,author_name,categories,comments,chapters);
+        chapters.put("chapter2","");
+        Book exampleSach = new Book(book_title,book_description,thumbnail,created_time,updated_time,author_name,categories,comments,chapters,likes,views);
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference booksRef = db.getReference().child("books");
         Map<String, Object> push_book = new HashMap<>();
