@@ -2,6 +2,7 @@ package com.example.appmanga;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -10,25 +11,41 @@ import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import  androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class ReadingActivity extends AppCompatActivity {
     private static String baseUrl;
     private static WebView webView;
     private Toolbar toolbar;
-    FloatingActionButton mFeatureFab, mBookmarkFab, mNextFab;
-    TextView bookmarkText, nextText;
+    FloatingActionButton mFeatureFab, mBookmarkFab, mNextFab, mPreviousFab;
+    TextView bookmarkText, nextText, previousText;
 
     Boolean isAllFabsVisible;
 
     private static int currentPageNumber = 1;
+
+    FirebaseDatabase db = FirebaseDatabase.getInstance();
+    DatabaseReference root = db.getReference();
+    DatabaseReference booksRef = root.child("books");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +68,18 @@ public class ReadingActivity extends AppCompatActivity {
         mFeatureFab = findViewById(R.id.fab_feature);
         mBookmarkFab = findViewById(R.id.fab_bookmark);
         mNextFab = findViewById(R.id.fab_next_chap);
+        mPreviousFab = findViewById(R.id.fab_previous_chap);
 
         bookmarkText = findViewById(R.id.tv_bookmark);
         nextText = findViewById(R.id.tv_next_chap);
+        previousText = findViewById(R.id.tv_previous_chap);
 
         mBookmarkFab.setVisibility(View.GONE);
         mNextFab.setVisibility(View.GONE);
+        mPreviousFab.setVisibility(View.GONE);
         bookmarkText.setVisibility(View.GONE);
         nextText.setVisibility(View.GONE);
+        previousText.setVisibility(View.GONE);
 
         isAllFabsVisible = false;
 
@@ -66,15 +87,19 @@ public class ReadingActivity extends AppCompatActivity {
             if (!isAllFabsVisible) {
                 mBookmarkFab.show();
                 mNextFab.show();
+                mPreviousFab.show();
                 bookmarkText.setVisibility(View.VISIBLE);
                 nextText.setVisibility(View.VISIBLE);
+                previousText.setVisibility(View.VISIBLE);
 
                 isAllFabsVisible = true;
             } else {
                 mBookmarkFab.hide();
                 mNextFab.hide();
+                mPreviousFab.hide();
                 bookmarkText.setVisibility(View.GONE);
                 nextText.setVisibility(View.GONE);
+                previousText.setVisibility(View.GONE);
 
                 isAllFabsVisible = false;
             }
@@ -87,11 +112,37 @@ public class ReadingActivity extends AppCompatActivity {
         mNextFab.setOnClickListener(
                 view -> Toast.makeText(ReadingActivity.this, "Next chapter", Toast.LENGTH_SHORT
                 ).show());
+        mPreviousFab.setOnClickListener(
+                view -> Toast.makeText(ReadingActivity.this, "Previous chapter", Toast.LENGTH_SHORT
+                ).show());
     }
 
-    private static void showPage(int currentPN) {
+    private void showPage(int currentPN) {
         //            get data from db
-        String data = new String("123123");
+
+        List<String> chapList = new ArrayList<>();
+//        booksRef.child("book1669912049").child("chapter").child("chapter1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DataSnapshot> task) {
+//                data[0] = String.valueOf(task.getResult().getValue())
+//            }
+//        });
+        Query query = booksRef.equalTo("book1669912049");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(final DataSnapshot dataSnapshot) {
+                for (DataSnapshot chap : dataSnapshot.child("chapters").getChildren()) {
+                    chapList.add(chap.getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(final DatabaseError databaseError) {
+                Log.w("error", "loadPost:onCancelled", databaseError.toException());
+            }
+        });
+        String data = chapList.get(0);
+        data = data.replace("\n", "<br><br>");
 
         currentPageNumber = currentPN;
         webView.loadDataWithBaseURL(baseUrl, data, "text/html", "UTF-8", null);

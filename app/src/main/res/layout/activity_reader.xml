@@ -56,7 +56,7 @@
         android:id="@+id/tv_bookmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Alarm"
+        android:text="Save"
         android:layout_marginEnd="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/fab_bookmark"
         app:layout_constraintEnd_toStartOf="@+id/fab_bookmark"
@@ -77,9 +77,31 @@
         android:id="@+id/tv_next_chap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:text="@string/next_chap"
         android:layout_marginEnd="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/fab_next_chap"
         app:layout_constraintEnd_toStartOf="@+id/fab_next_chap"
         app:layout_constraintTop_toTopOf="@+id/fab_next_chap" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_previous_chap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/book_open_reader_solid"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/fab_next_chap"
+        app:layout_constraintEnd_toEndOf="@+id/fab_next_chap"
+        app:layout_constraintStart_toStartOf="@+id/fab_next_chap" />
+
+    <TextView
+        android:id="@+id/tv_previous_chap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/previous_chap"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fab_previous_chap"
+        app:layout_constraintEnd_toStartOf="@+id/fab_previous_chap"
+        app:layout_constraintTop_toTopOf="@+id/fab_previous_chap" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
