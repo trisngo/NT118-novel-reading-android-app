@@ -83,6 +83,18 @@ public class Login extends AppCompatActivity {
             Toast.makeText(Login.this, "Nhập mật khẩu...", Toast.LENGTH_SHORT).show();
         } else {
             loginUser();
+
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 

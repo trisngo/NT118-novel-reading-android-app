@@ -15,8 +15,8 @@
     <color name="tv_ranking">#f5562f</color>
     <color name="background_middle_ranking">#DFF6FF</color>
     <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#FFFFFF</color>
-    <color name="colorAccent">#1a76d3</color>
+    <color name="colorPrimaryDark">#A58F8F</color>
+    <color name="colorAccent">#5C96D0</color>
 
     <color name="textcolor">#89C5CC</color>
     <!--    color for button style-->
