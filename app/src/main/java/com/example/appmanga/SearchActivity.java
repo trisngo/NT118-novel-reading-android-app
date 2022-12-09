@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmanga.Adapter.AdapterBook;
 import com.example.appmanga.databinding.ActivitySearchBinding;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +39,8 @@ public class SearchActivity extends AppCompatActivity {
     private EditText editText;
 
     private String author_name;
+    ShimmerFrameLayout shimmerFrameLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +48,8 @@ public class SearchActivity extends AppCompatActivity {
 
         com.example.appmanga.databinding.ActivitySearchBinding binding = ActivitySearchBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
         RecyclerView rcvSach = findViewById(R.id.rcv_book);
+        shimmerFrameLayout= findViewById(R.id.shimmer_books);
 
         rcvSach.setHasFixedSize(true);
         rcvSach.setLayoutManager(new LinearLayoutManager(this));
@@ -57,6 +62,7 @@ public class SearchActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         author_name = i.getStringExtra("author_name");
+
 
         getAllBooks();
 
@@ -85,8 +91,6 @@ public class SearchActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     private void getAllBooks() {
@@ -102,7 +106,10 @@ public class SearchActivity extends AppCompatActivity {
                     Book book = dataSnapshot.getValue(Book.class);
                     list.add(book);
                 }
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
                 adapterBook.notifyDataSetChanged();
+
             }
 
             @Override
@@ -110,6 +117,18 @@ public class SearchActivity extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+    }
+
+    @Override
+    protected void onPause() {
+        shimmerFrameLayout.stopShimmer();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        shimmerFrameLayout.startShimmer();
+        super.onResume();
     }
 }
 

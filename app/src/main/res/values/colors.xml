@@ -3,7 +3,7 @@
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_200">#DCE2E2</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
@@ -30,5 +30,8 @@
     <color name="chuyen_mau_btn_truyen_activity">#CADAD9D9</color>
     <color name="chuyen_mau_btn_truyen_activity1">#ECEBEB</color>
     <color name="chuyen_mau_btn_truyen_activity2">@null</color>
+
+    <color name="shimmer_color">#C4BCBC</color>
+    <color name="shimmer_color1">#EDEAEA</color>
 
 </resources>
