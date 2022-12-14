@@ -124,7 +124,7 @@ public class Register extends AppCompatActivity {
                         FirebaseDatabase db = FirebaseDatabase.getInstance();
                         DatabaseReference root = db.getReference();
                         DatabaseReference usersRef = root.child("users");
-                        User newUser = new User(et_username.getText().toString().trim(),email);
+                        User newUser = new User(et_username.getText().toString().trim(),email,0);
                         Map<String, Object> register_user = new HashMap<>();
                         Long tsLong = System.currentTimeMillis()/1000;
                         String ts = tsLong.toString();
