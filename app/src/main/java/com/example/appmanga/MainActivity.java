@@ -95,11 +95,11 @@ public class MainActivity extends AppCompatActivity {
     public void search(View view){
         Intent intent = new Intent(MainActivity.this, SearchActivity.class);
         startActivity(intent);
-//        finish();*/
+//        finish();
     }
 
     public void callReadLayout(View view){
-        Intent intent = new Intent(MainActivity.this, ReadingActivity.class);
+        Intent intent = new Intent(MainActivity.this, intro_manga_before_read.class);
         startActivity(intent);
     }
 

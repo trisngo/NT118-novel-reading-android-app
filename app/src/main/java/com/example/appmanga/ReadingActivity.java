@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ReadingActivity extends AppCompatActivity {
+    public static String nameClass;
     private static String baseUrl;
     private static WebView webView;
     private Toolbar toolbar;
