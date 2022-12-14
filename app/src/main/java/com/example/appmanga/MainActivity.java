@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void callReadLayout(View view){
-        Intent intent = new Intent(MainActivity.this, ReadingActivity.class);
+        Intent intent = new Intent(MainActivity.this, intro_manga_before_read.class);
         startActivity(intent);
     }
 

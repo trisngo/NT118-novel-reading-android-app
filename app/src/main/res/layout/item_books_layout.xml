@@ -9,25 +9,25 @@
         android:layout_width="60dp"
         android:layout_height="80dp"
         android:background="@color/purple_200"/>
+
     <TextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="10dp"
         android:layout_toRightOf="@id/img_book"
         android:text="Name"
         android:textSize="25dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvNumberRanking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="38dp"
-        android:layout_marginRight="1dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginRight="280dp"
         android:text="Ranking"
         android:textSize="16dp"
         android:textStyle="bold" />
