@@ -70,9 +70,16 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(new RankingFragment(),key);
                     break;
                 case  R.id.Profile:
-                    key="Profile";
-                    replaceFragment(new ProfileFragment(),key);
-                    break;
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if (user != null) {
+                        key="Profile";
+                        replaceFragment(new ProfileFragment(),key);
+                        break;
+                    }else{
+                        Intent intent = new Intent(MainActivity.this, Login.class);
+                        startActivity(intent);
+                    }
+
             }
             return true;
         });
