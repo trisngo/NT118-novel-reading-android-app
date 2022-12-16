@@ -70,16 +70,16 @@ public class ReadingActivity extends AppCompatActivity {
         mNextFab = findViewById(R.id.fab_next_chap);
         mPreviousFab = findViewById(R.id.fab_previous_chap);
 
-        bookmarkText = findViewById(R.id.tv_bookmark);
-        nextText = findViewById(R.id.tv_next_chap);
-        previousText = findViewById(R.id.tv_previous_chap);
+//        bookmarkText = findViewById(R.id.tv_bookmark);
+//        nextText = findViewById(R.id.tv_next_chap);
+//        previousText = findViewById(R.id.tv_previous_chap);
 
         mBookmarkFab.setVisibility(View.GONE);
         mNextFab.setVisibility(View.GONE);
         mPreviousFab.setVisibility(View.GONE);
-        bookmarkText.setVisibility(View.GONE);
-        nextText.setVisibility(View.GONE);
-        previousText.setVisibility(View.GONE);
+//        bookmarkText.setVisibility(View.GONE);
+//        nextText.setVisibility(View.GONE);
+//        previousText.setVisibility(View.GONE);
 
         isAllFabsVisible = false;
 
@@ -88,18 +88,18 @@ public class ReadingActivity extends AppCompatActivity {
                 mBookmarkFab.show();
                 mNextFab.show();
                 mPreviousFab.show();
-                bookmarkText.setVisibility(View.VISIBLE);
-                nextText.setVisibility(View.VISIBLE);
-                previousText.setVisibility(View.VISIBLE);
+//                bookmarkText.setVisibility(View.VISIBLE);
+//                nextText.setVisibility(View.VISIBLE);
+//                previousText.setVisibility(View.VISIBLE);
 
                 isAllFabsVisible = true;
             } else {
                 mBookmarkFab.hide();
                 mNextFab.hide();
                 mPreviousFab.hide();
-                bookmarkText.setVisibility(View.GONE);
-                nextText.setVisibility(View.GONE);
-                previousText.setVisibility(View.GONE);
+//                bookmarkText.setVisibility(View.GONE);
+//                nextText.setVisibility(View.GONE);
+//                previousText.setVisibility(View.GONE);
 
                 isAllFabsVisible = false;
             }
@@ -120,20 +120,33 @@ public class ReadingActivity extends AppCompatActivity {
     private void showPage(int currentPN) {
         //            get data from db
 
-        List<String> chapList = new ArrayList<>();
 //        booksRef.child("book1669912049").child("chapter").child("chapter1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
 //            @Override
 //            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                data[0] = String.valueOf(task.getResult().getValue())
+//                Log.d("json", String.valueOf(task.getResult().getValue()));
 //            }
 //        });
-        Query query = booksRef.equalTo("book1669912049");
+        Query query = booksRef.child("book1669912049").child("chapters");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
-                for (DataSnapshot chap : dataSnapshot.child("chapters").getChildren()) {
-                    chapList.add(chap.getValue().toString());
-                }
+//                for (DataSnapshot chap : dataSnapshot.getChildren()) {
+//                    Log.d("json", chap.getValue().toString());
+//                    String data = chap.getValue().toString();
+//                    data = data.replace("\n", "<br><br>");
+//
+//                    currentPageNumber = currentPN;
+//                    webView.loadDataWithBaseURL(baseUrl, data, "text/html", "UTF-8", null);
+//                }
+
+                Log.d("json", dataSnapshot.child("chapter1").getValue().toString());
+                String data = dataSnapshot.child("chapter1").getValue().toString();
+                data = data.replace("\n", "<br><br>");
+
+                currentPageNumber = currentPN;
+                webView.loadDataWithBaseURL(baseUrl, data, "text/html", "UTF-8", null);
+
+
             }
 
             @Override
@@ -141,12 +154,7 @@ public class ReadingActivity extends AppCompatActivity {
                 Log.w("error", "loadPost:onCancelled", databaseError.toException());
             }
         });
-        String data = chapList.get(0);
-        data = data.replace("\n", "<br><br>");
-
-        currentPageNumber = currentPN;
-        webView.loadDataWithBaseURL(baseUrl, data, "text/html", "UTF-8", null);
-//        webView.scrollTo(0, 0);
+       //        webView.scrollTo(0, 0);
     }
 
 

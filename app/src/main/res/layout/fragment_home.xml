@@ -24,36 +24,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:weightSum="10">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name1"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textSize="25sp"
+                        android:layout_gravity="center"
+                        android:layout_alignParentStart="true"
+                        android:textColor="#000000"
+                        android:onClick="login"/>
 
                     <ImageView
                         android:id="@+id/iv_search"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_search_24dp" />
-
-                    <ImageView
-                        android:id="@+id/iv_icon_home"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/logo"
-                        android:onClick="login"/>
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_alignParentEnd="true"
+                        app:srcCompat="@drawable/ic_search_24dp"
+                        android:onClick="search"/>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:onClick="search">
+                        android:layout_toStartOf="@id/iv_search"
+                        android:layout_marginEnd="10dp">
 
                         <ImageView
                             android:id="@+id/iv_bell"
@@ -75,7 +80,7 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </LinearLayout>
+                </RelativeLayout>
 
 
             </androidx.appcompat.widget.Toolbar>
@@ -107,278 +112,66 @@
                     android:layout_marginBottom="16dp"
                     android:orientation="vertical">
 
-                    <LinearLayout
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/parent_layout1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:orientation="horizontal">
+                        android:layout_marginEnd="8dp"
+                        app:cardCornerRadius="10dp">
 
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/parent_layout1"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="8dp"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="10dp">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                            <RelativeLayout
+                            <ImageView
+                                android:id="@+id/iv_cover1"
+                                android:layout_width="120dp"
+                                android:layout_height="140dp"
+                                android:layout_alignParentLeft="true"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/truong_sinh_vo_dao_300" />
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:id="@+id/iv_cover1"
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_alignParentLeft="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/truong_sinh_vo_dao_300" />
+                                android:layout_height="wrap_content"
+                                android:layout_toEndOf="@id/iv_cover1"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:orientation="vertical">
 
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:layout_margin="15dp"
-                                    android:layout_marginStart="15dp"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_marginEnd="15dp"
-                                    android:layout_marginBottom="15dp"
-                                    android:layout_toEndOf="@id/iv_cover1"
+                                    android:layout_marginBottom="4dp"
+                                    android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
+                                    android:ellipsize = "end"
+                                    android:fadingEdge = "horizontal"
+                                    android:scrollHorizontally = "true"
+                                    android:maxLines = "2"
                                     android:fontFamily="sans-serif-medium"
-                                    android:text="Kinh dị"
                                     android:textAlignment="viewStart"
                                     android:textColor="#5E4386"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    tools:ignore="RtlCompat" />
-
-                            </RelativeLayout>
-
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/parent_layout2"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="8dp"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="10dp">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:id="@+id/iv_cover2"
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_alignParentLeft="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/truong_sinh_vo_dao_300" />
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
 
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_margin="15dp"
-                                    android:layout_toEndOf="@id/iv_cover2"
-                                    android:layout_centerVertical="true"
-                                    android:fontFamily="sans-serif-medium"
-                                    android:text="Kinh dị"
-                                    android:textAlignment="viewStart"
-                                    android:textColor="#5E4386"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    tools:ignore="RtlCompat" />
 
-                            </RelativeLayout>
+                                    android:text="Một người anh trai bị cô em gái của mình đánh bại trong cuộc chiến giành quyền thừa kế và bị đuổi khỏi nhà. Mất hết mọi thứ và bị thương nặng đến mức bất tỉnh, trong cơn mê man cậu nghe được những giọng nói mơ hồ, cùng với giọng của ông nội quá cố của bản thân (?), chuyện gì sẽ xảy ra với cậu?"
+                                    android:maxLines = "3"
+                                    android:textColor="#a4a7b5"
+                                    android:textSize="12sp" />
 
-                        </androidx.cardview.widget.CardView>
+                            </LinearLayout>
 
-                    </LinearLayout>
+                        </RelativeLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:orientation="horizontal">
+                    </androidx.cardview.widget.CardView>
 
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/parent_layout3"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="8dp"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="10dp">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:id="@+id/iv_cover3"
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_alignParentLeft="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/truong_sinh_vo_dao_300" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:layout_margin="15dp"
-                                    android:layout_marginStart="15dp"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_marginEnd="15dp"
-                                    android:layout_marginBottom="15dp"
-                                    android:layout_toEndOf="@id/iv_cover3"
-                                    android:fontFamily="sans-serif-medium"
-                                    android:text="Kinh dị"
-                                    android:textAlignment="viewStart"
-                                    android:textColor="#5E4386"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    tools:ignore="RtlCompat" />
-
-                            </RelativeLayout>
-
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/parent_layout4"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="8dp"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="10dp">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:id="@+id/iv_cover4"
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_alignParentLeft="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/truong_sinh_vo_dao_300" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:layout_margin="15dp"
-                                    android:layout_marginStart="15dp"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_marginEnd="15dp"
-                                    android:layout_marginBottom="15dp"
-                                    android:layout_toEndOf="@id/iv_cover4"
-                                    android:fontFamily="sans-serif-medium"
-                                    android:text="Kinh dị"
-                                    android:textAlignment="viewStart"
-                                    android:textColor="#5E4386"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    tools:ignore="RtlCompat" />
-
-                            </RelativeLayout>
-
-                        </androidx.cardview.widget.CardView>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:orientation="horizontal">
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/parent_layout5"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="8dp"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="10dp">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:id="@+id/iv_cover5"
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_alignParentLeft="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/truong_sinh_vo_dao_300" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:layout_margin="15dp"
-                                    android:layout_marginStart="15dp"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_marginEnd="15dp"
-                                    android:layout_marginBottom="15dp"
-                                    android:layout_toEndOf="@id/iv_cover5"
-                                    android:fontFamily="sans-serif-medium"
-                                    android:text="Kinh dị"
-                                    android:textAlignment="viewStart"
-                                    android:textColor="#5E4386"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    tools:ignore="RtlCompat" />
-
-                            </RelativeLayout>
-
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/parent_layout6"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="8dp"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="10dp">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:id="@+id/iv_cover6"
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_alignParentLeft="true"
-                                    android:scaleType="fitStart"
-                                    android:src="@drawable/truong_sinh_vo_dao_300" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:layout_margin="15dp"
-                                    android:layout_marginStart="15dp"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_marginEnd="15dp"
-                                    android:layout_marginBottom="15dp"
-                                    android:layout_toEndOf="@id/iv_cover6"
-                                    android:fontFamily="sans-serif-medium"
-                                    android:text="Kinh dị"
-                                    android:textAlignment="viewStart"
-                                    android:textColor="#5E4386"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    tools:ignore="RtlCompat" />
-
-                            </RelativeLayout>
-
-                        </androidx.cardview.widget.CardView>
-                    </LinearLayout>
                 </LinearLayout>
 
                 <HorizontalScrollView
@@ -396,7 +189,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="10dp"
-                            app:cardElevation="8dp"
+                            app:cardElevation="4dp"
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
@@ -405,8 +198,8 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="200dp"
-                                    android:layout_height="270dp"
+                                    android:layout_width="185dp"
+                                    android:layout_height="250dp"
                                     android:onClick="callReadLayout"
                                     android:scaleType="fitXY"
                                     android:src="@drawable/truong_sinh_vo_dao_300" />
@@ -453,7 +246,12 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="4dp"
 
-                                        android:text="Trường Sinh Võ Đạo"
+                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
+                                        android:ellipsize = "marquee"
+                                        android:fadingEdge = "horizontal"
+                                        android:marqueeRepeatLimit = "marquee_forever"
+                                        android:scrollHorizontally = "true"
+                                        android:singleLine = "true"
                                         android:textColor="#000000"
                                         android:textSize="16sp"
                                         android:textStyle="bold" />
@@ -489,7 +287,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="10dp"
-                            app:cardElevation="8dp"
+                            app:cardElevation="4dp"
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
@@ -498,8 +296,8 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="200dp"
-                                    android:layout_height="266dp"
+                                    android:layout_width="185dp"
+                                    android:layout_height="250dp"
                                     android:scaleType="fitXY"
                                     android:src="@drawable/truong_sinh_vo_dao_300"
                                     android:onClick="callReadLayout"/>
@@ -546,7 +344,12 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="4dp"
 
-                                        android:text="Trường Sinh Võ Đạo"
+                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
+                                        android:ellipsize = "marquee"
+                                        android:fadingEdge = "horizontal"
+                                        android:marqueeRepeatLimit = "marquee_forever"
+                                        android:scrollHorizontally = "true"
+                                        android:singleLine = "true"
                                         android:textColor="#000000"
                                         android:textSize="16sp"
                                         android:textStyle="bold" />
@@ -582,7 +385,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="10dp"
-                            app:cardElevation="8dp"
+                            app:cardElevation="4dp"
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
@@ -591,8 +394,8 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="200dp"
-                                    android:layout_height="266dp"
+                                    android:layout_width="185dp"
+                                    android:layout_height="250dp"
                                     android:scaleType="fitXY"
                                     android:src="@drawable/truong_sinh_vo_dao_300"
                                     android:onClick="callReadLayout"/>
@@ -639,7 +442,12 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="4dp"
 
-                                        android:text="Trường Sinh Võ Đạo"
+                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
+                                        android:ellipsize = "marquee"
+                                        android:fadingEdge = "horizontal"
+                                        android:marqueeRepeatLimit = "marquee_forever"
+                                        android:scrollHorizontally = "true"
+                                        android:singleLine = "true"
                                         android:textColor="#000000"
                                         android:textSize="16sp"
                                         android:textStyle="bold" />
@@ -732,7 +540,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="10dp"
-                            app:cardElevation="8dp"
+                            app:cardElevation="4dp"
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
@@ -741,8 +549,8 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="200dp"
-                                    android:layout_height="266dp"
+                                    android:layout_width="185dp"
+                                    android:layout_height="250dp"
                                     android:scaleType="fitXY"
                                     android:src="@drawable/truong_sinh_vo_dao_300"
                                     android:onClick="callReadLayout"/>
@@ -789,7 +597,12 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="4dp"
 
-                                        android:text="Trường Sinh Võ Đạo"
+                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
+                                        android:ellipsize = "marquee"
+                                        android:fadingEdge = "horizontal"
+                                        android:marqueeRepeatLimit = "marquee_forever"
+                                        android:scrollHorizontally = "true"
+                                        android:singleLine = "true"
                                         android:textColor="#000000"
                                         android:textSize="16sp"
                                         android:textStyle="bold" />
@@ -825,7 +638,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="10dp"
-                            app:cardElevation="8dp"
+                            app:cardElevation="4dp"
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
@@ -834,8 +647,8 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="200dp"
-                                    android:layout_height="266dp"
+                                    android:layout_width="185dp"
+                                    android:layout_height="250dp"
                                     android:scaleType="fitXY"
                                     android:src="@drawable/truong_sinh_vo_dao_300"
                                     android:onClick="callReadLayout"/>
@@ -882,7 +695,12 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="4dp"
 
-                                        android:text="Trường Sinh Võ Đạo"
+                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
+                                        android:ellipsize = "marquee"
+                                        android:fadingEdge = "horizontal"
+                                        android:marqueeRepeatLimit = "marquee_forever"
+                                        android:scrollHorizontally = "true"
+                                        android:singleLine = "true"
                                         android:textColor="#000000"
                                         android:textSize="16sp"
                                         android:textStyle="bold" />
@@ -918,7 +736,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="10dp"
-                            app:cardElevation="8dp"
+                            app:cardElevation="4dp"
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
@@ -927,8 +745,8 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="200dp"
-                                    android:layout_height="266dp"
+                                    android:layout_width="185dp"
+                                    android:layout_height="250dp"
                                     android:scaleType="fitXY"
                                     android:src="@drawable/truong_sinh_vo_dao_300"
                                     android:onClick="callReadLayout"/>
@@ -975,7 +793,12 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="4dp"
 
-                                        android:text="Trường Sinh Võ Đạo"
+                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
+                                        android:ellipsize = "marquee"
+                                        android:fadingEdge = "horizontal"
+                                        android:marqueeRepeatLimit = "marquee_forever"
+                                        android:scrollHorizontally = "true"
+                                        android:singleLine = "true"
                                         android:textColor="#000000"
                                         android:textSize="16sp"
                                         android:textStyle="bold" />
@@ -1068,7 +891,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="10dp"
-                            app:cardElevation="8dp"
+                            app:cardElevation="4dp"
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
@@ -1077,8 +900,8 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="200dp"
-                                    android:layout_height="266dp"
+                                    android:layout_width="185dp"
+                                    android:layout_height="250dp"
                                     android:scaleType="fitXY"
                                     android:src="@drawable/truong_sinh_vo_dao_300"
                                     android:onClick="callReadLayout"/>
@@ -1125,7 +948,12 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="4dp"
 
-                                        android:text="Trường Sinh Võ Đạo"
+                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
+                                        android:ellipsize = "marquee"
+                                        android:fadingEdge = "horizontal"
+                                        android:marqueeRepeatLimit = "marquee_forever"
+                                        android:scrollHorizontally = "true"
+                                        android:singleLine = "true"
                                         android:textColor="#000000"
                                         android:textSize="16sp"
                                         android:textStyle="bold" />
@@ -1161,7 +989,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="10dp"
-                            app:cardElevation="8dp"
+                            app:cardElevation="4dp"
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
@@ -1170,8 +998,8 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="200dp"
-                                    android:layout_height="266dp"
+                                    android:layout_width="185dp"
+                                    android:layout_height="250dp"
                                     android:scaleType="fitXY"
                                     android:src="@drawable/truong_sinh_vo_dao_300"
                                     android:onClick="callReadLayout"/>
@@ -1218,7 +1046,12 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="4dp"
 
-                                        android:text="Trường Sinh Võ Đạo"
+                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
+                                        android:ellipsize = "marquee"
+                                        android:fadingEdge = "horizontal"
+                                        android:marqueeRepeatLimit = "marquee_forever"
+                                        android:scrollHorizontally = "true"
+                                        android:singleLine = "true"
                                         android:textColor="#000000"
                                         android:textSize="16sp"
                                         android:textStyle="bold" />
@@ -1254,7 +1087,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="10dp"
-                            app:cardElevation="8dp"
+                            app:cardElevation="4dp"
                             app:cardUseCompatPadding="true">
 
                             <LinearLayout
@@ -1263,8 +1096,8 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="200dp"
-                                    android:layout_height="266dp"
+                                    android:layout_width="185dp"
+                                    android:layout_height="250dp"
                                     android:scaleType="fitXY"
                                     android:src="@drawable/truong_sinh_vo_dao_300"
                                     android:onClick="callReadLayout"/>
@@ -1311,7 +1144,12 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="4dp"
 
-                                        android:text="Trường Sinh Võ Đạo"
+                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
+                                        android:ellipsize = "marquee"
+                                        android:fadingEdge = "horizontal"
+                                        android:marqueeRepeatLimit = "marquee_forever"
+                                        android:scrollHorizontally = "true"
+                                        android:singleLine = "true"
                                         android:textColor="#000000"
                                         android:textSize="16sp"
                                         android:textStyle="bold" />
