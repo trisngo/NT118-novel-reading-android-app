@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -124,7 +125,7 @@ public class Register extends AppCompatActivity {
                         FirebaseDatabase db = FirebaseDatabase.getInstance();
                         DatabaseReference root = db.getReference();
                         DatabaseReference usersRef = root.child("users");
-                        User newUser = new User(et_username.getText().toString().trim(),email,0);
+                        User newUser = new User(et_username.getText().toString().trim(),email,0, new ArrayList<String>());
                         Map<String, Object> register_user = new HashMap<>();
                         Long tsLong = System.currentTimeMillis()/1000;
                         String ts = tsLong.toString();

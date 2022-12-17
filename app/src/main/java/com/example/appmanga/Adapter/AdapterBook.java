@@ -50,9 +50,6 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
         holder.book_author.setText(book.getAuthor_name());
         String image = book.getThumbnail();
 
-
-
-
         Picasso.get().load(image).into(holder.thumbnail);
     }
 
