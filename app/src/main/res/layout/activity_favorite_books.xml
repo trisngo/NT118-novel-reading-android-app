@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SearchActivity"
+    android:focusable="true"
+    android:background="#47B5FF"
+    android:focusableInTouchMode="true">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="8dp">
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="37dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/txtbookshelf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Favorite Books"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginLeft="30dp"
+            android:textSize="30dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
+        android:background="@drawable/custom_radius"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spn_category"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:dropDownVerticalOffset="40dp"
+            android:background="@android:color/transparent"
+            android:popupBackground="@drawable/custom_popup_spinner"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/edit_line"
+        android:orientation="vertical"
+        android:layout_marginTop="12dp"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:id="@+id/shimmer_books">
+            <LinearLayout
+                android:id="@+id/shimmer_item1"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/shimmer_book" />
+
+                <include layout="@layout/shimmer_book" />
+
+                <include layout="@layout/shimmer_book" />
+
+                <include layout="@layout/shimmer_book" />
+
+                <include layout="@layout/shimmer_book" />
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fav_books"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+</LinearLayout>

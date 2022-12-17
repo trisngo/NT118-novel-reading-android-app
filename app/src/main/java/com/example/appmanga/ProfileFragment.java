@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class ProfileFragment extends Fragment {
@@ -38,6 +39,8 @@ public class ProfileFragment extends Fragment {
     public ImageButton exit_btn,setting_btn,like_btn;
     public View fragment_layout;
     public TextView tv_username, tv_userEmail, tv_user_read_books;
+    ArrayList<String> user_liked_books;
+
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -87,6 +90,15 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        like_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), favoriteBooksActivity.class);
+                intent.putExtra("user_liked_books",user_liked_books);
+                startActivity(intent);
+            }
+        });
     }
 
     public void getDataFromFirebase() {
@@ -106,6 +118,7 @@ public class ProfileFragment extends Fragment {
                         if (userData.get("email").equals(user.getEmail())) {
                             tv_username.setText(String.valueOf(userData.get("username")));
                             tv_user_read_books.setText(String.valueOf(userData.get("already_read")) + " đã đọc");
+                            user_liked_books = (ArrayList<String>) userData.get("liked_books");
                             isFound = true;
                             break;
                         }
