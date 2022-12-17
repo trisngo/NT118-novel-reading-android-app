@@ -1,13 +1,31 @@
 package com.example.appmanga;
 
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+import static android.content.ContentValues.TAG;
 
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.EditText;
+
+import com.example.appmanga.Adapter.AdapterHomeBook1;
+import com.example.appmanga.Adapter.AdapterHomeBook2;
+import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,8 +40,20 @@ public class HomeFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
+    public View fragment_layout;
+
     private String mParam1;
     private String mParam2;
+    private ArrayList<Book> listHighlights, list4U, listNewest;
+    private AdapterHomeBook1 adapterHighlights;
+    AdapterHomeBook2 adapter4U, adapterNewest;
+    private RecyclerView rcvBookHighlights, rcvBook4U, rcvBookNewest;
+
+    DatabaseReference database;
+    private EditText editText;
+
+    private String author_name;
+    ShimmerFrameLayout shimmerFrameLayout, shimmerFrameLayout2, shimmerFrameLayout3;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -60,8 +90,90 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        fragment_layout = inflater.inflate(R.layout.fragment_home, container, false);
+        init();
+        return fragment_layout;
     }
 
+    public void init() {
+        rcvBookHighlights = (RecyclerView) fragment_layout.findViewById(R.id.rcv_book_home1);
+        rcvBook4U = (RecyclerView) fragment_layout.findViewById((R.id.rcv_home_4_you));
+        rcvBookNewest = (RecyclerView) fragment_layout.findViewById((R.id.rcv_home_newest));
+        shimmerFrameLayout= (ShimmerFrameLayout) fragment_layout.findViewById(R.id.shimmer_books);
+        shimmerFrameLayout2 = (ShimmerFrameLayout) fragment_layout.findViewById(R.id.shimmer_books_2);
+        shimmerFrameLayout3 = (ShimmerFrameLayout) fragment_layout.findViewById(R.id.shimmer_books_3);
 
+        rcvBookHighlights.setHasFixedSize(true);
+        rcvBook4U.setHasFixedSize(true);
+        rcvBookNewest.setHasFixedSize(true);
+//        rcvBookHighlights.setLayoutManager(new LinearLayoutManager(getContext()));
+//        rcvBook4U.setLayoutManager(new LinearLayoutManager(getContext()));
+//        rcvBookNewest.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        listHighlights = new ArrayList<>();
+        list4U = new ArrayList<>();
+        listNewest = new ArrayList<>();
+
+        adapterHighlights = new AdapterHomeBook1(getContext(), listHighlights);
+        adapter4U = new AdapterHomeBook2(getContext(), list4U);
+        adapterNewest = new AdapterHomeBook2(getContext(), listNewest);
+
+        rcvBookHighlights.setAdapter(adapterHighlights);
+        rcvBook4U.setAdapter(adapter4U);
+        rcvBookNewest.setAdapter(adapterNewest);
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        RecyclerView.LayoutManager layoutManager4U = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager layoutManagerNewest = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+
+        rcvBookHighlights.setLayoutManager(mLayoutManager);
+        rcvBook4U.setLayoutManager(layoutManager4U);
+        rcvBookNewest.setLayoutManager(layoutManagerNewest);
+
+//        Intent i = getIntent();
+//        author_name = i.getStringExtra("author_name");
+
+        getAllBooks();
+    }
+
+    private void getAllBooks() {
+        database = FirebaseDatabase.getInstance().getReference("books");
+        database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (listHighlights != null) {
+                    listHighlights.clear();
+                    list4U.clear();
+                    listNewest.clear();
+                }
+                int i = 0;
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Book book = dataSnapshot.getValue(Book.class);
+                    listHighlights.add(book);
+                    list4U.add(book);
+                    listNewest.add(book);
+                    if (i == 2) {
+                        break;
+                    }
+                    i++;
+                }
+                Log.d("debug",list4U.toString());
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+                shimmerFrameLayout2.stopShimmer();
+                shimmerFrameLayout2.setVisibility(View.GONE);
+                shimmerFrameLayout3.stopShimmer();
+                shimmerFrameLayout3.setVisibility(View.GONE);
+                adapterHighlights.notifyDataSetChanged();
+                adapter4U.notifyDataSetChanged();
+                adapterNewest.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+    }
 }
