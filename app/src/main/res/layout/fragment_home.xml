@@ -87,6 +87,7 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -97,13 +98,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="250dp"-->
-<!--                    android:background="@drawable/world_book_fun_billboard_08">-->
-
-<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
@@ -112,375 +107,34 @@
                     android:layout_marginBottom="16dp"
                     android:orientation="vertical">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/parent_layout1"
-                        android:layout_width="match_parent"
+                    <com.facebook.shimmer.ShimmerFrameLayout
                         android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        app:cardCornerRadius="10dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <ImageView
-                                android:id="@+id/iv_cover1"
-                                android:layout_width="120dp"
-                                android:layout_height="140dp"
-                                android:layout_alignParentLeft="true"
-                                android:scaleType="fitStart"
-                                android:src="@drawable/truong_sinh_vo_dao_300" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_toEndOf="@id/iv_cover1"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginBottom="15dp"
-                                android:layout_marginEnd="15dp"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="4dp"
-                                    android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
-                                    android:ellipsize = "end"
-                                    android:fadingEdge = "horizontal"
-                                    android:scrollHorizontally = "true"
-                                    android:maxLines = "2"
-                                    android:fontFamily="sans-serif-medium"
-                                    android:textAlignment="viewStart"
-                                    android:textColor="#5E4386"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-
-                                    android:text="Một người anh trai bị cô em gái của mình đánh bại trong cuộc chiến giành quyền thừa kế và bị đuổi khỏi nhà. Mất hết mọi thứ và bị thương nặng đến mức bất tỉnh, trong cơn mê man cậu nghe được những giọng nói mơ hồ, cùng với giọng của ông nội quá cố của bản thân (?), chuyện gì sẽ xảy ra với cậu?"
-                                    android:maxLines = "3"
-                                    android:textColor="#a4a7b5"
-                                    android:textSize="12sp" />
-
-                            </LinearLayout>
-
-                        </RelativeLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none">
-
-                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="4dp">
-
-                        <androidx.cardview.widget.CardView
+                        android:id="@+id/shimmer_books">
+                        <LinearLayout
+                            android:id="@+id/shimmer_item1"
+                            android:layout_height="match_parent"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="4dp"
-                            app:cardUseCompatPadding="true">
+                            android:orientation="vertical">
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                            <include layout="@layout/shimmer_book" />
 
-                                <ImageView
-                                    android:layout_width="185dp"
-                                    android:layout_height="250dp"
-                                    android:onClick="callReadLayout"
-                                    android:scaleType="fitXY"
-                                    android:src="@drawable/truong_sinh_vo_dao_300" />
+                            <include layout="@layout/shimmer_book" />
 
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="-16dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginBottom="4dp">
+                            <include layout="@layout/shimmer_book" />
 
-                                    <TextView
-                                        android:layout_width="64dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:drawableStart="@drawable/caret_up_solid_24_15"
-                                        android:background="@drawable/light_orange_rounded_shape"
-                                        android:drawablePadding="8dp"
-                                        android:padding="8dp"
-                                        android:text="500"
-                                        android:textColor="#FFAB2D"
-                                        android:textSize="14sp"
-                                        android:textStyle="bold" />
+                        </LinearLayout>
 
-                                    <ImageView
-                                        android:layout_alignParentRight="true"
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:layout_marginRight="4dp"
-                                        android:src="@drawable/bookmark_solid_blue" />
+                    </com.facebook.shimmer.ShimmerFrameLayout>
 
-                                </RelativeLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="4dp"
-
-                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
-                                        android:ellipsize = "marquee"
-                                        android:fadingEdge = "horizontal"
-                                        android:marqueeRepeatLimit = "marquee_forever"
-                                        android:scrollHorizontally = "true"
-                                        android:singleLine = "true"
-                                        android:textColor="#000000"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-
-                                        android:text="Huyền Huyễn"
-                                        android:textColor="#a4a7b5"
-                                        android:textSize="12sp" />
-
-                                </LinearLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="4dp">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcv_book_home1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
 
 
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_centerVertical="true"
-                                        android:layout_marginRight="0dp"
-                                        android:src="@drawable/ic_more_horizon_24dp" />
+                </RelativeLayout>
 
-                                </RelativeLayout>
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="4dp"
-                            app:cardUseCompatPadding="true">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="185dp"
-                                    android:layout_height="250dp"
-                                    android:scaleType="fitXY"
-                                    android:src="@drawable/truong_sinh_vo_dao_300"
-                                    android:onClick="callReadLayout"/>
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="-16dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginBottom="4dp">
-
-                                    <TextView
-                                        android:layout_width="64dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:drawableStart="@drawable/caret_up_solid_24_15"
-                                        android:background="@drawable/light_orange_rounded_shape"
-                                        android:drawablePadding="8dp"
-                                        android:padding="8dp"
-                                        android:text="500"
-                                        android:textColor="#FFAB2D"
-                                        android:textSize="14sp"
-                                        android:textStyle="bold" />
-
-                                    <ImageView
-                                        android:layout_alignParentRight="true"
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:layout_marginRight="4dp"
-                                        android:src="@drawable/bookmark_solid_blue" />
-
-                                </RelativeLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="4dp"
-
-                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
-                                        android:ellipsize = "marquee"
-                                        android:fadingEdge = "horizontal"
-                                        android:marqueeRepeatLimit = "marquee_forever"
-                                        android:scrollHorizontally = "true"
-                                        android:singleLine = "true"
-                                        android:textColor="#000000"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-
-                                        android:text="Huyền Huyễn"
-                                        android:textColor="#a4a7b5"
-                                        android:textSize="12sp" />
-
-                                </LinearLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="4dp">
-
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_centerVertical="true"
-                                        android:layout_marginRight="0dp"
-                                        android:src="@drawable/ic_more_horizon_24dp" />
-
-                                </RelativeLayout>
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="4dp"
-                            app:cardUseCompatPadding="true">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="185dp"
-                                    android:layout_height="250dp"
-                                    android:scaleType="fitXY"
-                                    android:src="@drawable/truong_sinh_vo_dao_300"
-                                    android:onClick="callReadLayout"/>
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="-16dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginBottom="4dp">
-
-                                    <TextView
-                                        android:layout_width="64dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:drawableStart="@drawable/caret_up_solid_24_15"
-                                        android:background="@drawable/light_orange_rounded_shape"
-                                        android:drawablePadding="8dp"
-                                        android:padding="8dp"
-                                        android:text="500"
-                                        android:textColor="#FFAB2D"
-                                        android:textSize="14sp"
-                                        android:textStyle="bold" />
-
-                                    <ImageView
-                                        android:layout_alignParentRight="true"
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:layout_marginRight="4dp"
-                                        android:src="@drawable/bookmark_solid_blue" />
-
-                                </RelativeLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="4dp"
-
-                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
-                                        android:ellipsize = "marquee"
-                                        android:fadingEdge = "horizontal"
-                                        android:marqueeRepeatLimit = "marquee_forever"
-                                        android:scrollHorizontally = "true"
-                                        android:singleLine = "true"
-                                        android:textColor="#000000"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-
-                                        android:text="Huyền Huyễn"
-                                        android:textColor="#a4a7b5"
-                                        android:textSize="12sp" />
-
-                                </LinearLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="4dp">
-
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_centerVertical="true"
-                                        android:layout_marginRight="0dp"
-                                        android:src="@drawable/ic_more_horizon_24dp" />
-
-                                </RelativeLayout>
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-                    </LinearLayout>
-                </HorizontalScrollView>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -525,313 +179,41 @@
                     </LinearLayout>
 
                 </LinearLayout>
-                <HorizontalScrollView
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none">
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical">
 
-                    <LinearLayout
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:layout_height="match_parent"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="4dp">
-
-                        <androidx.cardview.widget.CardView
+                        android:id="@+id/shimmer_books_2">
+                        <LinearLayout
+                            android:id="@+id/shimmer_item2"
+                            android:layout_height="match_parent"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="4dp"
-                            app:cardUseCompatPadding="true">
+                            android:orientation="horizontal">
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                            <include layout="@layout/shimmer_home_book" />
 
-                                <ImageView
-                                    android:layout_width="185dp"
-                                    android:layout_height="250dp"
-                                    android:scaleType="fitXY"
-                                    android:src="@drawable/truong_sinh_vo_dao_300"
-                                    android:onClick="callReadLayout"/>
+                            <include layout="@layout/shimmer_home_book" />
 
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="-16dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginBottom="4dp">
+                            <include layout="@layout/shimmer_home_book" />
+                        </LinearLayout>
 
-                                    <TextView
-                                        android:layout_width="64dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:drawableStart="@drawable/caret_up_solid_24_15"
-                                        android:background="@drawable/light_orange_rounded_shape"
-                                        android:drawablePadding="8dp"
-                                        android:padding="8dp"
-                                        android:text="500"
-                                        android:textColor="#FFAB2D"
-                                        android:textSize="14sp"
-                                        android:textStyle="bold" />
+                    </com.facebook.shimmer.ShimmerFrameLayout>
 
-                                    <ImageView
-                                        android:layout_alignParentRight="true"
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:layout_marginRight="4dp"
-                                        android:src="@drawable/bookmark_solid_blue" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcv_home_4_you"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
 
-                                </RelativeLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="4dp"
-
-                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
-                                        android:ellipsize = "marquee"
-                                        android:fadingEdge = "horizontal"
-                                        android:marqueeRepeatLimit = "marquee_forever"
-                                        android:scrollHorizontally = "true"
-                                        android:singleLine = "true"
-                                        android:textColor="#000000"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-
-                                        android:text="Huyền Huyễn"
-                                        android:textColor="#a4a7b5"
-                                        android:textSize="12sp" />
-
-                                </LinearLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="4dp">
-
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_centerVertical="true"
-                                        android:layout_marginRight="0dp"
-                                        android:src="@drawable/ic_more_horizon_24dp" />
-
-                                </RelativeLayout>
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="4dp"
-                            app:cardUseCompatPadding="true">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="185dp"
-                                    android:layout_height="250dp"
-                                    android:scaleType="fitXY"
-                                    android:src="@drawable/truong_sinh_vo_dao_300"
-                                    android:onClick="callReadLayout"/>
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="-16dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginBottom="4dp">
-
-                                    <TextView
-                                        android:layout_width="64dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:drawableStart="@drawable/caret_up_solid_24_15"
-                                        android:background="@drawable/light_orange_rounded_shape"
-                                        android:drawablePadding="8dp"
-                                        android:padding="8dp"
-                                        android:text="500"
-                                        android:textColor="#FFAB2D"
-                                        android:textSize="14sp"
-                                        android:textStyle="bold" />
-
-                                    <ImageView
-                                        android:layout_alignParentRight="true"
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:layout_marginRight="4dp"
-                                        android:src="@drawable/bookmark_solid_blue" />
-
-                                </RelativeLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="4dp"
-
-                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
-                                        android:ellipsize = "marquee"
-                                        android:fadingEdge = "horizontal"
-                                        android:marqueeRepeatLimit = "marquee_forever"
-                                        android:scrollHorizontally = "true"
-                                        android:singleLine = "true"
-                                        android:textColor="#000000"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-
-                                        android:text="Huyền Huyễn"
-                                        android:textColor="#a4a7b5"
-                                        android:textSize="12sp" />
-
-                                </LinearLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="4dp">
-
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_centerVertical="true"
-                                        android:layout_marginRight="0dp"
-                                        android:src="@drawable/ic_more_horizon_24dp" />
-
-                                </RelativeLayout>
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="4dp"
-                            app:cardUseCompatPadding="true">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="185dp"
-                                    android:layout_height="250dp"
-                                    android:scaleType="fitXY"
-                                    android:src="@drawable/truong_sinh_vo_dao_300"
-                                    android:onClick="callReadLayout"/>
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="-16dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginBottom="4dp">
-
-                                    <TextView
-                                        android:layout_width="64dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:drawableStart="@drawable/caret_up_solid_24_15"
-                                        android:background="@drawable/light_orange_rounded_shape"
-                                        android:drawablePadding="8dp"
-                                        android:padding="8dp"
-                                        android:text="500"
-                                        android:textColor="#FFAB2D"
-                                        android:textSize="14sp"
-                                        android:textStyle="bold" />
-
-                                    <ImageView
-                                        android:layout_alignParentRight="true"
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:layout_marginRight="4dp"
-                                        android:src="@drawable/bookmark_solid_blue" />
-
-                                </RelativeLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="4dp"
-
-                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
-                                        android:ellipsize = "marquee"
-                                        android:fadingEdge = "horizontal"
-                                        android:marqueeRepeatLimit = "marquee_forever"
-                                        android:scrollHorizontally = "true"
-                                        android:singleLine = "true"
-                                        android:textColor="#000000"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-
-                                        android:text="Huyền Huyễn"
-                                        android:textColor="#a4a7b5"
-                                        android:textSize="12sp" />
-
-                                </LinearLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="4dp">
-
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_centerVertical="true"
-                                        android:layout_marginRight="0dp"
-                                        android:src="@drawable/ic_more_horizon_24dp" />
-
-                                </RelativeLayout>
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-                    </LinearLayout>
-                </HorizontalScrollView>
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -876,313 +258,41 @@
                     </LinearLayout>
 
                 </LinearLayout>
-                <HorizontalScrollView
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none">
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical">
 
-                    <LinearLayout
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:layout_height="match_parent"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="4dp">
-
-                        <androidx.cardview.widget.CardView
+                        android:id="@+id/shimmer_books_3">
+                        <LinearLayout
+                            android:id="@+id/shimmer_item3"
+                            android:layout_height="match_parent"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="4dp"
-                            app:cardUseCompatPadding="true">
+                            android:orientation="horizontal">
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                            <include layout="@layout/shimmer_home_book" />
 
-                                <ImageView
-                                    android:layout_width="185dp"
-                                    android:layout_height="250dp"
-                                    android:scaleType="fitXY"
-                                    android:src="@drawable/truong_sinh_vo_dao_300"
-                                    android:onClick="callReadLayout"/>
+                            <include layout="@layout/shimmer_home_book" />
 
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="-16dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginBottom="4dp">
+                            <include layout="@layout/shimmer_home_book" />
+                        </LinearLayout>
 
-                                    <TextView
-                                        android:layout_width="64dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:drawableStart="@drawable/caret_up_solid_24_15"
-                                        android:background="@drawable/light_orange_rounded_shape"
-                                        android:drawablePadding="8dp"
-                                        android:padding="8dp"
-                                        android:text="500"
-                                        android:textColor="#FFAB2D"
-                                        android:textSize="14sp"
-                                        android:textStyle="bold" />
+                    </com.facebook.shimmer.ShimmerFrameLayout>
 
-                                    <ImageView
-                                        android:layout_alignParentRight="true"
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:layout_marginRight="4dp"
-                                        android:src="@drawable/bookmark_solid_blue" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcv_home_newest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
 
-                                </RelativeLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="4dp"
-
-                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
-                                        android:ellipsize = "marquee"
-                                        android:fadingEdge = "horizontal"
-                                        android:marqueeRepeatLimit = "marquee_forever"
-                                        android:scrollHorizontally = "true"
-                                        android:singleLine = "true"
-                                        android:textColor="#000000"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-
-                                        android:text="Huyền Huyễn"
-                                        android:textColor="#a4a7b5"
-                                        android:textSize="12sp" />
-
-                                </LinearLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="4dp">
-
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_centerVertical="true"
-                                        android:layout_marginRight="0dp"
-                                        android:src="@drawable/ic_more_horizon_24dp" />
-
-                                </RelativeLayout>
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="4dp"
-                            app:cardUseCompatPadding="true">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="185dp"
-                                    android:layout_height="250dp"
-                                    android:scaleType="fitXY"
-                                    android:src="@drawable/truong_sinh_vo_dao_300"
-                                    android:onClick="callReadLayout"/>
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="-16dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginBottom="4dp">
-
-                                    <TextView
-                                        android:layout_width="64dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:drawableStart="@drawable/caret_up_solid_24_15"
-                                        android:background="@drawable/light_orange_rounded_shape"
-                                        android:drawablePadding="8dp"
-                                        android:padding="8dp"
-                                        android:text="500"
-                                        android:textColor="#FFAB2D"
-                                        android:textSize="14sp"
-                                        android:textStyle="bold" />
-
-                                    <ImageView
-                                        android:layout_alignParentRight="true"
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:layout_marginRight="4dp"
-                                        android:src="@drawable/bookmark_solid_blue" />
-
-                                </RelativeLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="4dp"
-
-                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
-                                        android:ellipsize = "marquee"
-                                        android:fadingEdge = "horizontal"
-                                        android:marqueeRepeatLimit = "marquee_forever"
-                                        android:scrollHorizontally = "true"
-                                        android:singleLine = "true"
-                                        android:textColor="#000000"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-
-                                        android:text="Huyền Huyễn"
-                                        android:textColor="#a4a7b5"
-                                        android:textSize="12sp" />
-
-                                </LinearLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="4dp">
-
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_centerVertical="true"
-                                        android:layout_marginRight="0dp"
-                                        android:src="@drawable/ic_more_horizon_24dp" />
-
-                                </RelativeLayout>
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="4dp"
-                            app:cardUseCompatPadding="true">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="185dp"
-                                    android:layout_height="250dp"
-                                    android:scaleType="fitXY"
-                                    android:src="@drawable/truong_sinh_vo_dao_300"
-                                    android:onClick="callReadLayout"/>
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="-16dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginBottom="4dp">
-
-                                    <TextView
-                                        android:layout_width="64dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:drawableStart="@drawable/caret_up_solid_24_15"
-                                        android:background="@drawable/light_orange_rounded_shape"
-                                        android:drawablePadding="8dp"
-                                        android:padding="8dp"
-                                        android:text="500"
-                                        android:textColor="#FFAB2D"
-                                        android:textSize="14sp"
-                                        android:textStyle="bold" />
-
-                                    <ImageView
-                                        android:layout_alignParentRight="true"
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:layout_marginRight="4dp"
-                                        android:src="@drawable/bookmark_solid_blue" />
-
-                                </RelativeLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="4dp"
-
-                                        android:text="Tôi có khả năng gian lận ở thế giới khác và trở nên phi thường ngay cả trong thế giới thật"
-                                        android:ellipsize = "marquee"
-                                        android:fadingEdge = "horizontal"
-                                        android:marqueeRepeatLimit = "marquee_forever"
-                                        android:scrollHorizontally = "true"
-                                        android:singleLine = "true"
-                                        android:textColor="#000000"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-
-                                        android:text="Huyền Huyễn"
-                                        android:textColor="#a4a7b5"
-                                        android:textSize="12sp" />
-
-                                </LinearLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="4dp">
-
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_centerVertical="true"
-                                        android:layout_marginRight="0dp"
-                                        android:src="@drawable/ic_more_horizon_24dp" />
-
-                                </RelativeLayout>
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-                    </LinearLayout>
-                </HorizontalScrollView>
+                </RelativeLayout>
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
