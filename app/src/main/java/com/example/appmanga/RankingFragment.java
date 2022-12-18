@@ -1,21 +1,32 @@
 package com.example.appmanga;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,6 +49,8 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
     private TextView search_by_hot;
     private SwipeRefreshLayout swipeRefreshLayout;
     private MangaAdapter MangaAdapter;
+    private DatabaseReference database;
+    ShimmerFrameLayout shimmerFrameLayout;
     List<Manga> listManga;
 
 
@@ -100,6 +113,9 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
         listManga.add(new Manga(R.drawable.anime_bro,"Co gai phep thuat", "Top"));
         MangaAdapter = new MangaAdapter(listManga);
         rcvlistmanga.setAdapter(MangaAdapter);
+
+
+
 
         search_by_hot = v.findViewById(R.id.tv_seach_by_hot);
         search_by_follow= v.findViewById(R.id.seach_by_follow);
