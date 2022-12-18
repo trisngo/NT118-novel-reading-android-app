@@ -47,6 +47,7 @@ public class HomeFragment extends Fragment implements clickListener {
 
     private String mParam1;
     private String mParam2;
+    private String categories ;
     private ArrayList<Book> listHighlights, list4U, listNewest;
     private AdapterHomeBook1 adapterHighlights;
     AdapterHomeBook2 adapter4U, adapterNewest;
@@ -185,11 +186,16 @@ public class HomeFragment extends Fragment implements clickListener {
     @Override
     public void onItemClick(Book book) {
         Intent intent = new Intent(getActivity(), intro_manga_before_read.class);
-        Intent intent1 = new Intent(getActivity(), descriptionFragment.class);
-        intent1.putExtra("dsc",book.book_description);
         intent.putExtra("name",book.book_title);
-        intent.putExtra("category",book.categories);
         intent.putExtra("image",book.thumbnail);
+        for (int i = 0; i < book.categories.size(); i++) {
+            categories += book.categories.get(i);
+        }
+        categories = categories.substring(4);
+        intent.putExtra("category",categories);
+        String chapter = String.valueOf(book.chapters.size());
+        intent.putExtra("chapter",chapter);
+
         startActivity(intent);
     }
 }
