@@ -48,7 +48,7 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private ArrayList<Book> book;
-    private AdapterBook adapterBook;
+    private MangaAdapter adapterBook;
     private RecyclerView rcvlistmanga;
     private TextView search_by_follow;
     private TextView search_by_hot;
@@ -104,7 +104,7 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
         book = new ArrayList<>();
-        adapterBook = new AdapterBook(getContext(), book);
+        adapterBook = new MangaAdapter(getContext(), book);
         rcvlistmanga.setAdapter(adapterBook);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         rcvlistmanga.setLayoutManager(layoutManager);

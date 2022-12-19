@@ -1,25 +1,26 @@
 package com.example.appmanga;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.List;
+import com.squareup.picasso.Picasso;
+import java.util.ArrayList;
 
 public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MangaViewHolder>{
 
-    private List<Manga> listmanga;
-    public MangaAdapter(List<Manga> ls) {
-        listmanga = ls;
-    }
-    public void setData(List<Manga> list){
-        this.listmanga=list;
-        notifyDataSetChanged();
+    Context context;
+    public ArrayList<Book> list, filterList;
+    private FilterBook filter;
+    public MangaAdapter(Context context, ArrayList<Book> list) {
+        this.context = context;
+        this.list = list;
+        this.filterList = list;
     }
 
     @NonNull
@@ -31,28 +32,55 @@ public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MangaViewHol
 
     @Override
     public void onBindViewHolder(@NonNull MangaViewHolder holder, int position) {
-                int value_ranking= position+1;
-                Manga manga =listmanga.get(position);
-                holder.img_bool.setImageResource(manga.getImg());
-                holder.tvName.setText(manga.getName());
-                holder.tvRank.setText(manga.getRanking()+" "+value_ranking);
+        Book book = list.get(position);
+        if (position == 0) {
+            holder.book_title.setText(book.getBook_title());
+            holder.book_category.setText(book.getBookId());
+            holder.book_author.setText(book.getAuthor_name());
+            String image = book.getThumbnail();
+            Picasso.get().load(image).into(holder.thumbnail);
+            holder.fire.setImageResource(R.drawable.ic_baseline_local_fire_department_24);
+        }
+        if (position == 1) {
+            holder.book_title.setText(book.getBook_title());
+            holder.book_category.setText(book.getBookId());
+            holder.book_author.setText(book.getAuthor_name());
+            String image = book.getThumbnail();
+            Picasso.get().load(image).into(holder.thumbnail);
+            holder.fire.setImageResource(R.drawable.ic_baseline_local_fire_department_24_1);
+        }
+        if (position == 2) {
+            holder.book_title.setText(book.getBook_title());
+            holder.book_category.setText(book.getBookId());
+            holder.book_author.setText(book.getAuthor_name());
+            String image = book.getThumbnail();
+            Picasso.get().load(image).into(holder.thumbnail);
+            holder.fire.setImageResource(R.drawable.ic_baseline_local_fire_department_24_2);
+        }
+            holder.book_title.setText(book.getBook_title());
+            holder.book_category.setText(book.getBookId());
+            holder.book_author.setText(book.getAuthor_name());
+            String image = book.getThumbnail();
+            Picasso.get().load(image).into(holder.thumbnail);
+            int i=position+1;
+            holder.rank_number.setText("#"+ i);
     }
 
     @Override
     public int getItemCount() {
-        return listmanga.size();
+        return list.size();
     }
-
     public class MangaViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView tvName;
-        private TextView tvRank;
-        private ImageView img_bool;
+        TextView book_title, book_author, book_category,rank_number;
+        ImageView thumbnail,fire;
         public MangaViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvName =itemView.findViewById(R.id.tvName);
-            tvRank=itemView.findViewById(R.id.tvNumberRanking);
-            img_bool=itemView.findViewById((R.id.img_book));
+            book_title = itemView.findViewById(R.id.titleTv);
+            book_author = itemView.findViewById(R.id.authorTv);
+            book_category = itemView.findViewById(R.id.categoryTv);
+            thumbnail= itemView.findViewById(R.id.imgBook);
+            rank_number=itemView.findViewById(R.id.rank_number);
+            fire= itemView.findViewById(R.id.imagefire);
         }
     }
 }

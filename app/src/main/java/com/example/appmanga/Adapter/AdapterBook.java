@@ -12,19 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmanga.Book;
-
 import com.example.appmanga.FilterBook;
 import com.example.appmanga.R;
-import com.example.appmanga.databinding.ItemBookBinding;
+//import com.example.appmanga.databinding.ItemBookBinding;
 import com.squareup.picasso.Picasso;
-
 
 import java.util.ArrayList;
 
 public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
     Context context;
     public ArrayList<Book> list, filterList;
-    private ItemBookBinding binding;
+    //private ItemBookBinding binding;
     private FilterBook filter;
 
     public AdapterBook(Context context, ArrayList<Book> list) {
