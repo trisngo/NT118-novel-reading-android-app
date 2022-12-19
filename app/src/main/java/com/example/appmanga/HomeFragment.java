@@ -189,12 +189,14 @@ public class HomeFragment extends Fragment implements clickListener {
         intent.putExtra("name",book.book_title);
         intent.putExtra("image",book.thumbnail);
         for (int i = 0; i < book.categories.size(); i++) {
-            categories += book.categories.get(i);
+            categories += book.categories.get(i)+" ";
         }
         categories = categories.substring(4);
         intent.putExtra("category",categories);
         String chapter = String.valueOf(book.chapters.size());
         intent.putExtra("chapter",chapter);
+        intent.putExtra("author",book.author_name);
+        intent.putExtra("dsc",book.book_description);
 
         startActivity(intent);
     }

@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.appmanga.databinding.ActivityMainBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,9 +26,8 @@ import java.util.ArrayList;
 
 public class intro_manga_before_read extends AppCompatActivity {
     Button btnRead;
-    TextView name,category,chapter;
+    TextView name,category,chapter,author,dsc;
     ImageView image;
-    String categories;
     int count_category;
     private DatabaseReference database;
     @SuppressLint("MissingInflatedId")
@@ -38,17 +36,26 @@ public class intro_manga_before_read extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_manga_before_read);
         name = findViewById(R.id.tvNameManga);
+        dsc=findViewById(R.id.dsc);
         category = findViewById(R.id.category);
         chapter = findViewById(R.id.chapter);
         image = findViewById(R.id.thumbnailintro);
         btnRead = findViewById(R.id.btnRead_Manga);
+        author = findViewById(R.id.author);
+
+        name.setText("");
+        category.setText("");
+        chapter.setText("");
+        author.setText("");
 
         Intent intent = getIntent();
         name.setText(intent.getStringExtra("name"));
         Picasso.get().load(intent.getStringExtra("image")).into(image);
         count_category = intent.getIntExtra("count_category",0);
-        category.setText("Categories: "+ intent.getStringExtra("category"));
-        chapter.setText(intent.getStringExtra("chapter"));
+        category.setText("Categories: "+ intent.getStringExtra("category")+" ");
+        chapter.setText("Chapter :" + intent.getStringExtra("chapter"));
+        author.setText("Author: "+intent.getStringExtra("author"));
+        dsc.setText(intent.getStringExtra("dsc"));
         btnRead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
