@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -15,6 +16,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 public class Login extends AppCompatActivity {
 
@@ -74,8 +77,8 @@ public class Login extends AppCompatActivity {
 
     private void validateData() {
         // get data
-        email = username.getText().toString().trim();
-        password1 = password.getText().toString().trim();
+        email = Objects.requireNonNull(username.getText()).toString().trim();
+        password1 = Objects.requireNonNull(password.getText()).toString().trim();
         // validate data
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(Login.this, "Nhập Email...", Toast.LENGTH_SHORT).show();
@@ -83,23 +86,11 @@ public class Login extends AppCompatActivity {
             Toast.makeText(Login.this, "Nhập mật khẩu...", Toast.LENGTH_SHORT).show();
         } else {
             loginUser();
-
-
-
-
-
-
-
-
-
-
-
-
         }
     }
 
     private void loginUser() {
-        progressDialog.setMessage("Đang đăng nhập...");
+        progressDialog.setTitle("Đang đăng nhập...");
         progressDialog.show();
         firebaseAuth.signInWithEmailAndPassword(email, password1)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
@@ -113,10 +104,11 @@ public class Login extends AppCompatActivity {
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onFailure(Exception e) {
+                    public void onFailure(@NonNull Exception e) {
                         progressDialog.dismiss();
-                        Toast.makeText(Login.this, "Email hay password không chính xác...\nVui lòng thử lại!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login.this, "Đăng nhập thất bại...\nVui lòng thử lại!", Toast.LENGTH_SHORT).show();
                     }
                 });
+
     }
 }

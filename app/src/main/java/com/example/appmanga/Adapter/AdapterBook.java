@@ -46,7 +46,7 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
     public void onBindViewHolder(@NonNull HolderBook holder, int position) {
         Book book = list.get(position);
         holder.book_title.setText(book.getBook_title());
-        holder.book_category.setText(book.getBookId());
+        //holder.book_category.setText(book.getBookId());
         holder.book_author.setText(book.getAuthor_name());
         String image = book.getThumbnail();
 
@@ -75,7 +75,7 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
             super(itemView);
             book_title = itemView.findViewById(R.id.titleTv);
             book_author = itemView.findViewById(R.id.authorTv);
-            book_category = itemView.findViewById(R.id.categoryTv);
+            //book_category = itemView.findViewById(R.id.categoryTv);
             thumbnail= itemView.findViewById(R.id.imgBook);
 
         }
