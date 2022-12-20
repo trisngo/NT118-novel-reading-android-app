@@ -1,5 +1,6 @@
 package com.example.appmanga.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 
 public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
     Context context;
+    private String categories ;
     public ArrayList<Book> list, filterList;
     //private ItemBookBinding binding;
     private FilterBook filter;
@@ -40,12 +42,16 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
         return new HolderBook(v);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull HolderBook holder, int position) {
         Book book = list.get(position);
         holder.book_title.setText(book.getBook_title());
-        //holder.book_category.setText(book.getBookId());
+
         holder.book_author.setText(book.getAuthor_name());
+
+        holder.book_category.setText("# "+book.getCategories());
+
         String image = book.getThumbnail();
         Picasso.get().load(image).into(holder.thumbnail);
     }
@@ -72,7 +78,7 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
             super(itemView);
             book_title = itemView.findViewById(R.id.titleTv);
             book_author = itemView.findViewById(R.id.authorTv);
-            //book_category = itemView.findViewById(R.id.categoryTv);
+            book_category = itemView.findViewById(R.id.categoryTv);
             thumbnail= itemView.findViewById(R.id.imgBook);
 
         }

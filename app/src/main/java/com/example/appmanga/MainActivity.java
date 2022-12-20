@@ -114,10 +114,8 @@ public class MainActivity extends AppCompatActivity {
         String author_name = "Chiren Kina";
         int likes = 43;
         int views = 561;
-        ArrayList<String> categories = new ArrayList<>();
-        categories.add("Action");
-        categories.add("Horror");
-        categories.add("Tragedy");
+        String categories = "Actions";
+
         Map<String, String> comments = new HashMap<>();
         comments.put("BuiDucAnh","Cũng hay hé hé hé");
         Map<String,String> chapters = new HashMap<>();
