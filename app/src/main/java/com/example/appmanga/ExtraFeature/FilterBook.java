@@ -1,10 +1,11 @@
-package com.example.appmanga;
+package com.example.appmanga.ExtraFeature;
 
 import android.annotation.SuppressLint;
 import android.widget.Filter;
 
 
 import com.example.appmanga.Adapter.AdapterBook;
+import com.example.appmanga.Book;
 
 import java.util.ArrayList;
 

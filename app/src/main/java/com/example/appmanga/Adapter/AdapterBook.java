@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmanga.Book;
-import com.example.appmanga.FilterBook;
+import com.example.appmanga.ExtraFeature.FilterBook;
 import com.example.appmanga.R;
 //import com.example.appmanga.databinding.ItemBookBinding;
 import com.squareup.picasso.Picasso;

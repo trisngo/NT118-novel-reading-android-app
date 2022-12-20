@@ -35,6 +35,10 @@
             android:layout_marginEnd="5dp"
             android:layout_toEndOf="@+id/pdfRl"
             android:maxLines="1"
+            android:ellipsize = "end"
+            android:fadingEdge = "horizontal"
+            android:scrollHorizontally = "true"
+            android:textAlignment="viewStart"
             android:text="Book Tilte"
             tools:ignore="HardcodedText" />
 

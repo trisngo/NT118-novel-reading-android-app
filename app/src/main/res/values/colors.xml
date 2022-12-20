@@ -10,7 +10,7 @@
     <color name="light_gray">#DFDBDB</color>
     <color name="light_black">#1B1B1B</color>
     <color name="background_top_ranking">#256D85</color>
-    <color name="bottom_nav">#47B5FF</color>
+    <color name="bottom_nav">#D9E3EC</color>
     <color name="icon_bottom_nav">#BF053333</color>
     <color name="tv_ranking">#f5562f</color>
     <color name="background_middle_ranking">#DFF6FF</color>
@@ -33,5 +33,6 @@
 
     <color name="shimmer_color">#C4BCBC</color>
     <color name="shimmer_color1">#EDEAEA</color>
+    <color name="btn_check">#C2C7CB</color>
 
 </resources>
