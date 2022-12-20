@@ -15,6 +15,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.example.appmanga.Adapter.AdapterBook;
 import com.facebook.shimmer.ShimmerFrameLayout;
@@ -37,6 +38,7 @@ public class favoriteBooksActivity extends AppCompatActivity {
 
     private String author_name;
     ShimmerFrameLayout shimmerFrameLayout;
+    LinearLayout nothingLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class favoriteBooksActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favorite_books);
         favBooks = findViewById(R.id.fav_books);
         shimmerFrameLayout= findViewById(R.id.shimmer_books);
+        nothingLayout = findViewById(R.id.layout_nothing);
 
         favBooks.setHasFixedSize(true);
         favBooks.setLayoutManager(new LinearLayoutManager(this));
@@ -71,20 +74,30 @@ public class favoriteBooksActivity extends AppCompatActivity {
                 if (list != null) {
                     list.clear();
                 }
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Book book = dataSnapshot.getValue(Book.class);
-                    if (user_liked_books.contains(dataSnapshot.getKey())) {
-                        list.add(book);
-                    }
+                Log.d("size",String.valueOf(user_liked_books.size()));
+                Log.d("value",user_liked_books.get(0));
+                if (user_liked_books.size()==1 && user_liked_books.get(0).equals("default")) {
+                    Log.d("Hehe","=========================");
+                    nothingLayout.setVisibility(View.VISIBLE);
+                    shimmerFrameLayout.setVisibility(View.GONE);
+                }
+                else {
+                    nothingLayout.setVisibility(View.GONE);
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Book book = dataSnapshot.getValue(Book.class);
+                        if (user_liked_books.contains(dataSnapshot.getKey())) {
+                            list.add(book);
+                        }
                     /*Log.d("Book name =============================",book.book_title);
                     for (int i = 0; i < book.categories.size(); i++)
                     {
                         Log.d("Book category",book.categories.get(i));
                     }*/
+                    }
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
+                    adapterBook.notifyDataSetChanged();
                 }
-                shimmerFrameLayout.stopShimmer();
-                shimmerFrameLayout.setVisibility(View.GONE);
-                adapterBook.notifyDataSetChanged();
             }
 
             @Override

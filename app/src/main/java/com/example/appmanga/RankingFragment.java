@@ -1,21 +1,35 @@
 package com.example.appmanga;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.appmanga.Adapter.AdapterBook;
+import com.example.appmanga.Adapter.AdapterHomeBook1;
+import com.example.appmanga.Adapter.clickListener;
+import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,17 +42,18 @@ import java.util.List;
  * Use the {@link RankingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, clickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private ArrayList<Book> book;
+    private MangaAdapter adapterBook;
     private RecyclerView rcvlistmanga;
     private TextView search_by_follow;
     private TextView search_by_hot;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private MangaAdapter MangaAdapter;
-    List<Manga> listManga;
+    private DatabaseReference database;
 
 
     // TODO: Rename and change types of parameters
@@ -86,44 +101,37 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.tv_ranking));
 
+
+
+        book = new ArrayList<>();
+        adapterBook = new MangaAdapter(getContext(), book);
+        rcvlistmanga.setAdapter(adapterBook);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         rcvlistmanga.setLayoutManager(layoutManager);
-        listManga = new ArrayList<>();
-        listManga.add(new Manga(R.drawable.dao_ma_nhi_de,"Dao ma nhi de", "Top"));
-        listManga.add(new Manga(R.drawable.co_gai_trong_rung,"Co gai trong rung", "Top"));
-        listManga.add(new Manga(R.drawable.doraemon_png,"Doraemon", "Top"));
-        listManga.add(new Manga(R.drawable.phep_thuat_ma_am,"Phep thuat ma am", "Top"));
-        listManga.add(new Manga(R.drawable.naruto_png,"Cau be Naruto", "Top"));
-        listManga.add(new Manga(R.drawable.re_zero,"Re Zero", "Top"));
-        listManga.add(new Manga(R.drawable.tu_tien_tai_sinh,"Tu tien trung sinh", "Top"));
-        listManga.add(new Manga(R.drawable.tuyet_the_vo_than,"Tuyet the vo than", "Top"));
-        listManga.add(new Manga(R.drawable.anime_bro,"Co gai phep thuat", "Top"));
-        MangaAdapter = new MangaAdapter(listManga);
-        rcvlistmanga.setAdapter(MangaAdapter);
-
+        getAllBooks();
         search_by_hot = v.findViewById(R.id.tv_seach_by_hot);
         search_by_follow= v.findViewById(R.id.seach_by_follow);
 
 
-        search_by_follow.setOnClickListener(new View.OnClickListener() {
+        /*search_by_follow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                     search_by_follow.setBackgroundResource(R.drawable.bg_btn_search_after);
                     search_by_follow.setTextColor(Color.WHITE);
                     search_by_hot.setBackgroundResource(R.drawable.bg_btn_search);
                     search_by_hot.setTextColor(Color.BLACK);
-                    Collections.sort(listManga, new Comparator<Manga>() {
+                    Collections.sort(book, new Comparator<Book>() {
                         @Override
                         public int compare(Manga manga, Manga manga1) {
                             return manga.getName().compareTo(manga1.getName());
                         }
                     });
-                    Collections.reverse(listManga);
+                    Collections.reverse(book);
                     MangaAdapter.notifyDataSetChanged();
             }
-        });
+        });*/
 
-        search_by_hot.setOnClickListener(new View.OnClickListener() {
+        /*search_by_hot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 search_by_hot.setBackgroundResource(R.drawable.bg_btn_search_after);
@@ -139,13 +147,36 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
                 Collections.reverse(listManga);
                 MangaAdapter.notifyDataSetChanged();
             }
-        });
+        });*/
         return v;
     }
 
-    @Override
-    public void onRefresh() {
-        MangaAdapter.setData(listManga);
+    private void getAllBooks() {
+        database = FirebaseDatabase.getInstance().getReference("books");
+        database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (book != null) {
+                    book.clear();
+                }
+                int i = 0;
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Book book1 = dataSnapshot.getValue(Book.class);
+                    book.add(book1);
+                }
+                adapterBook.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+    }
+    //@Override
+    public void onRefresh(){}/* {
+        MangaAdapter.setData(book);
         Handler handler = new Handler();
          handler.postDelayed(new Runnable() {
              @Override
@@ -153,5 +184,10 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
                 swipeRefreshLayout.setRefreshing(false);
              }
          },3000);
+    }*/
+
+    @Override
+    public void onItemClick(Book book) {
+
     }
 }

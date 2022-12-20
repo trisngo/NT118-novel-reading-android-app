@@ -1,41 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="140dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:contentPadding="5dp">
 
-    <ImageView
-        android:layout_marginTop="10dp"
-        android:id="@+id/img_book"
-        android:layout_width="60dp"
-        android:layout_height="80dp"
-        android:background="@color/purple_200"/>
-
-    <TextView
-        android:id="@+id/tvName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/img_book"
-        android:text="Name"
-        android:textSize="25dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tvNumberRanking"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="45dp"
-        android:layout_marginRight="280dp"
-        android:text="Ranking"
-        android:textSize="16dp"
-        android:textStyle="bold" />
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/img_book"
-        android:layout_marginTop="15dp"
-        android:background="@color/light_gray"
-        />
-</RelativeLayout>
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/pdfRl"
+            android:layout_width="100dp"
+            android:layout_height="140dp"
+            android:layout_marginEnd="5dp"
+            android:background="@color/teal_200">
+
+            <ImageView
+                android:id="@+id/imgBook"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY" />
+
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/titleTv"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_toEndOf="@+id/pdfRl"
+            android:maxLines="1"
+            android:text="Book Tilte"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/authorTv"
+            style="@style/TextAppearance.MaterialComponents.Body2"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titleTv"
+            android:layout_marginEnd="5dp"
+            android:layout_toEndOf="@+id/pdfRl"
+            android:maxLines="1"
+            android:text="Author"
+            android:layout_marginTop="8dp"
+            tools:ignore="HardcodedText" />
+
+
+
+        <TextView
+            android:id="@+id/categoryTv"
+            style="@style/TextAppearance.MaterialComponents.Body2"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/authorTv"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="5dp"
+            android:layout_toEndOf="@+id/pdfRl"
+            android:maxLines="1"
+            android:text="Category"
+            tools:ignore="HardcodedText" />
+        <ImageView
+            android:id="@+id/imagefire"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toRightOf="@id/authorTv"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="30dp"
+            />
+        <TextView
+            android:id="@+id/rank_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/categoryTv"
+            android:text="#1"
+            android:textSize="26dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="33dp"
+            />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

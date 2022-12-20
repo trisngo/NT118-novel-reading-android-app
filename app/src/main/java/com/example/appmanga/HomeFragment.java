@@ -3,6 +3,7 @@ package com.example.appmanga;
 import static android.content.ContentValues.TAG;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +19,9 @@ import android.widget.EditText;
 
 import com.example.appmanga.Adapter.AdapterHomeBook1;
 import com.example.appmanga.Adapter.AdapterHomeBook2;
+import com.example.appmanga.Adapter.clickListener;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.firebase.auth.ActionCodeEmailInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +35,7 @@ import java.util.ArrayList;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements clickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,6 +47,7 @@ public class HomeFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+    private String categories ;
     private ArrayList<Book> listHighlights, list4U, listNewest;
     private AdapterHomeBook1 adapterHighlights;
     AdapterHomeBook2 adapter4U, adapterNewest;
@@ -92,6 +96,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         fragment_layout = inflater.inflate(R.layout.fragment_home, container, false);
         init();
+
         return fragment_layout;
     }
 
@@ -114,7 +119,7 @@ public class HomeFragment extends Fragment {
         list4U = new ArrayList<>();
         listNewest = new ArrayList<>();
 
-        adapterHighlights = new AdapterHomeBook1(getContext(), listHighlights);
+        adapterHighlights = new AdapterHomeBook1(getContext(), listHighlights,this);
         adapter4U = new AdapterHomeBook2(getContext(), list4U);
         adapterNewest = new AdapterHomeBook2(getContext(), listNewest);
 
@@ -134,6 +139,7 @@ public class HomeFragment extends Fragment {
 //        author_name = i.getStringExtra("author_name");
 
         getAllBooks();
+
     }
 
     private void getAllBooks() {
@@ -175,5 +181,23 @@ public class HomeFragment extends Fragment {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+    }
+
+    @Override
+    public void onItemClick(Book book) {
+        Intent intent = new Intent(getActivity(), intro_manga_before_read.class);
+        intent.putExtra("name",book.book_title);
+        intent.putExtra("image",book.thumbnail);
+        for (int i = 0; i < book.categories.size(); i++) {
+            categories += book.categories.get(i)+" ";
+        }
+        categories = categories.substring(4);
+        intent.putExtra("category",categories);
+        String chapter = String.valueOf(book.chapters.size());
+        intent.putExtra("chapter",chapter);
+        intent.putExtra("author",book.author_name);
+        intent.putExtra("dsc",book.book_description);
+
+        startActivity(intent);
     }
 }

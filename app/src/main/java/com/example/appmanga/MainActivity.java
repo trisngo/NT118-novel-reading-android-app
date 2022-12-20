@@ -99,11 +99,6 @@ public class MainActivity extends AppCompatActivity {
 //        finish();
     }
 
-    public void callReadLayout(View view){
-        Intent intent = new Intent(MainActivity.this, intro_manga_before_read.class);
-        startActivity(intent);
-    }
-
     //Hàm thể hiện fragment
     private void replaceFragment(Fragment fragment, String key){
         FragmentManager fragmentManager = getSupportFragmentManager();
