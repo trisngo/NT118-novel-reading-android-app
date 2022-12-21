@@ -120,8 +120,8 @@ public class HomeFragment extends Fragment implements clickListener {
         listNewest = new ArrayList<>();
 
         adapterHighlights = new AdapterHomeBook1(getContext(), listHighlights,this);
-        adapter4U = new AdapterHomeBook2(getContext(), list4U);
-        adapterNewest = new AdapterHomeBook2(getContext(), listNewest);
+        adapter4U = new AdapterHomeBook2(getContext(), list4U,this);
+        adapterNewest = new AdapterHomeBook2(getContext(), listNewest,this);
 
         rcvBookHighlights.setAdapter(adapterHighlights);
         rcvBook4U.setAdapter(adapter4U);

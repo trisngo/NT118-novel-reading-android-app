@@ -113,7 +113,7 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
         search_by_follow= v.findViewById(R.id.seach_by_follow);
 
 
-        /*search_by_follow.setOnClickListener(new View.OnClickListener() {
+        search_by_follow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                     search_by_follow.setBackgroundResource(R.drawable.bg_btn_search_after);
@@ -122,32 +122,32 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
                     search_by_hot.setTextColor(Color.BLACK);
                     Collections.sort(book, new Comparator<Book>() {
                         @Override
-                        public int compare(Manga manga, Manga manga1) {
-                            return manga.getName().compareTo(manga1.getName());
+                        public int compare(Book book, Book book1) {
+                            return book.book_title.compareTo(book1.book_title);
                         }
                     });
                     Collections.reverse(book);
-                    MangaAdapter.notifyDataSetChanged();
+                    adapterBook.notifyDataSetChanged();
             }
-        });*/
+        });
 
-        /*search_by_hot.setOnClickListener(new View.OnClickListener() {
+        search_by_hot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 search_by_hot.setBackgroundResource(R.drawable.bg_btn_search_after);
                 search_by_hot.setTextColor(Color.WHITE);
                 search_by_follow.setBackgroundResource(R.drawable.bg_btn_search);
                 search_by_follow.setTextColor(Color.BLACK);
-                Collections.sort(listManga, new Comparator<Manga>() {
+                Collections.sort(book, new Comparator<Book>() {
                     @Override
-                    public int compare(Manga manga, Manga manga1) {
-                        return manga1.getName().compareTo(manga.getName());
+                    public int compare(Book book, Book book1) {
+                        return book1.book_title.compareTo(book.book_title);
                     }
                 });
-                Collections.reverse(listManga);
-                MangaAdapter.notifyDataSetChanged();
+                Collections.reverse(book);
+                adapterBook.notifyDataSetChanged();
             }
-        });*/
+        });
         return v;
     }
 
