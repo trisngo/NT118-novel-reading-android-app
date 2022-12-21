@@ -5,38 +5,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
+
+import com.example.appmanga.ExtraFeature.introActivity;
 import com.example.appmanga.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -51,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         //init_database();
+
         replaceFragment(new HomeFragment(),key);
         key="home";
         //Sự kiện bấm thay đổi fragmanent
@@ -128,10 +116,8 @@ public class MainActivity extends AppCompatActivity {
         String author_name = "Chiren Kina";
         int likes = 43;
         int views = 561;
-        ArrayList<String> categories = new ArrayList<>();
-        categories.add("Action");
-        categories.add("Horror");
-        categories.add("Tragedy");
+        String categories = "Actions";
+
         Map<String, String> comments = new HashMap<>();
         comments.put("BuiDucAnh","Cũng hay hé hé hé");
         Map<String,String> chapters = new HashMap<>();

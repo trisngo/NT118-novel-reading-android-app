@@ -11,14 +11,14 @@ public class Book {
     public String created_time;
     public String updated_time;
     public String author_name;
-    public ArrayList<String> categories;
+    public String categories;
     public Map<String, String> comments;
     public Map<String, String> chapters;
     public int likes;
     public int views;
 
     public Book() {}
-    public Book(String author_name, String bookId, String book_title, String book_description, String thumbnail, String created_time, ArrayList<String> categories, Map<String, String> comments, Map<String, String> chapters, int likes, int views) {
+    public Book(String author_name, String bookId, String book_title, String book_description, String thumbnail, String created_time, String categories, Map<String, String> comments, Map<String, String> chapters, int likes, int views) {
         this.bookId = bookId;
         this.book_title = book_title;
         this.book_description = book_description;
@@ -88,11 +88,12 @@ public class Book {
         this.author_name = author_name;
     }
 
-    public ArrayList<String> getCategories() {
+
+    public String getCategories() {
         return categories;
     }
 
-    public void setCategories(ArrayList<String> categories) {
+    public void setCategories(String categories) {
         this.categories = categories;
     }
 

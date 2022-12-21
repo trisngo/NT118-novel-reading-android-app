@@ -1,4 +1,4 @@
-package com.example.appmanga;
+package com.example.appmanga.ExtraFeature;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +11,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.appmanga.Login;
+import com.example.appmanga.R;
+import com.example.appmanga.Register;
 
-    public class introActivity extends AppCompatActivity {
+
+public class introActivity extends AppCompatActivity {
 
         ViewPager viewPager;
         LinearLayout heading;

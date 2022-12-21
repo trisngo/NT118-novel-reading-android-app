@@ -7,7 +7,7 @@
     <item android:title="Ranking"
         android:icon="@drawable/ic_baseline_book_24"
         android:id="@+id/Ranking"/>
-    <item android:title="Profile"
+       <item android:title="Profile"
         android:icon="@drawable/ic_baseline_person_24"
         android:id="@+id/Profile"/>
 </menu>
