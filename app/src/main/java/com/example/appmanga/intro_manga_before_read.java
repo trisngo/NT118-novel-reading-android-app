@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,12 +25,14 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.TooManyListenersException;
 
 public class intro_manga_before_read extends AppCompatActivity {
     Button btnRead;
     TextView name,category,chapter,author,dsc;
     ImageView image;
     int count_category;
+    private Book book = new Book();
     private DatabaseReference database;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -61,6 +65,41 @@ public class intro_manga_before_read extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent1 = new Intent(intro_manga_before_read.this,ReadingActivity.class);
                 startActivity(intent1);
+            }
+        });
+
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    getCurrentBook();
+                    book.likes++;
+                    Toast.makeText(intro_manga_before_read.this,"data send", Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(intro_manga_before_read.this, Login.class);
+                    startActivity(intent);
+                }
+            }
+        });
+    }
+    private void getCurrentBook() {
+        database = FirebaseDatabase.getInstance().getReference("books");
+        database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int i = 0;
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    book = dataSnapshot.getValue(Book.class);
+                    if (book.book_title==name.toString()){
+                        break;
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
     }
