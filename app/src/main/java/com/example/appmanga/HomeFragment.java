@@ -111,17 +111,14 @@ public class HomeFragment extends Fragment implements clickListener {
         rcvBookHighlights.setHasFixedSize(true);
         rcvBook4U.setHasFixedSize(true);
         rcvBookNewest.setHasFixedSize(true);
-//        rcvBookHighlights.setLayoutManager(new LinearLayoutManager(getContext()));
-//        rcvBook4U.setLayoutManager(new LinearLayoutManager(getContext()));
-//        rcvBookNewest.setLayoutManager(new LinearLayoutManager(getContext()));
 
         listHighlights = new ArrayList<>();
         list4U = new ArrayList<>();
         listNewest = new ArrayList<>();
 
         adapterHighlights = new AdapterHomeBook1(getContext(), listHighlights,this);
-        adapter4U = new AdapterHomeBook2(getContext(), list4U);
-        adapterNewest = new AdapterHomeBook2(getContext(), listNewest);
+        adapter4U = new AdapterHomeBook2(getContext(), list4U, this);
+        adapterNewest = new AdapterHomeBook2(getContext(), listNewest, this);
 
         rcvBookHighlights.setAdapter(adapterHighlights);
         rcvBook4U.setAdapter(adapter4U);
@@ -134,9 +131,6 @@ public class HomeFragment extends Fragment implements clickListener {
         rcvBookHighlights.setLayoutManager(mLayoutManager);
         rcvBook4U.setLayoutManager(layoutManager4U);
         rcvBookNewest.setLayoutManager(layoutManagerNewest);
-
-//        Intent i = getIntent();
-//        author_name = i.getStringExtra("author_name");
 
         getAllBooks();
 
@@ -183,6 +177,7 @@ public class HomeFragment extends Fragment implements clickListener {
         });
     }
 
+    // call Book Intro Activity
     @Override
     public void onItemClick(Book book) {
         Intent intent = new Intent(getActivity(), intro_manga_before_read.class);

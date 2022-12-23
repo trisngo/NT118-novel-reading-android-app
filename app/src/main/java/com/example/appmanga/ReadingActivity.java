@@ -141,12 +141,13 @@ public class ReadingActivity extends AppCompatActivity {
 //                }
 
                 Log.d("json", dataSnapshot.child("chapter1").getValue().toString());
-                String data = dataSnapshot.child("chapter1").getValue().toString();
+                String data = "<p style=\"line-height:1.5;text-align:justify;\">";
+                data += dataSnapshot.child("chapter1").getValue().toString();
+                data += "</p>";
                 data = data.replace("\n", "<br><br>");
 
                 currentPageNumber = currentPN;
                 webView.loadDataWithBaseURL(baseUrl, data, "text/html", "UTF-8", null);
-
 
             }
 
