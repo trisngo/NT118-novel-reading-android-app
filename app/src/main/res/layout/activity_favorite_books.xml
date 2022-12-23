@@ -60,10 +60,38 @@
         android:paddingRight="16dp"
         android:paddingLeft="16dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/layout_nothing"
+            android:gravity="center_vertical"
+            >
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/ami_bung_bu_nothing"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_gravity="center_horizontal"
+                android:textSize="35dp"
+                android:layout_marginTop="10dp"
+                android:text="Nothing here :("
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
         <com.facebook.shimmer.ShimmerFrameLayout
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:id="@+id/shimmer_books">
+
+
             <LinearLayout
                 android:id="@+id/shimmer_item1"
                 android:layout_height="match_parent"
