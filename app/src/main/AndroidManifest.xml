@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +13,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_logo1"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:theme="@style/Theme.AppManga"
         tools:targetApi="31" >
         <activity
             android:name=".favoriteBooksActivity"
@@ -35,7 +36,7 @@
             android:name=".Register"
             android:exported="false" />
         <activity
-            android:name=".introActivity"
+            android:name=".ExtraFeature.introActivity"
             android:exported="false" />
         <activity
             android:name=".Login"
@@ -47,7 +48,10 @@
             android:name=".SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".ExtraFeature.CheckInternet"
+            android:exported="false" />
+        <activity
+            android:name=".ExtraFeature.SplashActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

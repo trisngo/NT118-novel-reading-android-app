@@ -1,5 +1,6 @@
 package com.example.appmanga.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmanga.Book;
-import com.example.appmanga.FilterBook;
+import com.example.appmanga.ExtraFeature.FilterBook;
 import com.example.appmanga.R;
 //import com.example.appmanga.databinding.ItemBookBinding;
 import com.squareup.picasso.Picasso;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 
 public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
     Context context;
+    private String categories ;
     public ArrayList<Book> list, filterList;
     //private ItemBookBinding binding;
     private FilterBook filter;
@@ -40,12 +42,16 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
         return new HolderBook(v);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull HolderBook holder, int position) {
         Book book = list.get(position);
         holder.book_title.setText(book.getBook_title());
-        holder.book_category.setText(book.getBookId());
+
         holder.book_author.setText(book.getAuthor_name());
+
+        holder.book_category.setText("# "+book.getCategories());
+
         String image = book.getThumbnail();
         Picasso.get().load(image).into(holder.thumbnail);
     }

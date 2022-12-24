@@ -35,6 +35,10 @@
             android:layout_marginEnd="5dp"
             android:layout_toEndOf="@+id/pdfRl"
             android:maxLines="1"
+            android:ellipsize = "end"
+            android:fadingEdge = "horizontal"
+            android:scrollHorizontally = "true"
+            android:textAlignment="viewStart"
             android:text="Book Tilte"
             tools:ignore="HardcodedText" />
 
@@ -56,14 +60,15 @@
         <TextView
             android:id="@+id/categoryTv"
             style="@style/TextAppearance.MaterialComponents.Body2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/authorTv"
             android:layout_marginTop="8dp"
+            android:padding="3dp"
             android:layout_marginEnd="5dp"
             android:layout_toEndOf="@+id/pdfRl"
-            android:maxLines="1"
-            android:text="Category"
+            android:background="@drawable/bg_btn_search1"
+            android:text="category"
             tools:ignore="HardcodedText" />
 
     </RelativeLayout>

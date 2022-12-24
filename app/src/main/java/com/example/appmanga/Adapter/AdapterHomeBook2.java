@@ -19,66 +19,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-//public class AdapterHomeBook2 extends RecyclerView.Adapter<AdapterHomeBook2.ViewHolder> {
-//    Context context;
-//    public ArrayList<Book> list;
-//
-//    public static class ViewHolder extends RecyclerView.ViewHolder {
-//        TextView book_title, book_category;
-//        CardView cardView;
-//        ImageView thumbnail;
-//
-//        public ViewHolder(View view) {
-//            super(view);
-//            view.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Log.d("debug", "Element " + getAdapterPosition() + " clicked.");
-//                }
-//            });
-//            book_title = view.findViewById(R.id.tv_title);
-//            book_category = view.findViewById(R.id.tv_category);
-//            thumbnail= view.findViewById(R.id.iv_thumbnail);
-//        }
-//
-//    }
-//
-//    public AdapterHomeBook2(Context context, ArrayList<Book> list) {
-//        this.context = context;
-//        this.list = list;
-//    }
-//
-//    // Create new views (invoked by the layout manager)
-//    @Override
-//    public AdapterHomeBook2.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        View v = LayoutInflater.from(context).inflate(R.layout.item_book_home_2,parent,false);
-//        return new AdapterHomeBook2.ViewHolder(v);
-//    }
-//
-//    // Replace the contents of a view (invoked by the layout manager)
-//    @Override
-//    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-//
-//        Book book = list.get(position);
-//        Log.d("debug",book.getBook_title());
-//        viewHolder.book_title.setText(book.getBook_title());
-//        String category = "";
-//        for (String i : book.getCategories()
-//        ) {
-//            category += "#" + i + " ";
-//        }
-//        viewHolder.book_category.setText(category);
-//        String image = book.getThumbnail();
-//        Picasso.get().load(image).into(viewHolder.thumbnail);
-//    }
-//
-//    // Return the size of your dataset (invoked by the layout manager)
-//    @Override
-//    public int getItemCount() {
-//        return list.size();
-//    }
-//}
-
 public class AdapterHomeBook2 extends RecyclerView.Adapter<AdapterHomeBook2.HolderBook> {
     Context context;
     public ArrayList<Book> list;
@@ -101,12 +41,7 @@ public class AdapterHomeBook2 extends RecyclerView.Adapter<AdapterHomeBook2.Hold
     public void onBindViewHolder(@NonNull AdapterHomeBook2.HolderBook holder, int position) {
         Book book = list.get(position);
         holder.book_title.setText(book.getBook_title());
-        String category = "";
-        for (String i : book.getCategories()
-        ) {
-            category += "#" + i + " ";
-        }
-        holder.book_category.setText(category);
+        holder.book_category.setText(book.getCategories());
         int i =position;
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

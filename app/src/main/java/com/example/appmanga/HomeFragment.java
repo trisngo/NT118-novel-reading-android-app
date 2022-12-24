@@ -183,10 +183,7 @@ public class HomeFragment extends Fragment implements clickListener {
         Intent intent = new Intent(getActivity(), intro_manga_before_read.class);
         intent.putExtra("name",book.book_title);
         intent.putExtra("image",book.thumbnail);
-        for (int i = 0; i < book.categories.size(); i++) {
-            categories += book.categories.get(i)+" ";
-        }
-        categories = categories.substring(4);
+
         intent.putExtra("category",categories);
         String chapter = String.valueOf(book.chapters.size());
         intent.putExtra("chapter",chapter);

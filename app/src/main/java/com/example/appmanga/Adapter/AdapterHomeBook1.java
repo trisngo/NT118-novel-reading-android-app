@@ -43,12 +43,7 @@ public class AdapterHomeBook1 extends RecyclerView.Adapter<AdapterHomeBook1.Hold
         Book book = list.get(position);
         holder.book_title.setText(book.getBook_title());
         holder.book_description.setText(book.getBook_description());
-        String category = "";
-        for (String i : book.getCategories()
-             ) {
-            category += "#" + i + " ";
-        }
-        holder.book_category.setText(category);
+        holder.book_category.setText(book.getCategories());
         int i =position;
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
