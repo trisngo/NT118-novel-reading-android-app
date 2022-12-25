@@ -91,6 +91,16 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        setting_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), UpdateProfile.class);
+                intent.putExtra("user_email",tv_userEmail.getText());
+                intent.putExtra("username",tv_username.getText());
+                startActivity(intent);
+            }
+        });
+
         like_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
