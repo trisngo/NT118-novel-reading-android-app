@@ -58,7 +58,7 @@ public class AdapterHomeBook1 extends RecyclerView.Adapter<AdapterHomeBook1.Hold
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return list.size() > 3 ? 3 : list.size();
     }
 
     public static class HolderBook extends RecyclerView.ViewHolder{

@@ -9,5 +9,5 @@
     <string name="third_text_title">Kết nối nhanh và dễ dàng</string>
     <string name="third_text_des">Ứng dụng đảm bảo quá trình hoạt động luôn mượt mà nhất có thể</string>
     // xoá mấy cái này sau khi đăng nhập
-    <string name="settings">Settings</string>
+    <string name="character_size">Kích thước chữ</string>
 </resources>
