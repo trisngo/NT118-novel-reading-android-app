@@ -210,6 +210,7 @@ public class ReadingActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 //Write your logic here
+                currentPageNumber = 1;
                 this.finish();
                 return true;
             default:
