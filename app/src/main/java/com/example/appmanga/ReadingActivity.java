@@ -115,9 +115,9 @@ public class ReadingActivity extends AppCompatActivity {
         mNextFab.setOnClickListener(
             view -> {
                 int size = getIntent().getIntExtra("chapter_size", 0);
-                if (currentPageNumber > size){
-                    // hien tai con loi
-                    Toast.makeText(ReadingActivity.this, "Don not have any next chapter", Toast.LENGTH_SHORT).show();
+                Log.d("debug", String.valueOf(size));
+                if (currentPageNumber > size-1){
+                    Toast.makeText(ReadingActivity.this, "Do not have any next chapter", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast.makeText(ReadingActivity.this, "Next chapter", Toast.LENGTH_SHORT).show();
@@ -127,7 +127,7 @@ public class ReadingActivity extends AppCompatActivity {
         mPreviousFab.setOnClickListener(
             view -> {
                 if (currentPageNumber == 1){
-                    Toast.makeText(ReadingActivity.this, "Don not have any previous chapter", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ReadingActivity.this, "Do not have any previous chapter", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast.makeText(ReadingActivity.this, "Previous chapter", Toast.LENGTH_SHORT).show();
