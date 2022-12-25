@@ -107,15 +107,33 @@ public class ReadingActivity extends AppCompatActivity {
         });
 
         mBookmarkFab.setOnClickListener(
-                view -> Toast.makeText(ReadingActivity.this, "Bookmark Added", Toast.LENGTH_SHORT
-                ).show());
+            view -> {
+                Toast.makeText(ReadingActivity.this, "Bookmark Added", Toast.LENGTH_SHORT).show();
+
+        });
 
         mNextFab.setOnClickListener(
-                view -> Toast.makeText(ReadingActivity.this, "Next chapter", Toast.LENGTH_SHORT
-                ).show());
+            view -> {
+                int size = getIntent().getIntExtra("chapter_size", 0);
+                if (currentPageNumber > size){
+                    // hien tai con loi
+                    Toast.makeText(ReadingActivity.this, "Don not have any next chapter", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(ReadingActivity.this, "Next chapter", Toast.LENGTH_SHORT).show();
+                    showPage(currentPageNumber + 1);
+                }
+            });
         mPreviousFab.setOnClickListener(
-                view -> Toast.makeText(ReadingActivity.this, "Previous chapter", Toast.LENGTH_SHORT
-                ).show());
+            view -> {
+                if (currentPageNumber == 1){
+                    Toast.makeText(ReadingActivity.this, "Don not have any previous chapter", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(ReadingActivity.this, "Previous chapter", Toast.LENGTH_SHORT).show();
+                    showPage(currentPageNumber - 1);
+                }
+            });
     }
 
     private void showPage(int currentPN) {
@@ -127,7 +145,9 @@ public class ReadingActivity extends AppCompatActivity {
 //                Log.d("json", String.valueOf(task.getResult().getValue()));
 //            }
 //        });
-        Query query = booksRef.child("book1669912049").child("chapters");
+        Intent intent = getIntent();
+//        Log.d("debug2",  intent.getStringExtra("book_id"));
+        Query query = booksRef.child(intent.getStringExtra("book_id")).child("chapters");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
@@ -140,9 +160,11 @@ public class ReadingActivity extends AppCompatActivity {
 //                    webView.loadDataWithBaseURL(baseUrl, data, "text/html", "UTF-8", null);
 //                }
 
-                Log.d("json", dataSnapshot.child("chapter1").getValue().toString());
+                Log.d("json", dataSnapshot.child("chapter" + currentPN).getValue().toString());
+                getSupportActionBar().setTitle(intent.getStringExtra("name"));
+                getSupportActionBar().setSubtitle("Chapter " + currentPN);
                 String data = "<p style=\"line-height:1.5;text-align:justify;\">";
-                data += dataSnapshot.child("chapter1").getValue().toString();
+                data += dataSnapshot.child("chapter" + currentPN).getValue().toString();
                 data += "</p>";
                 data = data.replace("\n", "<br><br>");
 
@@ -172,15 +194,27 @@ public class ReadingActivity extends AppCompatActivity {
         return true;
     }
 
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // handle arrow click here
+//        if (item.getItemId() == android.R.id.home) {
+//            startActivity(new Intent(this, MainActivity.class));
+//            finish(); // close this activity and return to preview activity (if there is any)
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // handle arrow click here
-        if (item.getItemId() == android.R.id.home) {
-            startActivity(new Intent(this, MainActivity.class));
-            finish(); // close this activity and return to preview activity (if there is any)
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //Write your logic here
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
 //    @Override

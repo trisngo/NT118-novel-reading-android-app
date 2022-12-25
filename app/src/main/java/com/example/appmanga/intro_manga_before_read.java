@@ -63,7 +63,13 @@ public class intro_manga_before_read extends AppCompatActivity {
         btnRead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String book_id =  intent.getStringExtra("book_id");
                 Intent intent1 = new Intent(intro_manga_before_read.this,ReadingActivity.class);
+//                String chapter = String.valueOf(book.getChapters().size());
+//                Log.d("debug",  book_id);
+                intent1.putExtra("book_id",book_id);
+                intent1.putExtra("name",intent.getStringExtra("name"));
+                intent1.putExtra("chapter_size",  Integer.valueOf(intent.getStringExtra("chapter")));
                 startActivity(intent1);
             }
         });
@@ -92,7 +98,7 @@ public class intro_manga_before_read extends AppCompatActivity {
                 int i = 0;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     book = dataSnapshot.getValue(Book.class);
-                    if (book.book_title==name.toString()){
+                    if (book.getBook_title().equals(name.getText().toString())){
                         break;
                     }
                 }
@@ -103,4 +109,5 @@ public class intro_manga_before_read extends AppCompatActivity {
             }
         });
     }
+
 }

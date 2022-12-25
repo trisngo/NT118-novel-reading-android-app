@@ -150,6 +150,7 @@ public class HomeFragment extends Fragment implements clickListener {
                 int i = 0;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Book book = dataSnapshot.getValue(Book.class);
+                    book.setBookId(dataSnapshot.getKey());
                     listHighlights.add(book);
                     list4U.add(book);
                     listNewest.add(book);
@@ -181,11 +182,12 @@ public class HomeFragment extends Fragment implements clickListener {
     @Override
     public void onItemClick(Book book) {
         Intent intent = new Intent(getActivity(), intro_manga_before_read.class);
+        Log.d("debug", book.getBookId());
+        intent.putExtra("book_id",book.getBookId());
         intent.putExtra("name",book.book_title);
         intent.putExtra("image",book.thumbnail);
-
         intent.putExtra("category",categories);
-        String chapter = String.valueOf(book.chapters.size());
+        String chapter = String.valueOf(book.getChapters().size());
         intent.putExtra("chapter",chapter);
         intent.putExtra("author",book.author_name);
         intent.putExtra("dsc",book.book_description);
