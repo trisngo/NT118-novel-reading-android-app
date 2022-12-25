@@ -39,6 +39,7 @@
                 android:layout_marginStart="8dp"/>
 
             <TextView
+                android:id="@+id/tv_likes_number"
                 android:layout_width="64dp"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/iv_heart"

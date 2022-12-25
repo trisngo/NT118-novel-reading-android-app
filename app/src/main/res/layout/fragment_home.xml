@@ -255,7 +255,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
-                            android:text="Mới ra mắt"
+                            android:text="Mới cập nhật"
                             android:textColor="#000000"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -311,6 +311,174 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rcv_home_newest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_home_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rl_home_3">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="70"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:text="Xem nhiều nhất"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="30">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:text="Xem Thêm"
+                            android:textAlignment="textEnd"
+                            android:textColor="#3f9dff"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_home_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ll_home_3">
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:id="@+id/shimmer_books_4">
+                        <LinearLayout
+                            android:id="@+id/shimmer_item4"
+                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:orientation="horizontal">
+
+                            <include layout="@layout/shimmer_home_book" />
+
+                            <include layout="@layout/shimmer_home_book" />
+
+                            <include layout="@layout/shimmer_home_book" />
+                        </LinearLayout>
+
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcv_home_most_viewed"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_home_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rl_home_4">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="70"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:text="Yêu thích nhất"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="30">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:text="Xem Thêm"
+                            android:textAlignment="textEnd"
+                            android:textColor="#3f9dff"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_home_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ll_home_4">
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:id="@+id/shimmer_books_5">
+                        <LinearLayout
+                            android:id="@+id/shimmer_item5"
+                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:orientation="horizontal">
+
+                            <include layout="@layout/shimmer_home_book" />
+
+                            <include layout="@layout/shimmer_home_book" />
+
+                            <include layout="@layout/shimmer_home_book" />
+                        </LinearLayout>
+
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcv_home_lovest"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
 

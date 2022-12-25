@@ -97,6 +97,10 @@ public class ReadingActivity extends AppCompatActivity {
         mBookmarkFab.setOnClickListener(
             view -> {
                 Toast.makeText(ReadingActivity.this, "Bookmark Added", Toast.LENGTH_SHORT).show();
+                mBookmarkFab.hide();
+                mNextFab.hide();
+                mPreviousFab.hide();
+                isAllFabsVisible = false;
             });
         mNextFab.setOnClickListener(
             view -> {
@@ -109,6 +113,10 @@ public class ReadingActivity extends AppCompatActivity {
                     Toast.makeText(ReadingActivity.this, "Next chapter", Toast.LENGTH_SHORT).show();
                     showPage(currentPageNumber + 1);
                 }
+                mBookmarkFab.hide();
+                mNextFab.hide();
+                mPreviousFab.hide();
+                isAllFabsVisible = false;
             });
         mPreviousFab.setOnClickListener(
             view -> {
@@ -119,6 +127,10 @@ public class ReadingActivity extends AppCompatActivity {
                     Toast.makeText(ReadingActivity.this, "Previous chapter", Toast.LENGTH_SHORT).show();
                     showPage(currentPageNumber - 1);
                 }
+                mBookmarkFab.hide();
+                mNextFab.hide();
+                mPreviousFab.hide();
+                isAllFabsVisible = false;
             });
 
         LinearLayout layout= (LinearLayout) findViewById(R.id.shimmer_item_reader);

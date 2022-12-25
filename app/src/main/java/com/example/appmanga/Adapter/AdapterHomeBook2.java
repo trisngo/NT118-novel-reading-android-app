@@ -42,6 +42,7 @@ public class AdapterHomeBook2 extends RecyclerView.Adapter<AdapterHomeBook2.Hold
         Book book = list.get(position);
         holder.book_title.setText(book.getBook_title());
         holder.book_category.setText(book.getCategories());
+        holder.book_likes.setText(String.valueOf(book.getLikes()));
         int i =position;
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,11 +56,12 @@ public class AdapterHomeBook2 extends RecyclerView.Adapter<AdapterHomeBook2.Hold
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return list.size() > 10 ? 10 : list.size();
     }
+
     public static class HolderBook extends RecyclerView.ViewHolder{
 
-        TextView book_title, book_category;
+        TextView book_title, book_category, book_likes;
         CardView cardView;
         ImageView thumbnail;
 
@@ -67,6 +69,7 @@ public class AdapterHomeBook2 extends RecyclerView.Adapter<AdapterHomeBook2.Hold
             super(itemView);
             book_title = itemView.findViewById(R.id.tv_title);
             book_category = itemView.findViewById(R.id.tv_category);
+            book_likes = itemView.findViewById(R.id.tv_likes_number);
             thumbnail= itemView.findViewById(R.id.iv_thumbnail);
             cardView = itemView.findViewById(R.id.parent_layout1);
         }

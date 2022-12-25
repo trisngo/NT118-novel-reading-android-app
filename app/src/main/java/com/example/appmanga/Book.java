@@ -88,7 +88,6 @@ public class Book {
         this.author_name = author_name;
     }
 
-
     public String getCategories() {
         return categories;
     }
