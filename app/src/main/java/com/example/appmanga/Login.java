@@ -35,7 +35,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Anhxa();
+        initButton();
 
         //init firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
@@ -60,7 +60,7 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    private void Anhxa() {
+    private void initButton() {
         btndn = findViewById(R.id.btndn);
         btnhuy = findViewById(R.id.btnhuy);
         username = findViewById(R.id.username);

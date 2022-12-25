@@ -128,7 +128,7 @@ public class Register extends AppCompatActivity {
                         DatabaseReference usersRef = root.child("users");
                         ArrayList<String> init_liked_books = new ArrayList<String>();
                         init_liked_books.add("default");
-                        User newUser = new User(et_username.getText().toString().trim(),email,0, init_liked_books);
+                        User newUser = new User(et_username.getText().toString().trim(),email, init_liked_books);
                         Map<String, Object> register_user = new HashMap<>();
                         Long tsLong = System.currentTimeMillis()/1000;
                         String ts = tsLong.toString();
