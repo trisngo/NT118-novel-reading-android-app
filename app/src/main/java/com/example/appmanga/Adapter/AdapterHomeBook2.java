@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -39,17 +40,15 @@ public class AdapterHomeBook2 extends RecyclerView.Adapter<AdapterHomeBook2.Hold
     @Override
     public void onBindViewHolder(@NonNull AdapterHomeBook2.HolderBook holder, int position) {
         Book book = list.get(position);
-        Log.d("debug",book.getBook_title());
         holder.book_title.setText(book.getBook_title());
-        holder.book_category.setText(book.getBookId());
+        holder.book_category.setText(book.getCategories());
         int i =position;
-        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listener.onItemClick(list.get(i));
             }
         });
-
         String image = book.getThumbnail();
         Picasso.get().load(image).into(holder.thumbnail);
     }
@@ -69,7 +68,7 @@ public class AdapterHomeBook2 extends RecyclerView.Adapter<AdapterHomeBook2.Hold
             book_title = itemView.findViewById(R.id.tv_title);
             book_category = itemView.findViewById(R.id.tv_category);
             thumbnail= itemView.findViewById(R.id.iv_thumbnail);
-            cardView = itemView.findViewById(R.id.parent_layout2);
+            cardView = itemView.findViewById(R.id.parent_layout1);
         }
     }
 }

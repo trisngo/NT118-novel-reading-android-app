@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent_layout1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardCornerRadius="10dp"
     app:cardElevation="4dp"
-    android:id="@+id/parent_layout2"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
@@ -18,36 +18,36 @@
             android:layout_width="185dp"
             android:layout_height="250dp"
             android:scaleType="fitXY"
-            android:background="@color/teal_200"
-            android:onClick="callReadLayout"/>
+            android:background="@color/teal_200"/>
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="-16dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp">
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/light_orange_rounded_shape">
+
+            <ImageView
+                android:id="@+id/iv_heart"
+                android:layout_alignParentLeft="true"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/heart_solid"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="8dp"/>
 
             <TextView
                 android:layout_width="64dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:drawableStart="@drawable/caret_up_solid_24_15"
-                android:background="@drawable/light_orange_rounded_shape"
-                android:drawablePadding="8dp"
+                android:layout_toEndOf="@+id/iv_heart"
                 android:padding="8dp"
+                android:paddingStart="6dp"
                 android:text="500"
-                android:textColor="#FFAB2D"
+                android:textColor="#EB455F"
                 android:textSize="14sp"
                 android:textStyle="bold" />
-
-            <ImageView
-                android:layout_alignParentRight="true"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginRight="4dp"
-                android:src="@drawable/bookmark_solid_blue" />
 
         </RelativeLayout>
 

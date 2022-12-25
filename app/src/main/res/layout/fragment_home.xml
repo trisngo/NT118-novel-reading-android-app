@@ -93,34 +93,49 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <TextView
+                    android:id="@+id/tv_home_1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chào bạn,"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="vertical">
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_home_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_home_1">
 
                     <com.facebook.shimmer.ShimmerFrameLayout
-                        android:layout_height="match_parent"
+                        android:id="@+id/shimmer_books"
                         android:layout_width="match_parent"
-                        android:id="@+id/shimmer_books">
+                        android:layout_height="match_parent">
+
                         <LinearLayout
                             android:id="@+id/shimmer_item1"
-                            android:layout_height="match_parent"
                             android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
                             android:orientation="vertical">
 
-                            <include layout="@layout/shimmer_book"/>
+                            <include layout="@layout/shimmer_book" />
 
-                            <include layout="@layout/shimmer_book"/>
-                            <include layout="@layout/shimmer_book"/>
+                            <include layout="@layout/shimmer_book" />
+
+                            <include layout="@layout/shimmer_book" />
 
                         </LinearLayout>
 
@@ -129,13 +144,13 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rcv_book_home1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent" />
 
 
                 </RelativeLayout>
 
-
                 <LinearLayout
+                    android:id="@+id/ll_home_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -143,7 +158,9 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="8dp"
                     android:orientation="horizontal"
-                    android:weightSum="100">
+                    android:weightSum="100"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rl_home_1">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -170,7 +187,6 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
                             android:text="Xem Thêm"
                             android:textAlignment="textEnd"
                             android:textColor="#3f9dff"
@@ -180,13 +196,15 @@
                 </LinearLayout>
 
                 <RelativeLayout
+                    android:id="@+id/rl_home_2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ll_home_1">
 
                     <com.facebook.shimmer.ShimmerFrameLayout
                         android:layout_height="match_parent"
@@ -215,6 +233,7 @@
                 </RelativeLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_home_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -222,7 +241,9 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="8dp"
                     android:orientation="horizontal"
-                    android:weightSum="100">
+                    android:weightSum="100"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rl_home_2">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -259,13 +280,15 @@
                 </LinearLayout>
 
                 <RelativeLayout
+                    android:id="@+id/rl_home_3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ll_home_2">
 
                     <com.facebook.shimmer.ShimmerFrameLayout
                         android:layout_height="match_parent"
@@ -293,7 +316,7 @@
 
                 </RelativeLayout>
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
