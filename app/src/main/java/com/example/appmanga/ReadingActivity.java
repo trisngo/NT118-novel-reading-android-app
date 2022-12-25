@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ import androidx.annotation.NonNull;
 import  androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,7 +41,6 @@ public class ReadingActivity extends AppCompatActivity {
     private static WebView webView;
     private Toolbar toolbar;
     FloatingActionButton mFeatureFab, mBookmarkFab, mNextFab, mPreviousFab;
-    TextView bookmarkText, nextText, previousText;
 
     Boolean isAllFabsVisible;
 
@@ -55,7 +57,6 @@ public class ReadingActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // add back arrow to toolbar
         if (getSupportActionBar() != null){
@@ -71,16 +72,9 @@ public class ReadingActivity extends AppCompatActivity {
         mNextFab = findViewById(R.id.fab_next_chap);
         mPreviousFab = findViewById(R.id.fab_previous_chap);
 
-//        bookmarkText = findViewById(R.id.tv_bookmark);
-//        nextText = findViewById(R.id.tv_next_chap);
-//        previousText = findViewById(R.id.tv_previous_chap);
-
         mBookmarkFab.setVisibility(View.GONE);
         mNextFab.setVisibility(View.GONE);
         mPreviousFab.setVisibility(View.GONE);
-//        bookmarkText.setVisibility(View.GONE);
-//        nextText.setVisibility(View.GONE);
-//        previousText.setVisibility(View.GONE);
 
         isAllFabsVisible = false;
 
@@ -89,18 +83,12 @@ public class ReadingActivity extends AppCompatActivity {
                 mBookmarkFab.show();
                 mNextFab.show();
                 mPreviousFab.show();
-//                bookmarkText.setVisibility(View.VISIBLE);
-//                nextText.setVisibility(View.VISIBLE);
-//                previousText.setVisibility(View.VISIBLE);
 
                 isAllFabsVisible = true;
             } else {
                 mBookmarkFab.hide();
                 mNextFab.hide();
                 mPreviousFab.hide();
-//                bookmarkText.setVisibility(View.GONE);
-//                nextText.setVisibility(View.GONE);
-//                previousText.setVisibility(View.GONE);
 
                 isAllFabsVisible = false;
             }
@@ -109,9 +97,7 @@ public class ReadingActivity extends AppCompatActivity {
         mBookmarkFab.setOnClickListener(
             view -> {
                 Toast.makeText(ReadingActivity.this, "Bookmark Added", Toast.LENGTH_SHORT).show();
-
-        });
-
+            });
         mNextFab.setOnClickListener(
             view -> {
                 int size = getIntent().getIntExtra("chapter_size", 0);
@@ -134,43 +120,38 @@ public class ReadingActivity extends AppCompatActivity {
                     showPage(currentPageNumber - 1);
                 }
             });
+
+        LinearLayout layout= (LinearLayout) findViewById(R.id.shimmer_item_reader);
+        for(int i=0; i<18; i++){
+            LinearLayout view = (LinearLayout) getLayoutInflater().inflate(R.layout.shimmer_reader, null);
+            layout.addView(view);
+        }
+
     }
 
     private void showPage(int currentPN) {
-        //            get data from db
-
-//        booksRef.child("book1669912049").child("chapter").child("chapter1").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                Log.d("json", String.valueOf(task.getResult().getValue()));
-//            }
-//        });
         Intent intent = getIntent();
-//        Log.d("debug2",  intent.getStringExtra("book_id"));
         Query query = booksRef.child(intent.getStringExtra("book_id")).child("chapters");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
-//                for (DataSnapshot chap : dataSnapshot.getChildren()) {
-//                    Log.d("json", chap.getValue().toString());
-//                    String data = chap.getValue().toString();
-//                    data = data.replace("\n", "<br><br>");
-//
-//                    currentPageNumber = currentPN;
-//                    webView.loadDataWithBaseURL(baseUrl, data, "text/html", "UTF-8", null);
-//                }
-
                 Log.d("json", dataSnapshot.child("chapter" + currentPN).getValue().toString());
                 getSupportActionBar().setTitle(intent.getStringExtra("name"));
                 getSupportActionBar().setSubtitle("Chapter " + currentPN);
-                String data = "<p style=\"line-height:1.5;text-align:justify;\">";
+                String data = "<p style=\"font-size:1.275em;line-height:1.5;text-align:justify;white-space:pre-line;\">";
                 data += dataSnapshot.child("chapter" + currentPN).getValue().toString();
                 data += "</p>";
-                data = data.replace("\n", "<br><br>");
+//                data = data.replace("\n", "<br><br>");
 
                 currentPageNumber = currentPN;
-                webView.loadDataWithBaseURL(baseUrl, data, "text/html", "UTF-8", null);
 
+                LinearLayout layout = (LinearLayout) findViewById(R.id.shimmer_item_reader);
+                for (int i = 0; i < layout.getChildCount(); i++) {
+                    View child = layout.getChildAt(i);
+                    child.setVisibility(View.GONE);
+                }
+
+                webView.loadDataWithBaseURL(baseUrl, data, "text/html", "UTF-8", null);
             }
 
             @Override
@@ -193,17 +174,6 @@ public class ReadingActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.reader_menu, menu);
         return true;
     }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // handle arrow click here
-//        if (item.getItemId() == android.R.id.home) {
-//            startActivity(new Intent(this, MainActivity.class));
-//            finish(); // close this activity and return to preview activity (if there is any)
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

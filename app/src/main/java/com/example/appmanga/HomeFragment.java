@@ -182,7 +182,6 @@ public class HomeFragment extends Fragment implements clickListener {
     @Override
     public void onItemClick(Book book) {
         Intent intent = new Intent(getActivity(), intro_manga_before_read.class);
-        Log.d("debug", book.getBookId());
         intent.putExtra("book_id",book.getBookId());
         intent.putExtra("name",book.book_title);
         intent.putExtra("image",book.thumbnail);
