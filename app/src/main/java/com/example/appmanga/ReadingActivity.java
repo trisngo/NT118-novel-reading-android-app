@@ -1,26 +1,24 @@
 package com.example.appmanga;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.NumberPicker;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import  androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,11 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.text.DecimalFormat;
 
 public class ReadingActivity extends AppCompatActivity {
     public static String nameClass;
@@ -46,9 +40,13 @@ public class ReadingActivity extends AppCompatActivity {
 
     private static int currentPageNumber = 1;
 
+    private int charSize = 16;
+
     FirebaseDatabase db = FirebaseDatabase.getInstance();
     DatabaseReference root = db.getReference();
     DatabaseReference booksRef = root.child("books");
+
+    private static final DecimalFormat df = new DecimalFormat("0.000");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,7 +136,6 @@ public class ReadingActivity extends AppCompatActivity {
             LinearLayout view = (LinearLayout) getLayoutInflater().inflate(R.layout.shimmer_reader, null);
             layout.addView(view);
         }
-
     }
 
     private void showPage(int currentPN) {
@@ -150,11 +147,13 @@ public class ReadingActivity extends AppCompatActivity {
                 Log.d("json", dataSnapshot.child("chapter" + currentPN).getValue().toString());
                 getSupportActionBar().setTitle(intent.getStringExtra("name"));
                 getSupportActionBar().setSubtitle("Chapter " + currentPN);
-                String data = "<p style=\"font-size:1.275em;line-height:1.5;text-align:justify;white-space:pre-line;\">";
+                double sizeEm = (double) charSize/12;
+                String data = "<p style=\"font-size:" +df.format(sizeEm) + "em;line-height:1.5;text-align:justify;white-space:pre-line;\">";
                 data += dataSnapshot.child("chapter" + currentPN).getValue().toString();
                 data += "</p>";
-//                data = data.replace("\n", "<br><br>");
+                data = data.replace("\n", "<br><br>");
 
+                Log.d("debug",data);
                 currentPageNumber = currentPN;
 
                 LinearLayout layout = (LinearLayout) findViewById(R.id.shimmer_item_reader);
@@ -184,7 +183,8 @@ public class ReadingActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.reader_menu, menu);
-        return true;
+//        item_your_choice = menu.findItem(R.id.character_size);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -195,11 +195,65 @@ public class ReadingActivity extends AppCompatActivity {
                 currentPageNumber = 1;
                 this.finish();
                 return true;
+            case R.id.character_size:
+                showPickerDialog();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+    private void showPickerDialog() {
+        final AlertDialog.Builder d = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.size_reader_dialog, null);
+        d.setTitle("Kích thước chữ");
+        d.setMessage("Lựa chọn kích thước:");
+        d.setView(dialogView);
+        final NumberPicker numberPicker = (NumberPicker) dialogView.findViewById(R.id.np_size);
+        numberPicker.setMaxValue(20);
+        numberPicker.setMinValue(6);
+//        numberPicker.setDisplayedValues( new String[] { "2", "5", "10" } );
+        numberPicker.setWrapSelectorWheel(false);
+        numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                Log.d("dialog", "onValueChange: ");
+            }
+        });
+        d.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Log.d("dialog", "onClick: " + numberPicker.getValue());
+                charSize = numberPicker.getValue();
+                showPage(currentPageNumber);
+//                String value = numberPicker.getDisplayedValues()[numberPicker.getValue()];
+//                Log.d("dialog", "onClick value: " + value);
+
+//                int pick;
+//                switch (numberPicker.getValue()) {
+//                    case 1:
+//                        pick = 2;
+//                        break;
+//                    case 2:
+//                        pick = 5;
+//                        break;
+//                    case 3:
+//                        pick = 10;
+//                        break;
+//                    default:
+//                        //...
+//                }
+            }
+        });
+        d.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        AlertDialog alertDialog = d.create();
+        alertDialog.show();
+    }
 //    @Override
 //    public void onBackPressed() {
 //        //Works the opposite ;)
