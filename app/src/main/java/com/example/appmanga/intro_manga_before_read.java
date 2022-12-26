@@ -12,8 +12,11 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Layout;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
+import android.text.style.AlignmentSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,8 +39,9 @@ import java.util.TooManyListenersException;
 
 public class intro_manga_before_read extends AppCompatActivity {
     Button btnRead;
-    TextView name,category,chapter,author,dsc;
+    TextView name,category,chapter,author,dsc, view;
     ConstraintLayout backgournd_intro_read_manga;
+
     ImageView image;
     int count_category;
     private Book book = new Book();
@@ -54,6 +58,7 @@ public class intro_manga_before_read extends AppCompatActivity {
         image = findViewById(R.id.thumbnailintro);
         btnRead = findViewById(R.id.btnRead_Manga);
         author = findViewById(R.id.author);
+        view = findViewById(R.id.view_number);
         backgournd_intro_read_manga = findViewById(R.id.backgournd_intro_read_manga);
         name.setText("");
         category.setText("");
@@ -81,6 +86,8 @@ public class intro_manga_before_read extends AppCompatActivity {
         });
         count_category = intent.getIntExtra("count_category",0);
         category.setText("Thể loại: "+ intent.getStringExtra("category")+" ");
+        view.setText("Số lượt xem: "+ intent.getIntExtra("view_number",0));
+
         chapter.setText("Số chương: " + intent.getStringExtra("chapter"));
         author.setText("Tác giả: "+intent.getStringExtra("author"));
         dsc.setText(intent.getStringExtra("dsc"));

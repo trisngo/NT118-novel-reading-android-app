@@ -254,11 +254,13 @@ public class HomeFragment extends Fragment implements clickListener {
     // call Book Intro Activity
     @Override
     public void onItemClick(Book book) {
+        int book_view=book.views;
         Intent intent = new Intent(getActivity(), intro_manga_before_read.class);
+        intent.putExtra("view_number",book_view);
         intent.putExtra("book_id",book.getBookId());
         intent.putExtra("name",book.book_title);
         intent.putExtra("image",book.thumbnail);
-        intent.putExtra("category",categories);
+        intent.putExtra("category",book.getCategories());
         String chapter = String.valueOf(book.getChapters().size());
         intent.putExtra("chapter",chapter);
         intent.putExtra("author",book.author_name);
