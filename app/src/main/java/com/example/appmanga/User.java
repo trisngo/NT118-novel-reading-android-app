@@ -3,6 +3,7 @@ package com.example.appmanga;
 import java.util.ArrayList;
 
 public class User {
+
     private String username;
     private String email;
     private int already_read;
@@ -23,7 +24,7 @@ public class User {
     public ArrayList<String> getLiked_books() {
         return liked_books;
     }
-
+    public User() {}
     public User(String username, String email, int already_read, ArrayList<String> liked_books) {
         this.username = username;
         this.email = email;

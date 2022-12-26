@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         //get_user_comments();
         //update_likes();
         //update_liked_book();
-
+        getUIDFromEmail();
         //init_database();
 
         replaceFragment(new HomeFragment(),key);
