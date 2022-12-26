@@ -17,6 +17,7 @@ import com.example.appmanga.Book;
 import com.example.appmanga.R;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class AdapterHomeBook2 extends RecyclerView.Adapter<AdapterHomeBook2.HolderBook> {
@@ -42,6 +43,8 @@ public class AdapterHomeBook2 extends RecyclerView.Adapter<AdapterHomeBook2.Hold
         Book book = list.get(position);
         holder.book_title.setText(book.getBook_title());
         holder.book_category.setText(book.getCategories());
+        holder.book_likes.setText(prettyCount(book.getLikes()));
+        holder.book_views.setText(prettyCount(book.getViews()));
         int i =position;
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,11 +58,12 @@ public class AdapterHomeBook2 extends RecyclerView.Adapter<AdapterHomeBook2.Hold
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return list.size() > 10 ? 10 : list.size();
     }
+
     public static class HolderBook extends RecyclerView.ViewHolder{
 
-        TextView book_title, book_category;
+        TextView book_title, book_category, book_likes, book_views;
         CardView cardView;
         ImageView thumbnail;
 
@@ -67,8 +71,22 @@ public class AdapterHomeBook2 extends RecyclerView.Adapter<AdapterHomeBook2.Hold
             super(itemView);
             book_title = itemView.findViewById(R.id.tv_title);
             book_category = itemView.findViewById(R.id.tv_category);
+            book_likes = itemView.findViewById(R.id.tv_likes_number);
+            book_views = itemView.findViewById(R.id.tv_views);
             thumbnail= itemView.findViewById(R.id.iv_thumbnail);
             cardView = itemView.findViewById(R.id.parent_layout1);
+        }
+    }
+
+    public String prettyCount(Number number) {
+        char[] suffix = {' ', 'k', 'M', 'B', 'T', 'P', 'E'};
+        long numValue = number.longValue();
+        int value = (int) Math.floor(Math.log10(numValue));
+        int base = value / 3;
+        if (value >= 3 && base < suffix.length) {
+            return new DecimalFormat("#0.0").format(numValue / Math.pow(10, base * 3)) + suffix[base];
+        } else {
+            return new DecimalFormat("#,##0").format(numValue);
         }
     }
 }
