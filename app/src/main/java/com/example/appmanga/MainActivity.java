@@ -1,5 +1,7 @@
 package com.example.appmanga;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,9 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 
@@ -20,9 +24,12 @@ import com.example.appmanga.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +40,34 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     private String key;
     private int flag=0;
+    ArrayList<String> user_liked_books_list = new ArrayList<>();
+    DatabaseReference books_database, users_database;
+    Map<String,String> id_to_user_list = new HashMap<String,String>();
+    Map<String,String> user_comments_list = new HashMap<String,String>();
+
+
+    // Gọi hàm này để lấy user id từ email
+    public void getUIDFromEmail() {
+        DatabaseReference users_database;
+        users_database = FirebaseDatabase.getInstance().getReference("users");
+        users_database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    User user = dataSnapshot.getValue(User.class);
+                    if (user.getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+                        Log.d("User id", dataSnapshot.getKey());
+                        break;
+                    }
+                }
+            }
+                @Override
+                public void onCancelled (@NonNull DatabaseError error){
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //get_user_comments();
+        //update_likes();
+        //update_liked_book();
 
         //init_database();
 
@@ -72,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, Login.class);
                         startActivity(intent);
                     }
-
             }
             return true;
         });
@@ -108,6 +145,97 @@ public class MainActivity extends AppCompatActivity {
         }
         fragmentTransaction.replace(R.id.frame_layout,fragment);
         fragmentTransaction.commit();
+    }
+
+    // Gọi hàm này để cập nhật số like
+    public void update_likes() {
+        Log.d("Update likes and views","Update value begin");
+        books_database.child("book1669997004/likes").setValue(44);
+        books_database.child("book1669997004/views").setValue(562);
+        Log.d("Update likes and views","Update value complete");
+    }
+
+    // Gọi hàm này để cập nhật liked book
+    public void update_liked_book() {
+        DatabaseReference users_database2 = FirebaseDatabase.getInstance().getReference("users");
+        users_database2.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.getKey().equals("user1670130782")) {
+                        User user = dataSnapshot.getValue(User.class);
+                        for (int i = 0; i < user.getLiked_books().size(); i++) {
+                            user_liked_books_list.add(user.getLiked_books().get(i));
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+        user_liked_books_list.add("book1669046233");
+        users_database2.child("user1670130782/liked_books").setValue(user_liked_books_list);
+        Log.d("Msg","Add complete");
+
+    }
+
+
+    // Gọi hàm này để cập nhật comment
+    public void update_comments() {
+        user_comments_list.put("user1671252751","Khi nào ra chap mới vậy?");
+        for (Map.Entry<String,String> entry : user_comments_list.entrySet())  {
+            Log.d("New comment",entry.getKey() + ": " + entry.getValue());
+        }
+        books_database.child("book1669911762/comments").setValue(user_comments_list);
+        Log.d("Update comments","Update value complete");
+    }
+
+
+    // Gọi hàm này để lấy tất cả comment của 1 truyện
+    public void get_bOok_comments() {
+        Log.d("Msg","In get user comments");
+        users_database = FirebaseDatabase.getInstance().getReference("users");
+        books_database = FirebaseDatabase.getInstance().getReference("books");
+        users_database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    User user = dataSnapshot.getValue(User.class);
+                    id_to_user_list.put(dataSnapshot.getKey(),user.getUsername());
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
+        books_database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.getKey().equals("book1669911762")) {
+                        Book book = dataSnapshot.getValue(Book.class);
+                        for (Map.Entry<String,String> entry : book.getComments().entrySet()) {
+                            user_comments_list.put(entry.getKey(),entry.getValue());
+                            Log.d("User:Comments",id_to_user_list.get(entry.getKey()) + ": " + entry.getValue());
+                        }
+                        //update_comments();
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
     }
 
 
