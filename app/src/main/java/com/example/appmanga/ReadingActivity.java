@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import  androidx.appcompat.widget.Toolbar;
 
@@ -62,7 +63,21 @@ public class ReadingActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
+        ActionBar ab = getSupportActionBar();
         webView = findViewById(R.id.webview_book);
+//        webView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//                    if (ab.isShowing()) {
+//                        ab.hide();
+//                    } else {
+//                        ab.show();
+//                    }
+//                    return true;
+//                } else return false;
+//            }
+//        });
         showPage(currentPageNumber);
 
         mFeatureFab = findViewById(R.id.fab_feature);
@@ -254,6 +269,7 @@ public class ReadingActivity extends AppCompatActivity {
         AlertDialog alertDialog = d.create();
         alertDialog.show();
     }
+
 //    @Override
 //    public void onBackPressed() {
 //        //Works the opposite ;)
