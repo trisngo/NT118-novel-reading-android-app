@@ -4,10 +4,16 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 import java.util.TooManyListenersException;
@@ -30,6 +37,7 @@ import java.util.TooManyListenersException;
 public class intro_manga_before_read extends AppCompatActivity {
     Button btnRead;
     TextView name,category,chapter,author,dsc;
+    ConstraintLayout backgournd_intro_read_manga;
     ImageView image;
     int count_category;
     private Book book = new Book();
@@ -46,7 +54,7 @@ public class intro_manga_before_read extends AppCompatActivity {
         image = findViewById(R.id.thumbnailintro);
         btnRead = findViewById(R.id.btnRead_Manga);
         author = findViewById(R.id.author);
-
+        backgournd_intro_read_manga = findViewById(R.id.backgournd_intro_read_manga);
         name.setText("");
         category.setText("");
         chapter.setText("");
@@ -54,12 +62,29 @@ public class intro_manga_before_read extends AppCompatActivity {
 
         Intent intent = getIntent();
         name.setText(intent.getStringExtra("name"));
+        name.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        name.setSelected(true);
+        name.setSingleLine(true);
+
         Picasso.get().load(intent.getStringExtra("image")).into(image);
+        Picasso.get().load(intent.getStringExtra("image")).into(new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                backgournd_intro_read_manga.setBackground(new BitmapDrawable(bitmap));
+            }
+            @Override
+            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+            }
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+            }
+        });
         count_category = intent.getIntExtra("count_category",0);
-        category.setText("Categories: "+ intent.getStringExtra("category")+" ");
-        chapter.setText("Chapter :" + intent.getStringExtra("chapter"));
-        author.setText("Author: "+intent.getStringExtra("author"));
+        category.setText("Thể loại: "+ intent.getStringExtra("category")+" ");
+        chapter.setText("Số chương: " + intent.getStringExtra("chapter"));
+        author.setText("Tác giả: "+intent.getStringExtra("author"));
         dsc.setText(intent.getStringExtra("dsc"));
+        dsc.setMovementMethod(new ScrollingMovementMethod());
         btnRead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
