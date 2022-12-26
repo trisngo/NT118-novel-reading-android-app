@@ -41,7 +41,7 @@ public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MangaViewHol
         int i=position+1;
         if (i == 1) {
             holder.book_title.setText(book.getBook_title());
-            holder.book_category.setText(book.getCategories());
+            holder.book_category.setText("#" + book.getCategories());
             holder.book_author.setText(book.getAuthor_name());
             String image = book.getThumbnail();
             Picasso.get().load(image).into(holder.thumbnail);
@@ -50,7 +50,7 @@ public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MangaViewHol
         }
         if (i == 2) {
             holder.book_title.setText(book.getBook_title());
-            holder.book_category.setText(book.getCategories());
+            holder.book_category.setText("#" + book.getCategories());
             holder.book_author.setText(book.getAuthor_name());
             String image = book.getThumbnail();
             Picasso.get().load(image).into(holder.thumbnail);
@@ -59,8 +59,7 @@ public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MangaViewHol
         }
         if (i == 3) {
             holder.book_title.setText(book.getBook_title());
-            holder.book_category.setText(book.getCategories());
-
+            holder.book_category.setText("#" + book.getCategories());
             holder.book_author.setText(book.getAuthor_name());
             String image = book.getThumbnail();
             Picasso.get().load(image).into(holder.thumbnail);
@@ -69,8 +68,7 @@ public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MangaViewHol
         }
         if(i>3){
             holder.book_title.setText(book.getBook_title());
-            holder.book_category.setText(book.getCategories());
-
+            holder.book_category.setText("#" + book.getCategories());
             holder.book_author.setText(book.getAuthor_name());
             String image = book.getThumbnail();
             Picasso.get().load(image).into(holder.thumbnail);
