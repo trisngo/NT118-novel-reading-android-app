@@ -1,7 +1,6 @@
-package com.example.appmanga;
+package com.example.appmanga.Adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,23 +8,27 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appmanga.Book;
 import com.example.appmanga.ExtraFeature.FilterBook;
+import com.example.appmanga.R;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MangaViewHolder>{
 
     Context context;
+    private clickListener listener;
     public ArrayList<Book> list, filterList;
     private FilterBook filter;
-    public MangaAdapter(Context context, ArrayList<Book> list) {
+    public MangaAdapter(Context context, ArrayList<Book> list,clickListener listener) {
         this.context = context;
         this.list = list;
         this.filterList = list;
+        this.listener=listener;
+
     }
 
     @NonNull
@@ -74,6 +77,12 @@ public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MangaViewHol
             Picasso.get().load(image).into(holder.thumbnail);
             holder.rank_number.setText("TOP"+ i);
         }
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(list.get(i-1));
+            }
+        });
     }
 
     @Override
