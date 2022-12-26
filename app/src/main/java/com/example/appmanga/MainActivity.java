@@ -40,9 +40,34 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     private String key;
     private int flag=0;
+    ArrayList<String> user_liked_books_list = new ArrayList<>();
     DatabaseReference books_database, users_database;
     Map<String,String> id_to_user_list = new HashMap<String,String>();
     Map<String,String> user_comments_list = new HashMap<String,String>();
+
+
+    // Gọi hàm này để lấy user id từ email
+    public void getUIDFromEmail() {
+        DatabaseReference users_database;
+        users_database = FirebaseDatabase.getInstance().getReference("users");
+        users_database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    User user = dataSnapshot.getValue(User.class);
+                    if (user.getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+                        Log.d("User id", dataSnapshot.getKey());
+                        break;
+                    }
+                }
+            }
+                @Override
+                public void onCancelled (@NonNull DatabaseError error){
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +76,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        get_user_comments();
+        //get_user_comments();
         //update_likes();
+        //update_liked_book();
 
         //init_database();
 
@@ -121,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    // Gọi hàm này để cập nhật số like
     public void update_likes() {
         Log.d("Update likes and views","Update value begin");
         books_database.child("book1669997004/likes").setValue(44);
@@ -128,13 +155,36 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Update likes and views","Update value complete");
     }
 
+    // Gọi hàm này để cập nhật liked book
+    public void update_liked_book() {
+        DatabaseReference users_database2 = FirebaseDatabase.getInstance().getReference("users");
+        users_database2.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.getKey().equals("user1670130782")) {
+                        User user = dataSnapshot.getValue(User.class);
+                        for (int i = 0; i < user.getLiked_books().size(); i++) {
+                            user_liked_books_list.add(user.getLiked_books().get(i));
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+        user_liked_books_list.add("book1669046233");
+        users_database2.child("user1670130782/liked_books").setValue(user_liked_books_list);
+        Log.d("Msg","Add complete");
+
+    }
+
+
+    // Gọi hàm này để cập nhật comment
     public void update_comments() {
-        Log.d("Msg","In update comments");
-        //Log.d("Update comments","Update value begin");
-        for (Map.Entry<String,String> entry : user_comments_list.entrySet())  {
-            Log.d("Old comment",entry.getKey() + ": " + entry.getValue());
-        }
-        Log.d("Msg","===================================================");
         user_comments_list.put("user1671252751","Khi nào ra chap mới vậy?");
         for (Map.Entry<String,String> entry : user_comments_list.entrySet())  {
             Log.d("New comment",entry.getKey() + ": " + entry.getValue());
@@ -143,7 +193,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Update comments","Update value complete");
     }
 
-    public void get_user_comments() {
+
+    // Gọi hàm này để lấy tất cả comment của 1 truyện
+    public void get_bOok_comments() {
         Log.d("Msg","In get user comments");
         users_database = FirebaseDatabase.getInstance().getReference("users");
         books_database = FirebaseDatabase.getInstance().getReference("books");
