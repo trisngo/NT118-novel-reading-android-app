@@ -3,7 +3,7 @@ package com.example.appmanga;
 import static android.content.ContentValues.TAG;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -13,18 +13,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.appmanga.Adapter.AdapterBook;
-import com.example.appmanga.Adapter.AdapterHomeBook1;
+import com.example.appmanga.Adapter.MangaAdapter;
 import com.example.appmanga.Adapter.clickListener;
-import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,10 +28,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -104,7 +98,7 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
         book = new ArrayList<>();
-        adapterBook = new MangaAdapter(getContext(), book);
+        adapterBook = new MangaAdapter(getContext(), book,this);
         rcvlistmanga.setAdapter(adapterBook);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         rcvlistmanga.setLayoutManager(layoutManager);
@@ -196,6 +190,18 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     @Override
     public void onItemClick(Book book) {
+        int book_view=book.views;
+        Intent intent = new Intent(getActivity(), intro_manga_before_read.class);
+        intent.putExtra("view_number",book_view);
+        intent.putExtra("book_id",book.getBookId());
+        intent.putExtra("name",book.book_title);
+        intent.putExtra("image",book.thumbnail);
+        intent.putExtra("category",book.getCategories());
+        String chapter = String.valueOf(book.getChapters().size());
+        intent.putExtra("chapter",chapter);
+        intent.putExtra("author",book.author_name);
+        intent.putExtra("dsc",book.book_description);
 
+        startActivity(intent);
     }
 }
