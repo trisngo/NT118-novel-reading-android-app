@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getUIDFromEmail();
         //get_user_comments();
         //update_likes();
         //update_liked_book();

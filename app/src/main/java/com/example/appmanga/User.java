@@ -24,6 +24,8 @@ public class User {
         return liked_books;
     }
 
+    public User() {}
+
     public User(String username, String email, int already_read, ArrayList<String> liked_books) {
         this.username = username;
         this.email = email;
