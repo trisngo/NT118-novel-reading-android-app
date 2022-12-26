@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="8dp">
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="37dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/tvLibrary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thư Viện"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginLeft="30dp"
+            android:textSize="30dp"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpaper"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:layout_marginTop="7dp"
+            android:paddingRight="13dp"
+            android:paddingLeft="13dp"
+            android:background="@drawable/custom_viewpaper" />
+
+
+    </LinearLayout>
+</LinearLayout>

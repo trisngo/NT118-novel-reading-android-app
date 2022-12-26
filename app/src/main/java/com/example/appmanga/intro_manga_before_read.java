@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.appmanga.ExtraFeature.MyFuntion;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -46,6 +47,7 @@ public class intro_manga_before_read extends AppCompatActivity {
     int count_category;
     private Book book = new Book();
     private DatabaseReference database;
+    public String Uid;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,12 +66,14 @@ public class intro_manga_before_read extends AppCompatActivity {
         category.setText("");
         chapter.setText("");
         author.setText("");
+        getUIDFromEmail();
 
         Intent intent = getIntent();
         name.setText(intent.getStringExtra("name"));
         name.setEllipsize(TextUtils.TruncateAt.MARQUEE);
         name.setSelected(true);
         name.setSingleLine(true);
+
 
         Picasso.get().load(intent.getStringExtra("image")).into(image);
         Picasso.get().load(intent.getStringExtra("image")).into(new Target() {
@@ -100,12 +104,16 @@ public class intro_manga_before_read extends AppCompatActivity {
 //                String chapter = String.valueOf(book.getChapters().size());
 //                Log.d("debug",  book_id);
                 intent1.putExtra("book_id",book_id);
+                intent1.putExtra("Uid",Uid);
                 intent1.putExtra("name",intent.getStringExtra("name"));
 //                Log.d("debug", String.valueOf(Integer.valueOf(intent.getStringExtra("chapter"))));
                 intent1.putExtra("chapter_size",  Integer.valueOf(intent.getStringExtra("chapter")));
+
+                MyFuntion.addToReading( intro_manga_before_read.this, book_id,Uid);
                 startActivity(intent1);
             }
         });
+
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +130,27 @@ public class intro_manga_before_read extends AppCompatActivity {
             }
         });
     }
+    public void getUIDFromEmail() {
+        DatabaseReference users_database;
+        users_database = FirebaseDatabase.getInstance().getReference("users");
+        users_database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    User user = dataSnapshot.getValue(User.class);
+                    if (user.getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+                        Uid = dataSnapshot.getKey();
+
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }});}
     private void getCurrentBook() {
         database = FirebaseDatabase.getInstance().getReference("books");
         database.addValueEventListener(new ValueEventListener() {
