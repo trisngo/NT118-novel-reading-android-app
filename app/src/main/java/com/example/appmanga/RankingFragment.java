@@ -123,7 +123,11 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
                     Collections.sort(book, new Comparator<Book>() {
                         @Override
                         public int compare(Book book, Book book1) {
-                            return book.book_title.compareTo(book1.book_title);
+                            if(book.views<book1.views) {
+                                return book1.book_title.compareTo(book.book_title);
+                            }else{
+                                return book.book_title.compareTo(book1.book_title);
+                            }
                         }
                     });
                     Collections.reverse(book);
@@ -141,7 +145,11 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
                 Collections.sort(book, new Comparator<Book>() {
                     @Override
                     public int compare(Book book, Book book1) {
-                        return book1.book_title.compareTo(book.book_title);
+                        if(book.likes<book1.likes) {
+                            return book1.book_title.compareTo(book.book_title);
+                        }else{
+                            return book.book_title.compareTo(book1.book_title);
+                        }
                     }
                 });
                 Collections.reverse(book);
