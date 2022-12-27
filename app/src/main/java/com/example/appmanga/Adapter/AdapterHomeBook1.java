@@ -1,8 +1,6 @@
 package com.example.appmanga.Adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appmanga.Book;
+import com.example.appmanga.Model.Book;
 import com.example.appmanga.R;
-import com.facebook.shimmer.ShimmerFrameLayout;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

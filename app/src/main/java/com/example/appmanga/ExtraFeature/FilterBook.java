@@ -4,8 +4,8 @@ import android.annotation.SuppressLint;
 import android.widget.Filter;
 
 
-import com.example.appmanga.Adapter.AdapterBook;
-import com.example.appmanga.Book;
+import com.example.appmanga.Adapter.SearchAdapter;
+import com.example.appmanga.Model.Book;
 
 import java.util.ArrayList;
 
@@ -13,9 +13,9 @@ public class FilterBook extends Filter {
 
     ArrayList<Book> filterList;
     //adapter in which filter need to be implemented
-    AdapterBook adapterBook;
+    SearchAdapter adapterBook;
 
-    public FilterBook(ArrayList<Book> filterList, AdapterBook adapterBook) {
+    public FilterBook(ArrayList<Book> filterList, SearchAdapter adapterBook) {
         this.filterList = filterList;
         this.adapterBook = adapterBook;
     }

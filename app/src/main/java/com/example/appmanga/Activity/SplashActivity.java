@@ -1,14 +1,14 @@
-package com.example.appmanga.ExtraFeature;
+package com.example.appmanga.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.appmanga.MainActivity;
+import com.example.appmanga.ExtraFeature.CheckInternet;
+import com.example.appmanga.ExtraFeature.IsNetwork;
 import com.example.appmanga.R;
 
 public class SplashActivity extends AppCompatActivity {

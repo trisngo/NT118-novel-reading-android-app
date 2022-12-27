@@ -1,4 +1,4 @@
-package com.example.appmanga;
+package com.example.appmanga.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.appmanga.ExtraFeature.introActivity;
+import com.example.appmanga.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
 
     Button btndn, btnhuy;
@@ -48,7 +48,7 @@ public class Login extends AppCompatActivity {
         btnhuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Login.this, introActivity.class);
+                Intent intent = new Intent(LoginActivity.this, IntroActivity.class);
                 startActivity(intent);
             }
         });
@@ -69,7 +69,7 @@ public class Login extends AppCompatActivity {
 
     // click btn dang ki
     public void txtregister1(View view) {
-        Intent intent = new Intent(Login.this, Register.class);
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(intent);
         finish();//hủy activity Login để chuyển sang activity Register
     }
@@ -82,9 +82,9 @@ public class Login extends AppCompatActivity {
         password1 = Objects.requireNonNull(password.getText()).toString().trim();
         // validate data
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(Login.this, "Nhập Email...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Nhập Email...", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(password1)) {
-            Toast.makeText(Login.this, "Nhập mật khẩu...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Nhập mật khẩu...", Toast.LENGTH_SHORT).show();
         } else {
             loginUser();
         }
@@ -98,7 +98,7 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         Intent intent = new Intent(
-                                Login.this, MainActivity.class
+                                LoginActivity.this, MainActivity.class
                         );
                         startActivity(intent);
                     }
@@ -107,7 +107,7 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         progressDialog.dismiss();
-                        Toast.makeText(Login.this, "Đăng nhập thất bại...\nVui lòng thử lại!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bại...\nVui lòng thử lại!", Toast.LENGTH_SHORT).show();
                     }
                 });
 

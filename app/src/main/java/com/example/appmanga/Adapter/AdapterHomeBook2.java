@@ -1,19 +1,17 @@
 package com.example.appmanga.Adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appmanga.Book;
+import com.example.appmanga.Model.Book;
 import com.example.appmanga.R;
 import com.squareup.picasso.Picasso;
 

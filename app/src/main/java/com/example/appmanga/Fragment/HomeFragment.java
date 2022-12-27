@@ -1,4 +1,4 @@
-package com.example.appmanga;
+package com.example.appmanga.Fragment;
 
 import static android.content.ContentValues.TAG;
 
@@ -20,8 +20,10 @@ import android.widget.EditText;
 import com.example.appmanga.Adapter.AdapterHomeBook1;
 import com.example.appmanga.Adapter.AdapterHomeBook2;
 import com.example.appmanga.Adapter.clickListener;
+import com.example.appmanga.Model.Book;
+import com.example.appmanga.R;
+import com.example.appmanga.intro_manga_before_read;
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.google.firebase.auth.ActionCodeEmailInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +34,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -2,6 +2,8 @@ package com.example.appmanga.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,22 +14,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appmanga.Book;
+import com.example.appmanga.Model.Book;
 import com.example.appmanga.ExtraFeature.FilterBook;
 import com.example.appmanga.R;
 //import com.example.appmanga.databinding.ItemBookBinding;
+import com.example.appmanga.intro_manga_before_read;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
+public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.HolderBook>{
     Context context;
     private String categories ;
     public ArrayList<Book> list, filterList;
     //private ItemBookBinding binding;
     private FilterBook filter;
 
-    public AdapterBook(Context context, ArrayList<Book> list) {
+    public SearchAdapter(Context context, ArrayList<Book> list) {
         this.context = context;
         this.list = list;
         this.filterList = list;
@@ -47,13 +50,25 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
     public void onBindViewHolder(@NonNull HolderBook holder, int position) {
         Book book = list.get(position);
         holder.book_title.setText(book.getBook_title());
-
+        holder.book_title.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        holder.book_title.setSelected(true);
+        holder.book_title.setSingleLine(true);
         holder.book_author.setText(book.getAuthor_name());
 
         holder.book_category.setText("# "+book.getCategories());
 
         String image = book.getThumbnail();
         Picasso.get().load(image).into(holder.thumbnail);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, intro_manga_before_read.class);
+                intent.putExtra("book_id", book.getBookId());
+
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.appmanga;
+package com.example.appmanga.Adapter;
 
 
 import androidx.annotation.NonNull;

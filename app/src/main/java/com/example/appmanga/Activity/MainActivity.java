@@ -1,9 +1,8 @@
-package com.example.appmanga;
+package com.example.appmanga.Activity;
 
 import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -11,15 +10,18 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 
 
-import com.example.appmanga.ExtraFeature.introActivity;
+import com.example.appmanga.Model.Book;
+import com.example.appmanga.Fragment.HomeFragment;
+import com.example.appmanga.Fragment.ProfileFragment;
+import com.example.appmanga.R;
+import com.example.appmanga.Fragment.RankingFragment;
+import com.example.appmanga.Model.User;
 import com.example.appmanga.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,12 +40,14 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+    public String Uid;
     private String key;
     private int flag=0;
     ArrayList<String> user_liked_books_list = new ArrayList<>();
     DatabaseReference books_database, users_database;
     Map<String,String> id_to_user_list = new HashMap<String,String>();
     Map<String,String> user_comments_list = new HashMap<String,String>();
+
 
 
     // Gọi hàm này để lấy user id từ email
@@ -56,11 +60,12 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User user = dataSnapshot.getValue(User.class);
+                    if (FirebaseAuth.getInstance().getCurrentUser() != null){
                     if (user.getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
-                        Log.d("User id", dataSnapshot.getKey());
+                        Uid= dataSnapshot.getKey();
                         break;
                     }
-                }
+                }}
             }
                 @Override
                 public void onCancelled (@NonNull DatabaseError error){
@@ -107,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                         replaceFragment(new ProfileFragment(),key);
                         break;
                     }else{
-                        Intent intent = new Intent(MainActivity.this, Login.class);
+                        Intent intent = new Intent(MainActivity.this, IntroActivity.class);
                         startActivity(intent);
                     }
             }
@@ -119,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void login(View view){
         Intent intent = new Intent(MainActivity.this, LibraryActivity.class);
+
+        intent.putExtra("Uid",Uid);
         startActivity(intent);
 //        finish();
     }

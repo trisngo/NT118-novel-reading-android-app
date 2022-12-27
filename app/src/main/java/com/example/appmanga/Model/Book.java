@@ -1,4 +1,4 @@
-package com.example.appmanga;
+package com.example.appmanga.Model;
 
 import java.util.ArrayList;
 import java.util.Map;

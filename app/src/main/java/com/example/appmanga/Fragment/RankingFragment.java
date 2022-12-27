@@ -1,4 +1,4 @@
-package com.example.appmanga;
+package com.example.appmanga.Fragment;
 
 import static android.content.ContentValues.TAG;
 
@@ -21,6 +21,9 @@ import android.widget.TextView;
 
 import com.example.appmanga.Adapter.MangaAdapter;
 import com.example.appmanga.Adapter.clickListener;
+import com.example.appmanga.Model.Book;
+import com.example.appmanga.R;
+import com.example.appmanga.intro_manga_before_read;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

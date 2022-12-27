@@ -3,7 +3,6 @@ package com.example.appmanga.ExtraFeature;
 
 import android.app.Application;
 import android.content.Context;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -46,5 +45,7 @@ public class MyFuntion extends Application {
         }
     }
 
+    }
 
-}
+
+

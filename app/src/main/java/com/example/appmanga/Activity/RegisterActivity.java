@@ -1,4 +1,4 @@
-package com.example.appmanga;
+package com.example.appmanga.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,7 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.appmanga.ExtraFeature.introActivity;
+import com.example.appmanga.R;
+import com.example.appmanga.Model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -26,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class Register extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
     TextView textv;
     TextInputEditText et_tk, et_mk, et_nhaplaimk, et_username;
     Button btndk, btnhuy;
@@ -51,14 +52,14 @@ public class Register extends AppCompatActivity {
         btnhuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Register.this, introActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, IntroActivity.class);
                 startActivity(intent);
             }
         });
         textclick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Register.this, Login.class);
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -82,7 +83,7 @@ public class Register extends AppCompatActivity {
     }
 
     public void txtlogin(View view) {
-        Intent intent = new Intent(Register.this, Login.class);
+        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
@@ -135,7 +136,7 @@ public class Register extends AppCompatActivity {
                         register_user.put("user" + ts, newUser);
                         usersRef.updateChildren(register_user);
                         Intent intent = new Intent(
-                                Register.this, MainActivity.class
+                                RegisterActivity.this, MainActivity.class
                         );
                         startActivity(intent);
                     }
@@ -144,7 +145,7 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onFailure(Exception e) {
                         progressDialog.dismiss();
-                        Toast.makeText(Register.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

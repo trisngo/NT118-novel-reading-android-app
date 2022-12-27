@@ -1,4 +1,4 @@
-package com.example.appmanga;
+package com.example.appmanga.Activity;
 
 import static android.content.ContentValues.TAG;
 
@@ -10,14 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.example.appmanga.Adapter.AdapterBook;
+import com.example.appmanga.Adapter.SearchAdapter;
+import com.example.appmanga.Model.Book;
+import com.example.appmanga.R;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,7 +29,7 @@ import java.util.ArrayList;
 public class favoriteBooksActivity extends AppCompatActivity {
 
     private ArrayList<Book> list;
-    private AdapterBook adapterBook;
+    private SearchAdapter adapterBook;
     private RecyclerView favBooks;
     private ArrayList<String> user_liked_books;
 
@@ -52,7 +51,7 @@ public class favoriteBooksActivity extends AppCompatActivity {
         favBooks.setHasFixedSize(true);
         favBooks.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
-        adapterBook = new AdapterBook(this, list);
+        adapterBook = new SearchAdapter(this, list);
         favBooks.setAdapter(adapterBook);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);

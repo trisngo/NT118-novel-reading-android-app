@@ -1,6 +1,6 @@
-package com.example.appmanga;
+package com.example.appmanga.Fragment;
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmanga.Adapter.ReadingAdapter;
 
+import com.example.appmanga.Model.Book;
+import com.example.appmanga.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,17 +25,19 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ReadinglistTabFragment extends Fragment {
+public class ReadinglistTabFragment extends Fragment  {
     private RecyclerView rvbooks;
     private ArrayList<Book> bookArrayList;
     private ReadingAdapter adapterBook;
-    public String Uid;
+
     private FirebaseAuth firebaseAuth;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getUIDFromEmail();
+
          }
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,13 +45,17 @@ public class ReadinglistTabFragment extends Fragment {
         View root = inflater.inflate(R.layout.tab_readinglist, container, false);
         rvbooks = root.findViewById(R.id.rcvBook);
         firebaseAuth = FirebaseAuth.getInstance();
-        rvbooks.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        loadBookReading();
+        rvbooks.setLayoutManager(new LinearLayoutManager(getActivity()));
+        Intent intent =getActivity().getIntent();
+        String Uid = intent.getStringExtra("Uid");
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            loadBookReading(Uid);
+        }
         return root;
     }
 
-    private void loadBookReading() {
+    private void loadBookReading(String Uid) {
         bookArrayList = new ArrayList<>();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
         ref.child(Uid).child("Reading")
@@ -69,25 +77,4 @@ public class ReadinglistTabFragment extends Fragment {
 
                     }
                 });
-    }
-    public void getUIDFromEmail() {
-        DatabaseReference users_database;
-        users_database = FirebaseDatabase.getInstance().getReference("users");
-        users_database.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User user = dataSnapshot.getValue(User.class);
-                    if (user.getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
-                        Uid = dataSnapshot.getKey();
-
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }});}}
+    }}

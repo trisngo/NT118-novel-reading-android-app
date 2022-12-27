@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appmanga.Book;
+import com.example.appmanga.Model.Book;
 
 import com.example.appmanga.databinding.ItemBookBinding;
 import com.example.appmanga.intro_manga_before_read;
@@ -66,10 +66,10 @@ public class ReadingAdapter extends RecyclerView.Adapter<ReadingAdapter.HolderBo
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String booktitle = snapshot.child("book_title").getValue().toString();
-                        String bookAuthor = snapshot.child("author_name").getValue().toString();
-                        String category = snapshot.child("categories").getValue().toString();
-                        String url = snapshot.child("thumbnail").getValue().toString();
+                        String booktitle = ""+snapshot.child("book_title").getValue().toString();
+                        String bookAuthor = ""+snapshot.child("author_name").getValue().toString();
+                        String category = ""+snapshot.child("categories").getValue().toString();
+                        String url = ""+snapshot.child("thumbnail").getValue().toString();
 
                         //
                         model.setBook_title(booktitle);

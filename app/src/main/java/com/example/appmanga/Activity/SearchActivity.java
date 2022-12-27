@@ -1,4 +1,4 @@
-package com.example.appmanga;
+package com.example.appmanga.Activity;
 
 import static android.content.ContentValues.TAG;
 
@@ -9,17 +9,16 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appmanga.Adapter.AdapterBook;
+import com.example.appmanga.Adapter.SearchAdapter;
+import com.example.appmanga.Model.Book;
+import com.example.appmanga.R;
 import com.example.appmanga.databinding.ActivitySearchBinding;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +31,7 @@ import java.util.ArrayList;
 
 public class SearchActivity extends AppCompatActivity {
     private ArrayList<Book> list;
-    private AdapterBook adapterBook;
+    private SearchAdapter adapterBook;
     private RecyclerView rcvSach;
 
     DatabaseReference database;
@@ -54,7 +53,7 @@ public class SearchActivity extends AppCompatActivity {
         rcvSach.setHasFixedSize(true);
         rcvSach.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
-        adapterBook = new AdapterBook(this, list);
+        adapterBook = new SearchAdapter(this, list);
         rcvSach.setAdapter(adapterBook);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);

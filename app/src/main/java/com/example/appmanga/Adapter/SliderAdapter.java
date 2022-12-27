@@ -1,4 +1,4 @@
-package com.example.appmanga.ExtraFeature;
+package com.example.appmanga.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package com.example.appmanga;
+package com.example.appmanga.Activity;
 
 
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.appmanga.Adapter.LibraryAdapter;
+import com.example.appmanga.R;
 import com.google.android.material.tabs.TabLayout;
 
 public class LibraryActivity extends AppCompatActivity {

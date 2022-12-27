@@ -1,4 +1,4 @@
-package com.example.appmanga;
+package com.example.appmanga.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,11 +10,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appmanga.Model.Book;
+import com.example.appmanga.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
-public class VoteTabFragment extends Fragment {
+public class FavoriteTabFragment extends Fragment {
     private RecyclerView rvbooks;
     private ArrayList<Book> bookArrayList;
 

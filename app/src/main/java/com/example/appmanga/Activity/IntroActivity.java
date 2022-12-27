@@ -1,4 +1,4 @@
-package com.example.appmanga.ExtraFeature;
+package com.example.appmanga.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +11,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.appmanga.Login;
+import com.example.appmanga.Adapter.SliderAdapter;
 import com.example.appmanga.R;
-import com.example.appmanga.Register;
 
 
-public class introActivity extends AppCompatActivity {
+public class IntroActivity extends AppCompatActivity {
 
         ViewPager viewPager;
         LinearLayout heading;
@@ -44,13 +43,13 @@ public class introActivity extends AppCompatActivity {
         // click vào chữ bạn đã có tài khoản đăng nhập dê
         public void Txtlogin(View view)
         {
-            Intent intent = new Intent(introActivity.this, Login.class);
+            Intent intent = new Intent(IntroActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
         }
         // ấn vào tham gia miễn phi
         public void Start(View view){
-            Intent intent = new Intent(introActivity.this, Register.class);
+            Intent intent = new Intent(IntroActivity.this, RegisterActivity.class);
             startActivity(intent);
             finish();
         }

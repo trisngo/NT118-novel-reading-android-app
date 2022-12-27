@@ -23,7 +23,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".favoriteBooksActivity"
+            android:name=".Activity.favoriteBooksActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -37,31 +37,31 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ReadingActivity"
+            android:name=".Activity.ReadingActivity"
             android:exported="false" />
         <activity
-            android:name=".Register"
+            android:name=".Activity.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".LibraryActivity"
+            android:name=".Activity.LibraryActivity"
             android:exported="false" />
         <activity
-            android:name=".ExtraFeature.introActivity"
+            android:name=".Activity.IntroActivity"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".Activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchActivity"
+            android:name=".Activity.SearchActivity"
             android:exported="false" />
         <activity
             android:name=".ExtraFeature.CheckInternet"
             android:exported="false" />
         <activity
-            android:name=".ExtraFeature.SplashActivity"
+            android:name=".Activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

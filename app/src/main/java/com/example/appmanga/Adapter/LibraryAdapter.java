@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.example.appmanga.ReadinglistTabFragment;
-import com.example.appmanga.VoteTabFragment;
+import com.example.appmanga.Fragment.ReadinglistTabFragment;
+import com.example.appmanga.Fragment.FavoriteTabFragment;
 
 public class LibraryAdapter extends FragmentStatePagerAdapter {
     public LibraryAdapter(@NonNull FragmentManager fm, int behavior) {
@@ -19,10 +19,11 @@ public class LibraryAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return new VoteTabFragment();
+                return new ReadinglistTabFragment();
 
             case 1:
-                return new ReadinglistTabFragment();
+
+                return new FavoriteTabFragment();
             default:
                 return null;
         }
@@ -39,10 +40,10 @@ public class LibraryAdapter extends FragmentStatePagerAdapter {
         String title = "";
         switch (position){
             case 0:
-                title = "Yêu Thích";
+                title ="Đang Đọc" ;
                 break;
             case 1:
-                title = "Đang Đọc";
+                title = "Yêu Thích";
                 break;
             default:
                 return null;
