@@ -64,11 +64,12 @@ public class ReadingActivity extends AppCompatActivity {
         }
 
         ActionBar ab = getSupportActionBar();
+
         webView = findViewById(R.id.webview_book);
 //        webView.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
 //            public boolean onTouch(View v, MotionEvent event) {
-//                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//                if (event.getAction() == MotionEvent.ACTION_SCROLL) {
 //                    if (ab.isShowing()) {
 //                        ab.hide();
 //                    } else {
