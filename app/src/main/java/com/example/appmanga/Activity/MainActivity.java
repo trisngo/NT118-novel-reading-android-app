@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void login(View view){
+    public void library(View view){
         Intent intent = new Intent(MainActivity.this, LibraryActivity.class);
 
         intent.putExtra("Uid",Uid);
