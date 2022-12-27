@@ -82,11 +82,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getUIDFromEmail();
-        //get_user_comments();
-        //update_likes();
-        //update_liked_book();
-        getUIDFromEmail();
-        //init_database();
+
 
         replaceFragment(new HomeFragment(),key);
         key="home";
@@ -163,32 +159,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Update likes and views","Update value complete");
     }
 
-    // Gọi hàm này để cập nhật liked book
-    public void update_liked_book() {
-        DatabaseReference users_database2 = FirebaseDatabase.getInstance().getReference("users");
-        users_database2.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    if (dataSnapshot.getKey().equals("user1670130782")) {
-                        User user = dataSnapshot.getValue(User.class);
-                        for (int i = 0; i < user.getLiked_books().size(); i++) {
-                            user_liked_books_list.add(user.getLiked_books().get(i));
-                        }
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-        user_liked_books_list.add("book1669046233");
-        users_database2.child("user1670130782/liked_books").setValue(user_liked_books_list);
-        Log.d("Msg","Add complete");
-
-    }
 
 
     // Gọi hàm này để cập nhật comment
@@ -203,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Gọi hàm này để lấy tất cả comment của 1 truyện
-    public void get_bOok_comments() {
+    public void get_book_comments() {
         Log.d("Msg","In get user comments");
         users_database = FirebaseDatabase.getInstance().getReference("users");
         books_database = FirebaseDatabase.getInstance().getReference("books");
@@ -249,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Gọi hàm này để thêm sách vào database
     void init_database() {
-        String book_title = "Angel Of Death";
+        /*String book_title = "Angel Of Death";
         String book_description = "Thiếu nữ 13 tuổi Rachel tỉnh dậy và nhận ra mình đang bị nhốt dưới tầng hầm của một tòa nhà bỏ hoang. Không chút ký ức, cũng như manh mối về nơi mình đang ở, lạc lối và choáng váng, cô lang thang khắp tòa nhà. Trong lúc tìm kiếm manh mối tại nơi đây, cô chạm mặt một người đàn ông được bao phủ bởi băng gạc. Hắn là một kẻ mang lưỡi hái, tự nhận mình tên Zack. Họ bắt đầu một mối quan hệ kỳ lạ, được thắt chặt bằng những lời hứa điên rồ";
         String thumbnail = "https://m.media-amazon.com/images/M/MV5BOWRjMzU2NTYtMGRlOS00YjQwLWFiYWQtODFlOGNiNmU4OTVlXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_FMjpg_UX1000_.jpg";
         String created_time = "01/12/2022";
@@ -257,4 +227,28 @@ public class MainActivity extends AppCompatActivity {
         String author_name = "Chiren Kina";
         int likes = 43;
         int views = 561;
-        String categories = "Actions";}}
+        String categories = "Actions";
+
+        Map<String, String> comments = new HashMap<>();
+        comments.put("BuiDucAnh","Cũng hay hé hé hé");
+        Map<String,String> chapters = new HashMap<>();
+        chapters.put("chapter2","");
+        Book exampleSach = new Book(book_title,book_description,thumbnail,created_time,updated_time,author_name,categories,comments,chapters,likes,views);
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference booksRef = db.getReference().child("books");
+        Map<String, Object> push_book = new HashMap<>();
+        Long tsLong = System.currentTimeMillis()/1000;
+        String ts = tsLong.toString();
+        push_book.put("book" + ts, exampleSach);
+        booksRef.updateChildren(push_book).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Log.d("Output","OK");
+                } else {
+                    Log.d("Output","Failed");
+                }
+            }
+        });*/
+    }
+}

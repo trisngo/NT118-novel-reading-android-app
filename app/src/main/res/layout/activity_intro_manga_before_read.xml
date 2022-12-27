@@ -19,11 +19,13 @@
             android:background="@color/teal_200">
 
             <ImageButton
+                android:background="@android:color/transparent"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/like_on_intro_1"
                 android:clickable="true"
                 android:id="@+id/btn_like"
+                android:scaleType="centerInside"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.529"

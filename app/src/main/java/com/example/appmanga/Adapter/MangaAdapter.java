@@ -1,6 +1,7 @@
 package com.example.appmanga.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,6 @@ public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MangaViewHol
         this.list = list;
         this.filterList = list;
         this.listener=listener;
-
     }
 
     @NonNull
