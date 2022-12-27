@@ -104,7 +104,6 @@ public class HomeFragment extends Fragment implements clickListener {
         // Inflate the layout for this fragment
         fragment_layout = inflater.inflate(R.layout.fragment_home, container, false);
         init();
-
         return fragment_layout;
     }
 
@@ -178,7 +177,7 @@ public class HomeFragment extends Fragment implements clickListener {
                 int i = 0;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Book book = dataSnapshot.getValue(Book.class);
-                    book.setBook_id(dataSnapshot.getKey());
+                    book.setBookId(dataSnapshot.getKey());
                     listHighlights.add(book);
                     list4U.add(book);
                     listNewest.add(book);
@@ -263,7 +262,7 @@ public class HomeFragment extends Fragment implements clickListener {
         int book_view=book.views;
         Intent intent = new Intent(getActivity(), intro_manga_before_read.class);
         intent.putExtra("view_number",book_view);
-        intent.putExtra("book_id",book.getBook_id());
+        intent.putExtra("book_id",book.getBookId());
         intent.putExtra("name",book.book_title);
         intent.putExtra("image",book.thumbnail);
         intent.putExtra("category",book.getCategories());

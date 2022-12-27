@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.appmanga.Activity.LoginActivity;
 import com.example.appmanga.Activity.MainActivity;
 import com.example.appmanga.R;
 import com.example.appmanga.UpdateProfile;
@@ -64,13 +65,19 @@ public class ProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        if (FirebaseAuth.getInstance().getCurrentUser()==null) {
+            Intent intent = new Intent(getContext(), LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         fragment_layout = inflater.inflate(R.layout.fragment_profile, container, false);
-        initButton();
+        if (FirebaseAuth.getInstance().getCurrentUser()!=null) {
+            initButton();
+        }
         return fragment_layout;
     }
 

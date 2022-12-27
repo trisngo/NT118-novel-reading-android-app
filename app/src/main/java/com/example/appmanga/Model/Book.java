@@ -18,12 +18,13 @@ public class Book {
     public int views;
 
     public Book() {}
-    public Book(String author_name, String book_id, String book_title, String book_description, String thumbnail, String created_time, String categories, Map<String, String> comments, Map<String, String> chapters, int likes, int views) {
+    public Book(String author_name, String book_id, String book_title, String book_description, String thumbnail, String created_time, String updated_time ,String categories, Map<String, String> comments, Map<String, String> chapters, int likes, int views) {
         this.book_id = book_id;
         this.book_title = book_title;
         this.book_description = book_description;
         this.thumbnail = thumbnail;
         this.created_time = created_time;
+        this.updated_time = updated_time;
         this.author_name = author_name;
         this.categories = categories;
         this.comments = comments;
@@ -32,12 +33,12 @@ public class Book {
         this.views = views;
     }
 
-    public String getBook_id() {
+    public String getBookId() {
         return book_id;
     }
 
-    public void setBook_id(String book_id) {
-        this.book_id = book_id;
+    public void setBookId(String bookId) {
+        this.book_id = bookId;
     }
 
     public String getBook_title() {

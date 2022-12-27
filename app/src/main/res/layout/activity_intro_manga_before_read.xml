@@ -19,11 +19,13 @@
             android:background="@color/teal_200">
 
             <ImageButton
+                android:background="@android:color/transparent"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/like_on_intro_1"
                 android:clickable="true"
                 android:id="@+id/btn_like"
+                android:scaleType="centerInside"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.529"
@@ -131,29 +133,30 @@
             <ImageView
                 android:id="@+id/thumbnailintro"
                 android:layout_width="155dp"
-                android:layout_height="246dp"
+                android:layout_height="230dp"
                 android:layout_marginBottom="56dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.064"
+                app:layout_constraintHorizontal_bias="0.062"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.113" />
+                app:layout_constraintVertical_bias="0.037" />
 
             <Button
                 android:id="@+id/btnRead_Manga"
-                android:layout_width="189dp"
-                android:layout_height="53dp"
+                android:layout_width="165dp"
+                android:layout_height="45dp"
                 android:background="@drawable/rounded_corner_dark_blue_background"
                 android:text="Đọc truyện"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.86"
+                app:layout_constraintHorizontal_bias="0.869"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.258" />
+                app:layout_constraintVertical_bias="0.272"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tvNameManga"
@@ -162,14 +165,15 @@
                 android:singleLine="true"
                 android:text="TÊN TRUYỆN"
                 android:textColor="@color/white"
-                android:textSize="30dp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.826"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.069" />
+                app:layout_constraintVertical_bias="0.069"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/view_number"
@@ -177,7 +181,7 @@
                 android:layout_height="30dp"
                 android:text="Số lượt xem: "
                 android:textColor="@color/white"
-                android:textSize="22dp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.924"

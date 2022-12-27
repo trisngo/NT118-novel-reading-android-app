@@ -41,8 +41,7 @@
                         android:textSize="25sp"
                         android:layout_gravity="center"
                         android:layout_alignParentStart="true"
-                        android:textColor="#000000"
-                        android:onClick="login"/>
+                        android:textColor="#000000" />
 
                     <ImageView
                         android:id="@+id/iv_search"
@@ -51,6 +50,14 @@
                         android:layout_alignParentEnd="true"
                         app:srcCompat="@drawable/ic_search_24dp"
                         android:onClick="search"/>
+                    <ImageView
+                        android:id="@+id/iv_library"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_toStartOf="@id/iv_search"
+                        app:srcCompat="@drawable/library_icon2"
+                        android:onClick="library"
+                        android:layout_marginEnd="50dp"/>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
