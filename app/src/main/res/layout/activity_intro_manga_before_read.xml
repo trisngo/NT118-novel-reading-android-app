@@ -8,7 +8,7 @@
     tools:context=".intro_manga_before_read">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/backgournd_intro_read_manga"
+        android:id="@+id/background_intro_read_manga"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/co_gai_trong_rung">
@@ -21,7 +21,9 @@
             <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/ic_baseline_bookmark_add_24"
+                android:background="@drawable/like_on_intro_1"
+                android:clickable="true"
+                android:id="@+id/btn_like"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.529"

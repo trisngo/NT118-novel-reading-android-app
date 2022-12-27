@@ -18,6 +18,7 @@ public class User {
     public ArrayList<String> getLiked_books() {
         return liked_books;
     }
+
     public User() {}
 
     public User(String username, String email, ArrayList<String> liked_books) {

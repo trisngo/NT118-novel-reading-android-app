@@ -76,10 +76,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getUIDFromEmail();
+        //getUIDFromEmail();
         //get_user_comments();
         //update_likes();
-        //update_liked_book();
+        update_liked_book();
 
         //init_database();
 
@@ -164,11 +164,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    if (dataSnapshot.getKey().equals("user1670130782")) {
+                    if (dataSnapshot.getKey().equals("user1670127414")) {
                         User user = dataSnapshot.getValue(User.class);
-                        for (int i = 0; i < user.getLiked_books().size(); i++) {
-                            user_liked_books_list.add(user.getLiked_books().get(i));
-                        }
+                        //for (int i = 0; i < user.getLiked_books().size(); i++) {
+                            //user_liked_books_list.add(user.getLiked_books().get(i));
+                        //}
+                        user_liked_books_list.add("book1669046233");
+                        users_database2.child("user1670127414/liked_books").setValue(user_liked_books_list);
+                        break;
                     }
                 }
             }
@@ -177,10 +180,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-        user_liked_books_list.add("book1669046233");
-        users_database2.child("user1670130782/liked_books").setValue(user_liked_books_list);
-        Log.d("Msg","Add complete");
-
     }
 
 
@@ -196,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Gọi hàm này để lấy tất cả comment của 1 truyện
-    public void get_bOok_comments() {
+    public void get_book_comments() {
         Log.d("Msg","In get user comments");
         users_database = FirebaseDatabase.getInstance().getReference("users");
         books_database = FirebaseDatabase.getInstance().getReference("books");

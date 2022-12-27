@@ -75,12 +75,12 @@ public class ProfileFragment extends Fragment {
 
     public void initButton()
     {
-        exit_btn = (ImageButton) fragment_layout.findViewById(R.id.exit_button);
-        setting_btn = (ImageButton) fragment_layout.findViewById(R.id.setting_button);
-        like_btn = (ImageButton) fragment_layout.findViewById(R.id.liked_books_button);
-        tv_username = (TextView) fragment_layout.findViewById(R.id.tv_username);
-        tv_userEmail = (TextView) fragment_layout.findViewById(R.id.tv_email);
-        tv_user_read_books = (TextView) fragment_layout.findViewById(R.id.tv_read_books);
+        exit_btn = fragment_layout.findViewById(R.id.exit_button);
+        setting_btn = fragment_layout.findViewById(R.id.setting_button);
+        like_btn = fragment_layout.findViewById(R.id.liked_books_button);
+        tv_username = fragment_layout.findViewById(R.id.tv_username);
+        tv_userEmail = fragment_layout.findViewById(R.id.tv_email);
+        tv_user_read_books = fragment_layout.findViewById(R.id.tv_read_books);
         getDataFromFirebase();
         exit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
