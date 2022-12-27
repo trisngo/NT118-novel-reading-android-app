@@ -58,6 +58,7 @@ public class intro_manga_before_read extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_manga_before_read);
+        like_button = findViewById(R.id.btn_like);
         getBookDataFromBookId();
     }
 
@@ -70,7 +71,6 @@ public class intro_manga_before_read extends AppCompatActivity {
         btnRead = findViewById(R.id.btnRead_Manga);
         author = findViewById(R.id.author);
         view = findViewById(R.id.view_number);
-        like_button = findViewById(R.id.btn_like);
         background_intro_read_manga = findViewById(R.id.background_intro_read_manga);
         name.setText("");
         category.setText("");
