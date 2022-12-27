@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,8 +65,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.HolderBook
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, intro_manga_before_read.class);
-                intent.putExtra("book_id", book.getBookId());
-
+                intent.putExtra("book_id", book.getBook_id());
+                Log.d("New comment",""+book.getBook_id());
                 context.startActivity(intent);
             }
         });

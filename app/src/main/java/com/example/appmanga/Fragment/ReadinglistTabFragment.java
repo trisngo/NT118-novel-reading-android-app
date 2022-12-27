@@ -66,7 +66,7 @@ public class ReadinglistTabFragment extends Fragment  {
                         for (DataSnapshot ds : snapshot.getChildren()){
                             String bookId = ""+ds.child("bookId").getValue();
                             Book model = ds.getValue(Book.class);
-                            model.setBookId(bookId);
+                            model.setBook_id(bookId);
                             bookArrayList.add(model);
                         }
                         adapterBook = new ReadingAdapter(getContext(), bookArrayList);
