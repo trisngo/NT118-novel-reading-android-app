@@ -53,7 +53,7 @@ public class favoriteBooksActivity extends AppCompatActivity {
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setTitle("");
+            getSupportActionBar().setTitle("Truyện đã thích");
         }
 
         favBooks = findViewById(R.id.fav_books);
