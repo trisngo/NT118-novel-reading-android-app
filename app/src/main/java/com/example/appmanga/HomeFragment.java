@@ -100,7 +100,6 @@ public class HomeFragment extends Fragment implements clickListener {
         // Inflate the layout for this fragment
         fragment_layout = inflater.inflate(R.layout.fragment_home, container, false);
         init();
-
         return fragment_layout;
     }
 

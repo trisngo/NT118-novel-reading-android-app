@@ -41,7 +41,7 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private ArrayList<Book> book;
+    private ArrayList<Book> books;
     private MangaAdapter adapterBook;
     private RecyclerView rcvlistmanga;
     private TextView search_by_follow;
@@ -95,10 +95,8 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.tv_ranking));
 
-
-
-        book = new ArrayList<>();
-        adapterBook = new MangaAdapter(getContext(), book,this);
+        books = new ArrayList<>();
+        adapterBook = new MangaAdapter(getContext(), books,this);
         rcvlistmanga.setAdapter(adapterBook);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         rcvlistmanga.setLayoutManager(layoutManager);
@@ -114,7 +112,7 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
                     search_by_follow.setTextColor(Color.WHITE);
                     search_by_hot.setBackgroundResource(R.drawable.bg_btn_search);
                     search_by_hot.setTextColor(Color.BLACK);
-                    Collections.sort(book, new Comparator<Book>() {
+                    Collections.sort(books, new Comparator<Book>() {
                         @Override
                         public int compare(Book book, Book book1) {
                             if(book.views>book1.views) {
@@ -124,7 +122,7 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
                             }
                         }
                     });
-                    Collections.reverse(book);
+                    Collections.reverse(books);
                     adapterBook.notifyDataSetChanged();
             }
         });
@@ -136,7 +134,7 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
                 search_by_hot.setTextColor(Color.WHITE);
                 search_by_follow.setBackgroundResource(R.drawable.bg_btn_search);
                 search_by_follow.setTextColor(Color.BLACK);
-                Collections.sort(book, new Comparator<Book>() {
+                Collections.sort(books, new Comparator<Book>() {
                     @Override
                     public int compare(Book book, Book book1) {
                         if(book.likes>book1.likes) {
@@ -146,7 +144,7 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
                         }
                     }
                 });
-                Collections.reverse(book);
+                Collections.reverse(books);
                 adapterBook.notifyDataSetChanged();
             }
         });
@@ -159,13 +157,12 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (book != null) {
-                    book.clear();
+                if (books != null) {
+                    books.clear();
                 }
-                int i = 0;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Book book1 = dataSnapshot.getValue(Book.class);
-                    book.add(book1);
+                    books.add(book1);
                 }
                 adapterBook.notifyDataSetChanged();
             }
@@ -190,18 +187,8 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     @Override
     public void onItemClick(Book book) {
-        int book_view=book.views;
         Intent intent = new Intent(getActivity(), intro_manga_before_read.class);
-        intent.putExtra("view_number",book_view);
         intent.putExtra("book_id",book.getBookId());
-        intent.putExtra("name",book.book_title);
-        intent.putExtra("image",book.thumbnail);
-        intent.putExtra("category",book.getCategories());
-        String chapter = String.valueOf(book.getChapters().size());
-        intent.putExtra("chapter",chapter);
-        intent.putExtra("author",book.author_name);
-        intent.putExtra("dsc",book.book_description);
-
         startActivity(intent);
     }
 }

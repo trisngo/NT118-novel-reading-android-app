@@ -76,10 +76,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getUIDFromEmail();
         //get_user_comments();
-        //update_likes();
-        update_liked_book();
 
         //init_database();
 
@@ -156,31 +153,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Update likes and views","Update value complete");
     }
 
-    // Gọi hàm này để cập nhật liked book
-    public void update_liked_book() {
-        DatabaseReference users_database2 = FirebaseDatabase.getInstance().getReference("users");
-        users_database2.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    if (dataSnapshot.getKey().equals("user1670127414")) {
-                        User user = dataSnapshot.getValue(User.class);
-                        //for (int i = 0; i < user.getLiked_books().size(); i++) {
-                            //user_liked_books_list.add(user.getLiked_books().get(i));
-                        //}
-                        user_liked_books_list.add("book1669046233");
-                        users_database2.child("user1670127414/liked_books").setValue(user_liked_books_list);
-                        break;
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-    }
 
 
     // Gọi hàm này để cập nhật comment
@@ -241,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Gọi hàm này để thêm sách vào database
     void init_database() {
-        String book_title = "Angel Of Death";
+        /*String book_title = "Angel Of Death";
         String book_description = "Thiếu nữ 13 tuổi Rachel tỉnh dậy và nhận ra mình đang bị nhốt dưới tầng hầm của một tòa nhà bỏ hoang. Không chút ký ức, cũng như manh mối về nơi mình đang ở, lạc lối và choáng váng, cô lang thang khắp tòa nhà. Trong lúc tìm kiếm manh mối tại nơi đây, cô chạm mặt một người đàn ông được bao phủ bởi băng gạc. Hắn là một kẻ mang lưỡi hái, tự nhận mình tên Zack. Họ bắt đầu một mối quan hệ kỳ lạ, được thắt chặt bằng những lời hứa điên rồ";
         String thumbnail = "https://m.media-amazon.com/images/M/MV5BOWRjMzU2NTYtMGRlOS00YjQwLWFiYWQtODFlOGNiNmU4OTVlXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_FMjpg_UX1000_.jpg";
         String created_time = "01/12/2022";
@@ -271,6 +243,6 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("Output","Failed");
                 }
             }
-        });
+        });*/
     }
 }

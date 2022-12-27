@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class Book {
-    public String bookId;
+    public String book_id;
     public String book_title;
     public String book_description;
     public String thumbnail;
@@ -18,12 +18,13 @@ public class Book {
     public int views;
 
     public Book() {}
-    public Book(String author_name, String bookId, String book_title, String book_description, String thumbnail, String created_time, String categories, Map<String, String> comments, Map<String, String> chapters, int likes, int views) {
-        this.bookId = bookId;
+    public Book(String author_name, String book_id, String book_title, String book_description, String thumbnail, String created_time, String updated_time ,String categories, Map<String, String> comments, Map<String, String> chapters, int likes, int views) {
+        this.book_id = book_id;
         this.book_title = book_title;
         this.book_description = book_description;
         this.thumbnail = thumbnail;
         this.created_time = created_time;
+        this.updated_time = updated_time;
         this.author_name = author_name;
         this.categories = categories;
         this.comments = comments;
@@ -33,11 +34,11 @@ public class Book {
     }
 
     public String getBookId() {
-        return bookId;
+        return book_id;
     }
 
     public void setBookId(String bookId) {
-        this.bookId = bookId;
+        this.book_id = bookId;
     }
 
     public String getBook_title() {

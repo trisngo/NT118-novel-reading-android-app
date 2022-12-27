@@ -63,6 +63,10 @@ public class ProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        if (FirebaseAuth.getInstance().getCurrentUser()==null) {
+            Intent intent = new Intent(getContext(), Login.class);
+            startActivity(intent);
+        }
     }
 
     @Override

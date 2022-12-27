@@ -44,13 +44,14 @@ public class intro_manga_before_read extends AppCompatActivity {
     TextView name,category,chapter,author,dsc, view;
     ConstraintLayout background_intro_read_manga;
     ImageButton like_button;
-    String book_name, image_link, book_category, book_author, book_description;
-    int view_number, book_chapters_number;
+    String book_name, image_link, book_category, book_author, book_description, received_book_id, current_user_id;
+    int view_number, book_chapters_number, like_number;
+    ArrayList<String> user_liked_books_list;
 
     ImageView image;
     int count_category;
     private Book book = new Book();
-    private DatabaseReference database, books_database;
+    private DatabaseReference database, books_database, users_database;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -58,7 +59,6 @@ public class intro_manga_before_read extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_manga_before_read);
         getBookDataFromBookId();
-
     }
 
     public void initButton() {
@@ -76,13 +76,6 @@ public class intro_manga_before_read extends AppCompatActivity {
         category.setText("");
         chapter.setText("");
         author.setText("");
-
-        like_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
         Intent intent = getIntent();
         name.setText(book_name);
@@ -112,6 +105,8 @@ public class intro_manga_before_read extends AppCompatActivity {
         author.setText("Tác giả: "+ book_author);
         dsc.setText(book_description);
         dsc.setMovementMethod(new ScrollingMovementMethod());
+
+
         btnRead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,6 +136,35 @@ public class intro_manga_before_read extends AppCompatActivity {
                 }
             }
         });
+
+        like_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                users_database = FirebaseDatabase.getInstance().getReference("users");
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    if (user_liked_books_list.contains(received_book_id))
+                    {
+                        user_liked_books_list.remove(received_book_id);
+                        like_number -= 1;
+                        like_button.setImageResource(R.drawable.like_on_intro_1);
+                    }
+                    else
+                    {
+                        user_liked_books_list.add(received_book_id);
+                        like_number += 1;
+                        like_button.setImageResource(R.drawable.like_on_intro_2);
+                    }
+                    users_database.child(current_user_id + "/liked_books").setValue(user_liked_books_list);
+                    books_database.child(received_book_id + "/likes").setValue(like_number);
+                }
+                else
+                {
+                    Intent intent = new Intent(getApplicationContext(), Login.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     private void getCurrentBook() {
@@ -166,7 +190,8 @@ public class intro_manga_before_read extends AppCompatActivity {
 
     public void getBookDataFromBookId() {
         Intent intent = getIntent();
-        String received_book_id = intent.getStringExtra("book_id");
+        received_book_id = intent.getStringExtra("book_id");
+        Log.d("msg",received_book_id);
         books_database = FirebaseDatabase.getInstance().getReference("books");
         books_database.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
@@ -180,6 +205,7 @@ public class intro_manga_before_read extends AppCompatActivity {
                         book_category = book.getCategories();
                         image_link = book.getThumbnail();
                         view_number = book.getViews();
+                        like_number = book.getLikes();
                         book_chapters_number = book.getChapters().size();
                         book_description = book.getBook_description();
                         initButton();
@@ -190,6 +216,43 @@ public class intro_manga_before_read extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            getUserLikedBooksFromEmail();
+        } else {
+            like_button.setImageResource(R.drawable.like_on_intro_1);
+        }
+    }
+
+    public void getUserLikedBooksFromEmail() {
+        DatabaseReference users_database;
+        users_database = FirebaseDatabase.getInstance().getReference("users");
+        users_database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    User user = dataSnapshot.getValue(User.class);
+                    if (user.getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+                        current_user_id = dataSnapshot.getKey();
+                        user_liked_books_list = user.getLiked_books();
+                        if (user_liked_books_list.contains(received_book_id))
+                        {
+                            like_button.setImageResource(R.drawable.like_on_intro_2);
+                        }
+                        else
+                        {
+                            like_button.setImageResource(R.drawable.like_on_intro_1);
+                        }
+                        break;
+                    }
+                }
+            }
+            @Override
+            public void onCancelled (@NonNull DatabaseError error){
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
