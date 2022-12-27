@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.appmanga.Adapter.AdapterHomeBook1;
 import com.example.appmanga.Adapter.AdapterHomeBook2;
@@ -60,6 +61,8 @@ public class HomeFragment extends Fragment implements clickListener {
 
     DatabaseReference database;
     private EditText editText;
+
+    public TextView tv_username;
 
     private String author_name;
     ShimmerFrameLayout shimmerFrameLayout, shimmerFrameLayout2, shimmerFrameLayout3, shimmerFrameLayout4, shimmerFrameLayout5;
@@ -106,6 +109,8 @@ public class HomeFragment extends Fragment implements clickListener {
     }
 
     public void init() {
+        tv_username = (TextView) fragment_layout.findViewById(R.id.tv_home_1);
+
         rcvBookHighlights = (RecyclerView) fragment_layout.findViewById(R.id.rcv_book_home1);
         rcvBook4U = (RecyclerView) fragment_layout.findViewById((R.id.rcv_home_4_you));
         rcvBookNewest = (RecyclerView) fragment_layout.findViewById((R.id.rcv_home_newest));
