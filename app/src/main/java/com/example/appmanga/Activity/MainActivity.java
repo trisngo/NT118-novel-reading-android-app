@@ -257,4 +257,4 @@ public class MainActivity extends AppCompatActivity {
         String author_name = "Chiren Kina";
         int likes = 43;
         int views = 561;
-        String categories = "Actions";
+        String categories = "Actions";}}
