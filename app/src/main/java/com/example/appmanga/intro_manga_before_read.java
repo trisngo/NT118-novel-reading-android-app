@@ -110,7 +110,7 @@ public class intro_manga_before_read extends AppCompatActivity {
 
         chapter.setText("Số chương: " + String.valueOf(book_chapters_number));
         author.setText("Tác giả: "+ book_author);
-        dsc.setText(intent.getStringExtra("dsc"));
+        dsc.setText(book_description);
         dsc.setMovementMethod(new ScrollingMovementMethod());
         btnRead.setOnClickListener(new View.OnClickListener() {
             @Override
