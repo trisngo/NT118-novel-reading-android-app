@@ -20,34 +20,35 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorOnPrimary"
-            />
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="8dp">
-
-        <View
-            android:layout_width="8dp"
-            android:layout_height="37dp"
-            android:background="@color/black" />
-
-        <TextView
-            android:id="@+id/txtbookshelf"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Favorite Books"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_marginLeft="30dp"
-            android:textSize="30dp"/>
-    </LinearLayout>
+            android:background="?attr/colorOnPrimary">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="8dp">
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="37dp"
+                    android:background="@color/black" />
+
+                <TextView
+                    android:id="@+id/txtbookshelf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Favorite Books"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="30dp"/>
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
