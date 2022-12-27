@@ -128,8 +128,12 @@ public class ProfileFragment extends Fragment {
                         Map<String, Object> userData = (Map<String, Object>) snapshot.getValue();
                         if (userData.get("email").equals(user.getEmail())) {
                             tv_username.setText(String.valueOf(userData.get("username")));
-                            tv_user_read_books.setText(String.valueOf(userData.get("already_read")) + " đã đọc");
                             user_liked_books = (ArrayList<String>) userData.get("liked_books");
+                            int number_of_liked_books = user_liked_books.size();
+                            if (user_liked_books.contains("default")) {
+                                number_of_liked_books -= 1;
+                            }
+                            tv_user_read_books.setText(String.valueOf(number_of_liked_books) + " truyện yêu thích");
                             isFound = true;
                             break;
                         }

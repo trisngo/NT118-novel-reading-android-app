@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -32,6 +34,7 @@ public class favoriteBooksActivity extends AppCompatActivity {
     private SearchAdapter adapterBook;
     private RecyclerView favBooks;
     private ArrayList<String> user_liked_books;
+    private Toolbar toolbar;
 
     DatabaseReference database;
 
@@ -44,6 +47,15 @@ public class favoriteBooksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_favorite_books);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setTitle("Truyện đã thích");
+        }
+
         favBooks = findViewById(R.id.fav_books);
         shimmerFrameLayout= findViewById(R.id.shimmer_books);
         nothingLayout = findViewById(R.id.layout_nothing);
@@ -73,10 +85,7 @@ public class favoriteBooksActivity extends AppCompatActivity {
                 if (list != null) {
                     list.clear();
                 }
-                Log.d("size",String.valueOf(user_liked_books.size()));
-                Log.d("value",user_liked_books.get(0));
                 if (user_liked_books.size()==1 && user_liked_books.get(0).equals("default")) {
-                    Log.d("Hehe","=========================");
                     nothingLayout.setVisibility(View.VISIBLE);
                     shimmerFrameLayout.setVisibility(View.GONE);
                 }
@@ -87,11 +96,6 @@ public class favoriteBooksActivity extends AppCompatActivity {
                         if (user_liked_books.contains(dataSnapshot.getKey())) {
                             list.add(book);
                         }
-                    /*Log.d("Book name =============================",book.book_title);
-                    for (int i = 0; i < book.categories.size(); i++)
-                    {
-                        Log.d("Book category",book.categories.get(i));
-                    }*/
                     }
                     shimmerFrameLayout.stopShimmer();
                     shimmerFrameLayout.setVisibility(View.GONE);
@@ -116,5 +120,15 @@ public class favoriteBooksActivity extends AppCompatActivity {
     protected void onResume() {
         shimmerFrameLayout.startShimmer();
         super.onResume();
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
