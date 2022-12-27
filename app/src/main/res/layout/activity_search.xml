@@ -5,18 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FBF9F9"
+
     tools:context=".Activity.SearchActivity"
     android:focusable="true"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:background="@drawable/edit_line2">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="8dp">
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+
+        android:layout_marginStart="8dp">
 
         <View
             android:layout_width="8dp"
@@ -30,14 +32,24 @@
             android:text="Tìm Kiếm"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:layout_marginLeft="30dp"
-            android:textSize="30dp"/>
+            android:layout_marginStart="30dp"
+            android:textSize="30sp"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
-
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/edit_line"
+        android:orientation="vertical"
+        android:layout_marginTop="0dp"
+        android:paddingRight="1dp"
+        android:paddingLeft="1dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="4dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/custom_radius"
         android:orientation="horizontal">
 
@@ -53,6 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+
             android:layout_marginLeft="0.5dp">
 
             <EditText
@@ -120,4 +133,6 @@
             android:layout_height="match_parent"/>
 
     </LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>
