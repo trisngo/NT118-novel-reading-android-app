@@ -13,6 +13,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,23 +39,36 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.TooManyListenersException;
+
 public class intro_manga_before_read extends AppCompatActivity {
 
     Button btnRead;
-    TextView name, category, chapter, author, dsc, view;
-    ConstraintLayout backgournd_intro_read_manga;
+    TextView name,category,chapter,author,dsc, view;
+    ConstraintLayout background_intro_read_manga;
+    ImageButton like_button;
+    String book_name, image_link, book_category, book_author, book_description;
+    int view_number, book_chapters_number;
 
     ImageView image;
     int count_category;
     private Book book = new Book();
-    private DatabaseReference database;
+    private DatabaseReference database, books_database;
     public String Uid;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_manga_before_read);
+        getBookDataFromBookId();
+
+    }
+
+    public void initButton() {
         name = findViewById(R.id.tvNameManga);
         dsc = findViewById(R.id.dsc);
         category = findViewById(R.id.category);
@@ -63,7 +77,8 @@ public class intro_manga_before_read extends AppCompatActivity {
         btnRead = findViewById(R.id.btnRead_Manga);
         author = findViewById(R.id.author);
         view = findViewById(R.id.view_number);
-        backgournd_intro_read_manga = findViewById(R.id.backgournd_intro_read_manga);
+        like_button = findViewById(R.id.btn_like);
+        background_intro_read_manga = findViewById(R.id.background_intro_read_manga);
         name.setText("");
         category.setText("");
         chapter.setText("");
@@ -71,19 +86,25 @@ public class intro_manga_before_read extends AppCompatActivity {
         getUIDFromEmail();
 
 
+        like_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         Intent intent = getIntent();
-        String book_id = intent.getStringExtra("book_id");
-        name.setText(intent.getStringExtra("name"));
+        name.setText(book_name);
         name.setEllipsize(TextUtils.TruncateAt.MARQUEE);
         name.setSelected(true);
         name.setSingleLine(true);
 
 
-        Picasso.get().load(intent.getStringExtra("image")).into(image);
-        Picasso.get().load(intent.getStringExtra("image")).into(new Target() {
+        Picasso.get().load(image_link).into(image);
+        Picasso.get().load(image_link).into(new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                backgournd_intro_read_manga.setBackground(new BitmapDrawable(bitmap));
+                background_intro_read_manga.setBackground(new BitmapDrawable(bitmap));
             }
 
             @Override
@@ -94,13 +115,14 @@ public class intro_manga_before_read extends AppCompatActivity {
             public void onPrepareLoad(Drawable placeHolderDrawable) {
             }
         });
-        count_category = intent.getIntExtra("count_category", 0);
-        category.setText("Thể loại: " + intent.getStringExtra("category") + " ");
-        view.setText("Số lượt xem: " + intent.getIntExtra("view_number", 0));
 
-        chapter.setText("Số chương: " + intent.getStringExtra("chapter"));
-        author.setText("Tác giả: " + intent.getStringExtra("author"));
-        dsc.setText(intent.getStringExtra("dsc"));
+        count_category = intent.getIntExtra("count_category",0);
+        category.setText("Thể loại: "+ book_category +" ");
+        view.setText("Số lượt xem: "+ String.valueOf(view_number));
+
+        chapter.setText("Số chương: " + String.valueOf(book_chapters_number));
+        author.setText("Tác giả: "+ book_author);
+        dsc.setText(book_description);
         dsc.setMovementMethod(new ScrollingMovementMethod());
         btnRead.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,9 +133,9 @@ public class intro_manga_before_read extends AppCompatActivity {
 //                Log.d("debug",  book_id);
                 intent1.putExtra("book_id", book_id);
                 intent1.putExtra("Uid", Uid);
-                intent1.putExtra("name", intent.getStringExtra("name"));
+                intent1.putExtra("name", book_name);
 //                Log.d("debug", String.valueOf(Integer.valueOf(intent.getStringExtra("chapter"))));
-                intent1.putExtra("chapter_size", Integer.valueOf(intent.getStringExtra("chapter")));
+                intent1.putExtra("chapter_size", Integer.valueOf(book_chapters_number));
 
                 MyFuntion.addToReading(intro_manga_before_read.this, book_id, Uid);
                 startActivity(intent1);
@@ -184,6 +206,35 @@ public class intro_manga_before_read extends AppCompatActivity {
         });
     }
 
+    public void getBookDataFromBookId() {
+        Intent intent = getIntent();
+        String received_book_id = intent.getStringExtra("book_id");
+        books_database = FirebaseDatabase.getInstance().getReference("books");
+        books_database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.getKey().equals(received_book_id)) {
+                        Book book = dataSnapshot.getValue(Book.class);
+                        book_name = book.getBook_title();
+                        book_author = book.getAuthor_name();
+                        book_category = book.getCategories();
+                        image_link = book.getThumbnail();
+                        view_number = book.getViews();
+                        book_chapters_number = book.getChapters().size();
+                        book_description = book.getBook_description();
+                        initButton();
+                        break;
+                    }
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+    }
 
 }

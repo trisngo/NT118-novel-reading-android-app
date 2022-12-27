@@ -258,27 +258,3 @@ public class MainActivity extends AppCompatActivity {
         int likes = 43;
         int views = 561;
         String categories = "Actions";
-
-        Map<String, String> comments = new HashMap<>();
-        comments.put("BuiDucAnh","Cũng hay hé hé hé");
-        Map<String,String> chapters = new HashMap<>();
-        chapters.put("chapter2","");
-        Book exampleSach = new Book(book_title,book_description,thumbnail,created_time,updated_time,author_name,categories,comments,chapters,likes,views);
-        FirebaseDatabase db = FirebaseDatabase.getInstance();
-        DatabaseReference booksRef = db.getReference().child("books");
-        Map<String, Object> push_book = new HashMap<>();
-        Long tsLong = System.currentTimeMillis()/1000;
-        String ts = tsLong.toString();
-        push_book.put("book" + ts, exampleSach);
-        booksRef.updateChildren(push_book).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Log.d("Output","OK");
-                } else {
-                    Log.d("Output","Failed");
-                }
-            }
-        });
-    }
-}
