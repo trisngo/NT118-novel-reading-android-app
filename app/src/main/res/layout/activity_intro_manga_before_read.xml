@@ -163,14 +163,15 @@
                 android:singleLine="true"
                 android:text="TÊN TRUYỆN"
                 android:textColor="@color/white"
-                android:textSize="30dp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.826"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.069" />
+                app:layout_constraintVertical_bias="0.069"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/view_number"
@@ -178,7 +179,7 @@
                 android:layout_height="30dp"
                 android:text="Số lượt xem: "
                 android:textColor="@color/white"
-                android:textSize="22dp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.924"
