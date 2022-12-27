@@ -29,7 +29,7 @@ public class ReadinglistTabFragment extends Fragment  {
     private RecyclerView rvbooks;
     private ArrayList<Book> bookArrayList;
     private ReadingAdapter adapterBook;
-
+    public String Uid;
     private FirebaseAuth firebaseAuth;
 
 
@@ -48,7 +48,7 @@ public class ReadinglistTabFragment extends Fragment  {
 
         rvbooks.setLayoutManager(new LinearLayoutManager(getActivity()));
         Intent intent =getActivity().getIntent();
-        String Uid = intent.getStringExtra("Uid");
+         Uid = intent.getStringExtra("Uid");
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             loadBookReading(Uid);
         }
@@ -64,9 +64,9 @@ public class ReadinglistTabFragment extends Fragment  {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         bookArrayList.clear();
                         for (DataSnapshot ds : snapshot.getChildren()){
-                            String bookId = ""+ds.child("bookId").getValue();
+                            String book_id = ""+ds.child("book_id").getValue();
                             Book model = ds.getValue(Book.class);
-                            model.setBookId(bookId);
+                            model.setBookId(book_id);
                             bookArrayList.add(model);
                         }
                         adapterBook = new ReadingAdapter(getContext(), bookArrayList);

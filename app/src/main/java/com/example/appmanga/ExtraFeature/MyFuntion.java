@@ -23,13 +23,13 @@ public class MyFuntion extends Application {
 
     }
 
-    public static void addToReading(Context context, String bookId, String Uid){
+    public static void addToReading(Context context, String book_id, String Uid){
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() != null){
             HashMap<String, Object> hashMap = new HashMap<>();
-            hashMap.put("bookId", bookId);
+            hashMap.put("book_id", book_id);
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
-            ref.child(Uid).child("Reading").child(bookId).setValue(hashMap)
+            ref.child(Uid).child("Reading").child(book_id).setValue(hashMap)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {

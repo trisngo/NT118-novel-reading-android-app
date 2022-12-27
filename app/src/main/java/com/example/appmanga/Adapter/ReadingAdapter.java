@@ -53,16 +53,16 @@ public class ReadingAdapter extends RecyclerView.Adapter<ReadingAdapter.HolderBo
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, intro_manga_before_read.class);
-                intent.putExtra("bookId", model.getBookId());
+                intent.putExtra("book_id", model.getBookId());
                 context.startActivity(intent);
             }
         });
     }
 
     private void loadBookDetail(Book model, HolderBookReading holder) {
-        String bookId = model.getBookId();
+        String book_id = model.getBookId();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("books");
-        ref.child(bookId)
+        ref.child(book_id)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
