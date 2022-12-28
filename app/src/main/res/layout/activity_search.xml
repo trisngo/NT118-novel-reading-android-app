@@ -27,6 +27,7 @@
 
         <TextView
             android:id="@+id/txtbookshelf"
+            android:fontFamily="@font/bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tìm Kiếm"
@@ -66,7 +67,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
 
-            android:layout_marginLeft="0.5dp">
+            android:layout_marginStart="0.5dp">
 
             <EditText
                 android:id="@+id/searchEt"

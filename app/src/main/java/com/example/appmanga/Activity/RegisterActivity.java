@@ -111,6 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Nhập mật khẩu...", Toast.LENGTH_SHORT).show();
         } else {
             createUserAccount();
+
         }
     }
 

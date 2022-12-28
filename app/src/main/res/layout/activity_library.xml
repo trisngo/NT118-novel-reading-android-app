@@ -22,6 +22,7 @@
 
         <TextView
             android:id="@+id/tvLibrary"
+            android:fontFamily="@font/bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Thư Viện"
@@ -49,6 +50,10 @@
         android:layout_marginEnd="6dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="5dp"
+        app:tabSelectedTextColor="#41B8EF"
+        app:tabTextColor="@color/black"
+        app:tabIndicatorColor="#41B8EF"
+
         android:layout_marginRight="30dp"/>
 
     <LinearLayout
