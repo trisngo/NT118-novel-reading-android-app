@@ -15,20 +15,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmanga.Activity.LoginActivity;
 import com.example.appmanga.Activity.ReadingActivity;
 import com.example.appmanga.Adapter.AdapterViewIntroBeforeRead;
+import com.example.appmanga.Adapter.MangaAdapter;
 import com.example.appmanga.Adapter.ReadingAdapter;
+import com.example.appmanga.Adapter.commentAdapter;
 import com.example.appmanga.ExtraFeature.MyFuntion;
 import com.example.appmanga.Model.Book;
 import com.example.appmanga.Model.User;
+import com.example.appmanga.Model.comment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,22 +46,31 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.TooManyListenersException;
 
 public class intro_manga_before_read extends AppCompatActivity {
 
-    Button btnRead;
+    RelativeLayout btnRead;
     TextView name,category,chapter,author,dsc, view;
-    ConstraintLayout background_intro_read_manga;
+    RelativeLayout background_intro_read_manga;
     ImageButton like_button;
     String book_name, image_link, book_category, book_author, book_description, received_book_id, current_user_id;
     int view_number, book_chapters_number, like_number;
     ArrayList<String> user_liked_books_list;
+    RecyclerView rcv_view_comment;
+    commentAdapter comment_Adapter;
+    public ArrayList<comment> list_comment = new ArrayList<>();
+    ArrayList<String> user_comments,content_comments;
+    int a =123;
 
     ImageView image;
     int count_category;
     private Book book = new Book();
+    private Book book1 = new Book();
     private DatabaseReference database, books_database, users_database;;
     public String Uid;
 
@@ -65,8 +80,42 @@ public class intro_manga_before_read extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_manga_before_read);
+
         like_button = findViewById(R.id.btn_like);
         getBookDataFromBookId();
+        database = FirebaseDatabase.getInstance().getReference("books");
+        database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int i = 0;
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    book1 = dataSnapshot.getValue(Book.class);
+                    if (book1.getBook_title().equals(name.getText().toString())) {
+                        Set<String> keySet = book1.comments.keySet();
+                        user_comments = new ArrayList<>(keySet);
+                        Collection<String> values = book1.comments.values();
+                        content_comments = new ArrayList<>(values);
+                        a=123123;
+                        break;
+                    }
+                }
+                rcv_view_comment=findViewById(R.id.rcv_show_comment);
+                list_comment= new ArrayList<>();
+                comment_Adapter = new commentAdapter(getApplicationContext(),list_comment);
+                rcv_view_comment.setAdapter(comment_Adapter);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+                rcv_view_comment.setLayoutManager(layoutManager);
+                for (int j = 0; j < user_comments.size(); j++) {
+                    list_comment.add(new comment(user_comments.get(i),content_comments.get(j)));
+                }
+                comment_Adapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
     }
 
     public void initButton() {
@@ -180,6 +229,8 @@ public class intro_manga_before_read extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 
     public void getUIDFromEmail() {
