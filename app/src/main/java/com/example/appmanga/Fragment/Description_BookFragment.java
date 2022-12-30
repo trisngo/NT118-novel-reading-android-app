@@ -15,6 +15,7 @@ import com.example.appmanga.R;
 public class Description_BookFragment extends Fragment {
 
     TextView dsc;
+    String dsc1;
     private String book_id;
 
     public Description_BookFragment() {
@@ -27,7 +28,9 @@ public class Description_BookFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_description__book, container, false);
         dsc = root.findViewById(R.id.dsc);
 
-
+        Intent intent =getActivity().getIntent();
+        dsc1 = intent.getStringExtra("dsc");
+        dsc.setText(dsc1);
 
 
 

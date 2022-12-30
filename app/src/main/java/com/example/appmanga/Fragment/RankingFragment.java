@@ -174,8 +174,6 @@ public class RankingFragment extends Fragment implements  clickListener {
 
     @Override
     public void onItemClick(Book book) {
-        Intent intent = new Intent(getActivity(), intro_manga_before_read.class);
-        intent.putExtra("book_id",book.getBookId());
-        startActivity(intent);
+
     }
 }
