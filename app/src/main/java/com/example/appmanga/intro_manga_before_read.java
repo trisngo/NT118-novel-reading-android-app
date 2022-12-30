@@ -13,6 +13,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -57,7 +58,7 @@ public class intro_manga_before_read extends AppCompatActivity {
     RelativeLayout btnRead;
     TextView name,category,chapter,author,dsc, view;
     RelativeLayout background_intro_read_manga;
-    ImageButton like_button;
+    ImageButton like_button, add_comment_button;
     String book_name, image_link, book_category, book_author, book_description, received_book_id, current_user_id;
     int view_number, book_chapters_number, like_number;
     ArrayList<String> user_liked_books_list;
@@ -65,14 +66,15 @@ public class intro_manga_before_read extends AppCompatActivity {
     commentAdapter comment_Adapter;
     public ArrayList<comment> list_comment = new ArrayList<>();
     ArrayList<String> user_comments,content_comments;
-    int a =123;
-
     ImageView image;
     int count_category;
     private Book book = new Book();
     private Book book1 = new Book();
     private DatabaseReference database, books_database, users_database;;
+    Map<String,String> id_to_user_list = new HashMap<String,String>();
+    Map<String,String> user_comments_list = new HashMap<String,String>();
     public String Uid;
+    EditText input_comment;
 
 
     @SuppressLint("MissingInflatedId")
@@ -80,9 +82,25 @@ public class intro_manga_before_read extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_manga_before_read);
-
         like_button = findViewById(R.id.btn_like);
+        add_comment_button = findViewById(R.id.btn_add_comment);
         getBookDataFromBookId();
+        users_database = FirebaseDatabase.getInstance().getReference("users");
+        users_database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    User user = dataSnapshot.getValue(User.class);
+                    id_to_user_list.put(dataSnapshot.getKey(),user.getUsername());
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
         database = FirebaseDatabase.getInstance().getReference("books");
         database.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
@@ -106,7 +124,8 @@ public class intro_manga_before_read extends AppCompatActivity {
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
                 rcv_view_comment.setLayoutManager(layoutManager);
                 for (int j = 0; j < user_comments.size(); j++) {
-                    list_comment.add(new comment(user_comments.get(i),content_comments.get(j)));
+                    list_comment.add(new comment(id_to_user_list.get(user_comments.get(j).trim()),content_comments.get(j)));
+                    user_comments_list.put(user_comments.get(j).trim(),content_comments.get(j));
                 }
                 comment_Adapter.notifyDataSetChanged();
             }
@@ -118,6 +137,7 @@ public class intro_manga_before_read extends AppCompatActivity {
     }
 
     public void initButton() {
+        input_comment = findViewById(R.id.input_comment);
         name = findViewById(R.id.tvNameManga);
         dsc = findViewById(R.id.dsc);
         category = findViewById(R.id.category);
@@ -171,14 +191,10 @@ public class intro_manga_before_read extends AppCompatActivity {
             public void onClick(View v) {
                 String book_id = intent.getStringExtra("book_id");
                 Intent intent1 = new Intent(intro_manga_before_read.this, ReadingActivity.class);
-//                String chapter = String.valueOf(book.getChapters().size());
-//                Log.d("debug",  book_id);
                 intent1.putExtra("book_id", book_id);
                 intent1.putExtra("Uid", Uid);
                 intent1.putExtra("name", book_name);
-//                Log.d("debug", String.valueOf(Integer.valueOf(intent.getStringExtra("chapter"))));
                 intent1.putExtra("chapter_size", Integer.valueOf(book_chapters_number));
-
                 MyFuntion.addToReading(intro_manga_before_read.this, book_id, Uid);
                 startActivity(intent1);
             }
@@ -223,12 +239,39 @@ public class intro_manga_before_read extends AppCompatActivity {
                 }
                 else
                 {
+                    Toast.makeText(getApplicationContext(), "Vui lòng đăng nhập để like truyện",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                 }
             }
         });
 
+        add_comment_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                users_database = FirebaseDatabase.getInstance().getReference("users");
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    if (!input_comment.getText().toString().equals("")){
+                        Log.d("Msg",current_user_id);
+                        Log.d("Msg",input_comment.getText().toString());
+                        user_comments_list.put(current_user_id,input_comment.getText().toString());
+                        books_database.child(received_book_id + "/comments").setValue(user_comments_list);
+                        list_comment.add(new comment(id_to_user_list.get(current_user_id),input_comment.getText().toString()));
+                        comment_Adapter.notifyDataSetChanged();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "Vui lòng nhập comment",Toast.LENGTH_LONG).show();
+                    }
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Vui lòng đăng nhập để comment",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
 
     }
 
@@ -244,7 +287,6 @@ public class intro_manga_before_read extends AppCompatActivity {
                     if (FirebaseAuth.getInstance().getCurrentUser() != null){
                     if (user.getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
                         Uid = dataSnapshot.getKey();
-
                         break;
                     }
                 }}
