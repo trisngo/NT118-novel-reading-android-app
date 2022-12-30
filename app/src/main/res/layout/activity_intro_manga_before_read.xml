@@ -17,7 +17,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#34FFFFFF">
 
                 <ImageButton
                     android:id="@+id/btn_like"
@@ -75,7 +76,7 @@
                         android:layout_height="200dp"
                         android:layout_below="@id/tvdsc"
                         android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="16dp"
                         android:layout_marginRight="15dp"
                         android:background="@drawable/border"
                         android:paddingLeft="1dp"
@@ -139,7 +140,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tvcomment"
                         android:layout_marginTop="4dp"
-                        android:background="@drawable/border1"/>
+                        android:background="@drawable/border1" />
                 </RelativeLayout>
 
                 <ImageView

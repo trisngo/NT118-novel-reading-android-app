@@ -96,7 +96,6 @@ public class intro_manga_before_read extends AppCompatActivity {
                         user_comments = new ArrayList<>(keySet);
                         Collection<String> values = book1.comments.values();
                         content_comments = new ArrayList<>(values);
-                        a=123123;
                         break;
                     }
                 }
