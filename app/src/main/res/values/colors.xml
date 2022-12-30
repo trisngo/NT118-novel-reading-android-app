@@ -34,5 +34,7 @@
     <color name="shimmer_color">#C4BCBC</color>
     <color name="shimmer_color1">#EDEAEA</color>
     <color name="btn_check">#C2C7CB</color>
+    <color name="cyan">#06B4B4</color>
+    <color name="Porcelain">#EAEFEF</color>
 
 </resources>
