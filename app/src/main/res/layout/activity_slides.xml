@@ -25,10 +25,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/frist_text_title"
+            android:fontFamily="@font/medium"
             android:layout_gravity="center"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:fontFamily="sans-serif-condensed"
+
             android:textColor="@color/black"></TextView>
         <TextView
             android:text="@string/frist_text_des"
@@ -37,7 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="@font/medium"
+
             android:textColor="@color/intro_description_color"></TextView>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

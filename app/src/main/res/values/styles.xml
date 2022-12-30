@@ -5,8 +5,8 @@
         <!--        Màu ở trạng thái bình thường-->
         <item name="colorControlNormal">#808080</item>
         <!--        Màu ở trạng thái khi bấm vào-->
-        <item name="colorControlActivated">#00BCD4</item>
+        <item name="colorControlActivated">#03CEE8</item>
         <!--        Màu khi copy-->
-        <item name="colorControlHighlight">#00BCD4</item>
+        <item name="colorControlHighlight">#03D3ED</item>
     </style>
 </resources>

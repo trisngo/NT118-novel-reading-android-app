@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="75dp"
                 android:layout_marginTop="70dp"
-                android:fontFamily="sans-serif-condensed"
+                android:fontFamily="@font/bold"
                 android:text="Truyện Chữ"
                 android:textColor="@color/dot_color"
                 android:textSize="30sp"
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="@font/medium"
             android:gravity="center"
             android:text="Chào mừng bạn đến với Truyện Chữ Club"
             android:textSize="15sp"></TextView>
@@ -56,6 +56,7 @@
                 android:textColor="@color/black"
                 android:textSize="15dp"
                 android:hint="Email"
+                android:fontFamily="@font/medium"
                 android:singleLine="true"
                 android:id="@+id/username"></com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
@@ -73,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Mật khẩu"
                 android:inputType="textPassword"
+                android:fontFamily="@font/medium"
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="15dp"></com.google.android.material.textfield.TextInputEditText>
@@ -89,6 +91,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/roundedbutton"
                 android:text="Đăng Nhập"
+                android:fontFamily="@font/bold"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -102,6 +105,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/roundedbutton"
                 android:text="Hủy"
+                android:fontFamily="@font/bold"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -114,10 +118,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:clickable="true"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="@font/medium"
             android:gravity="center"
             android:onClick="txtregister1"
-            android:text="Bạn chưa có tài khoản? Hãy đăng ký"
+            android:text="Bạn chưa có tài khoản ?   Hãy đăng ký"
             android:textColor="@color/textcolor"
             android:textStyle="bold"></TextView>
     </LinearLayout>

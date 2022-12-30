@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="75dp"
                 android:layout_marginTop="25dp"
-                android:fontFamily="sans-serif-condensed"
+                android:fontFamily="@font/bold"
                 android:text="Truyện Chữ"
                 android:textColor="@color/textcolor"
                 android:textSize="30sp"
@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="@font/medium"
             android:gravity="center"
             android:text="Chào mừng bạn đến với Truyện Chữ Club"
             android:textSize="18sp"></TextView>
@@ -48,11 +48,13 @@
             android:layout_height="wrap_content"
             android:theme="@style/Myeditext"
             android:padding="5dp">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="20dp"
+                android:fontFamily="@font/medium"
                 android:hint="Tên người dùng"
                 android:singleLine="true"
                 android:textColor="@color/black"
@@ -69,6 +71,7 @@
                 android:layout_height="wrap_content"
                 android:drawablePadding="20dp"
                 android:hint="Email"
+                android:fontFamily="@font/medium"
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="15dp"></com.google.android.material.textfield.TextInputEditText>
@@ -85,6 +88,8 @@
                 android:singleLine="true"
                 android:drawablePadding="20dp"
                 android:textSize="15dp"
+
+                android:fontFamily="@font/medium"
                 android:id="@+id/mk"
                 android:hint="Mật khẩu"
                 android:textColor="@color/black"
@@ -104,6 +109,7 @@
                 android:textSize="15dp"
                 android:id="@+id/nhaplai_mk"
                 android:hint="Nhập lại Mật khẩu"
+                android:fontFamily="@font/medium"
                 android:textColor="@color/black"
                 android:inputType="textPassword"></com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
@@ -126,9 +132,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/roundedbutton"
                 android:text="Đăng Ký"
+                android:fontFamily="@font/bold"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textStyle="bold"
+
                 app:backgroundTint="#47B4FE"></Button>
 
             <Button
@@ -139,6 +146,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/roundedbutton"
                 android:text="Hủy"
+                android:fontFamily="@font/bold"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -152,18 +160,18 @@
             android:text="Bằng cách nhấp vào Đăng kí, bạn đồng ý với Điều khoản Dịch vụ và Chính sách Bảo mật của Truyện Chữ "
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:fontFamily="sans-serif-condensed"></TextView>
+            android:fontFamily="@font/medium"></TextView>
         <TextView
             android:id="@+id/textlogin"
             android:onClick="txtlogin"
             android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bạn có tài khoản? Hãy đăng nhập"
+            android:text="Bạn đã có tài khoản ?  Hãy đăng nhập"
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:textStyle="bold"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="@font/medium"
             android:textColor="@color/textcolor"></TextView>
     </LinearLayout>
 

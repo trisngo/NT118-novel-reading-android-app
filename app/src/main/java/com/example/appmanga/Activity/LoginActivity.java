@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         //init firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Load...");
+        progressDialog.setTitle("");
         progressDialog.setCanceledOnTouchOutside(false);
 
 
@@ -101,13 +101,14 @@ public class LoginActivity extends AppCompatActivity {
                                 LoginActivity.this, MainActivity.class
                         );
                         startActivity(intent);
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         progressDialog.dismiss();
-                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bại...\nVui lòng thử lại!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Lỗi...\nVui lòng thử lại!", Toast.LENGTH_SHORT).show();
                     }
                 });
 
