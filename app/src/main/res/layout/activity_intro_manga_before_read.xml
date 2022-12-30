@@ -1,196 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_intro_manga"
     tools:context=".intro_manga_before_read">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/background_intro_read_manga"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/co_gai_trong_rung">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
+            android:id="@+id/background_intro_read_manga"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/teal_200">
+            android:layout_height="match_parent">
 
-            <ImageButton
-                android:background="@android:color/transparent"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:clickable="true"
-                android:id="@+id/btn_like"
-                android:scaleType="centerInside"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.529"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.183" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout2"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:background="@drawable/rounded_corner"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0">
+                android:layout_height="match_parent"
+                android:background="#34FFFFFF">
 
-                <TextView
-                    android:id="@+id/chapter"
-                    android:layout_width="170dp"
-                    android:layout_height="30dp"
-                    android:text="Số chương:  "
-                    android:textSize="22dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.124"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.201" />
+                <ImageButton
+                    android:id="@+id/btn_like"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/view_number"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toRightOf="@id/thumbnailintro"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:scaleType="centerInside" />
 
-                <TextView
-                    android:id="@+id/status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:text="Trạng thái: Đang ra "
-                    android:textSize="22dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.135"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.284" />
-
-                <TextView
-                    android:id="@+id/author"
-                    android:layout_width="250dp"
-                    android:layout_height="30dp"
-                    android:text="Tác giả:  "
-                    android:textSize="22dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.186"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.03" />
-
-                <TextView
-                    android:id="@+id/dsc"
-                    android:textAlignment="viewStart"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="1dp"
-                    android:layout_width="350dp"
-                    android:layout_height="200dp"
-                    android:background="@drawable/border"
-                    android:scrollbars="vertical"
-                    android:textSize="24dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.491"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.828" />
-
-                <TextView
-                    android:id="@+id/tvdsc"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/layout_below"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Mô tả :"
-                    android:textSize="28dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.092"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.423" />
+                    android:layout_below="@id/thumbnailintro"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/rounded_corner1">
+
+                    <TextView
+                        android:id="@+id/chapter"
+                        android:layout_width="170dp"
+                        android:layout_height="30dp"
+                        android:layout_below="@id/author"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Số chương:  "
+                        android:textSize="22dp" />
+
+                    <TextView
+                        android:id="@+id/status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_below="@id/category"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Trạng thái: Đang ra "
+                        android:textSize="22dp" />
+
+                    <TextView
+                        android:id="@+id/author"
+                        android:layout_width="250dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Tác giả:  "
+                        android:textSize="22dp" />
+
+                    <TextView
+                        android:id="@+id/dsc"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_below="@id/tvdsc"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/border"
+                        android:paddingLeft="1dp"
+                        android:paddingRight="1dp"
+                        android:scrollbars="vertical"
+                        android:textAlignment="viewStart"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/tvdsc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/status"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Mô tả :"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/category"
+                        android:layout_width="300dp"
+                        android:layout_height="30dp"
+                        android:layout_below="@id/chapter"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Thể loại:  "
+                        android:textSize="22dp" />
+
+                    <EditText
+                        android:id="@+id/input_comment"
+                        android:layout_width="320dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/dsc"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:hint="Bình luận ở đây nè !!!!!!!!!!!" />
+
+                    <ImageView
+                        android:id="@+id/btn_add_comment"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_below="@id/dsc"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginTop="9dp"
+                        android:layout_toRightOf="@id/input_comment"
+                        android:background="@drawable/ic_baseline_add_comment_24" />
+
+                    <TextView
+                        android:id="@+id/tvcomment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/input_comment"
+                        android:layout_marginLeft="19dp"
+                        android:text="Bình luận: "
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcv_show_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvcomment"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/border1" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/thumbnailintro"
+                    android:layout_width="160dp"
+                    android:layout_height="230dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp" />
+
+                <RelativeLayout
+                    android:id="@+id/btnRead_Manga"
+                    android:layout_width="165dp"
+                    android:layout_height="45dp"
+                    android:layout_below="@id/btn_like"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_toRightOf="@id/thumbnailintro"
+                    android:background="@drawable/button_read">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Đọc truyện"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
+                </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/category"
-                    android:layout_width="300dp"
+                    android:id="@+id/tvNameManga"
+                    android:layout_width="180dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toRightOf="@id/thumbnailintro"
+                    android:singleLine="true"
+                    android:text="TÊN TRUYỆN"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/view_number"
+                    android:layout_width="200dp"
                     android:layout_height="30dp"
-                    android:text="Thể loại:  "
-                    android:textSize="22dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.27"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.117" />
+                    android:layout_below="@id/tvNameManga"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@id/thumbnailintro"
+                    android:text="Số lượt xem: "
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <ImageView
-                android:id="@+id/thumbnailintro"
-                android:layout_width="155dp"
-                android:layout_height="230dp"
-                android:layout_marginBottom="56dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.062"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.037" />
-
-            <Button
-                android:id="@+id/btnRead_Manga"
-                android:layout_width="165dp"
-                android:layout_height="45dp"
-                android:background="@drawable/rounded_corner_dark_blue_background"
-                android:text="Đọc truyện"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.869"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.272"
-                tools:ignore="HardcodedText" />
-
-            <TextView
-                android:id="@+id/tvNameManga"
-                android:layout_width="180dp"
-                android:layout_height="40dp"
-                android:singleLine="true"
-                android:text="TÊN TRUYỆN"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.826"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.069"
-                tools:ignore="HardcodedText" />
-
-            <TextView
-                android:id="@+id/view_number"
-                android:layout_width="200dp"
-                android:layout_height="30dp"
-                android:text="Số lượt xem: "
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.924"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.125" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

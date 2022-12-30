@@ -90,27 +90,40 @@ public class MainActivity extends AppCompatActivity {
         binding .bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.Home:
-                    key="home";
-                    replaceFragment(new HomeFragment(),key);
-                    break;
+                    if(key!="home"){
+                        key="home";
+                        replaceFragment(new HomeFragment(),key);
+                        break;
+                    }else{
+                        break;
+                    }
                 case R.id.Ranking:
                     if (key=="home"){
                         flag=1;
+                        key="Rank";
+                        replaceFragment(new RankingFragment(),key);
+                        break;
                     }else if (key=="Profile"){
                         flag=2;
+                        key="Rank";
+                        replaceFragment(new RankingFragment(),key);
+                        break;
+                    }else if(key == "Rank"){
+                        break;
                     }
-                    key="Rank";
-                    replaceFragment(new RankingFragment(),key);
-                    break;
                 case  R.id.Profile:
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    if (user != null) {
-                        key="Profile";
-                        replaceFragment(new ProfileFragment(),key);
+                    if(key=="Profile"){
                         break;
                     }else{
-                        Intent intent = new Intent(MainActivity.this, IntroActivity.class);
-                        startActivity(intent);
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        if (user != null) {
+                            key="Profile";
+                            replaceFragment(new ProfileFragment(),key);
+                            break;
+                        }else{
+                            Intent intent = new Intent(MainActivity.this, IntroActivity.class);
+                            startActivity(intent);
+                        }
                     }
             }
             return true;
@@ -140,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
         }else if (key=="Profile"){
             fragmentTransaction.setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_left);
-        }else {
+        }else if(key=="Rank"){
             if (flag==1){
                 fragmentTransaction.setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_left);
             }else if (flag==2){

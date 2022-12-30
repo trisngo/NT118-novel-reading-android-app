@@ -39,7 +39,7 @@ import java.util.Comparator;
  * Use the {@link RankingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, clickListener {
+public class RankingFragment extends Fragment implements  clickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -49,7 +49,6 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
     private RecyclerView rcvlistmanga;
     private TextView search_by_follow;
     private TextView search_by_hot;
-    private SwipeRefreshLayout swipeRefreshLayout;
     private DatabaseReference database;
 
 
@@ -94,10 +93,6 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_ranking, container, false);
         rcvlistmanga = v.findViewById(R.id.rcv_item_layout);
-        swipeRefreshLayout=v.findViewById(R.id.refresh_rcv_item);
-        swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.tv_ranking));
-
         books = new ArrayList<>();
         adapterBook = new MangaAdapter(getContext(), books,this);
         rcvlistmanga.setAdapter(adapterBook);
@@ -176,17 +171,6 @@ public class RankingFragment extends Fragment implements SwipeRefreshLayout.OnRe
             }
         });
     }
-    //@Override
-    public void onRefresh(){}/* {
-        MangaAdapter.setData(book);
-        Handler handler = new Handler();
-         handler.postDelayed(new Runnable() {
-             @Override
-             public void run() {
-                swipeRefreshLayout.setRefreshing(false);
-             }
-         },3000);
-    }*/
 
     @Override
     public void onItemClick(Book book) {
