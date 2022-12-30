@@ -11,7 +11,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="140dp">
 
         <ImageView
             android:id="@+id/iv_thumbnail"
@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:text="Title"
+                android:text="Title\na\nb"
                 android:id="@+id/tv_title"
                 android:ellipsize = "end"
                 android:fadingEdge = "horizontal"
@@ -48,22 +48,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_description"
-                android:text="Description"
+                android:text="Description\na\nb\nc"
                 android:maxLines = "3"
                 android:textColor="#a4a7b5"
                 android:textSize="12sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_category"
-                android:text="Category"
-                android:textColor="#47B5FF"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"/>
-
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/iv_thumbnail"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/tv_category"
+            android:text="Category"
+            android:textColor="#47B5FF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_margin="15dp"/>
 
     </RelativeLayout>
 

@@ -1,1 +1,3 @@
-<resources></resources>
+<resources>
+    <dimen name="toolbar">60dp</dimen>
+</resources>
