@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appmanga.Adapter.ReadingAdapter;
+import com.example.appmanga.Adapter.ReadingListAdapter;
 
 import com.example.appmanga.Model.Book;
 import com.example.appmanga.R;
@@ -28,7 +28,7 @@ import java.util.ArrayList;
 public class ReadinglistTabFragment extends Fragment  {
     private RecyclerView rvbooks;
     private ArrayList<Book> bookArrayList;
-    private ReadingAdapter adapterBook;
+    private ReadingListAdapter adapterBook;
     public String Uid;
     private FirebaseAuth firebaseAuth;
 
@@ -69,7 +69,7 @@ public class ReadinglistTabFragment extends Fragment  {
                             model.setBookId(book_id);
                             bookArrayList.add(model);
                         }
-                        adapterBook = new ReadingAdapter(getContext(), bookArrayList);
+                        adapterBook = new ReadingListAdapter(getContext(), bookArrayList);
                         rvbooks.setAdapter(adapterBook);
                     }
                     @Override

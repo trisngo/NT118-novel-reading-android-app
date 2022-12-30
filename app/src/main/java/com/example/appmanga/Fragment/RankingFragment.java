@@ -19,7 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.appmanga.Adapter.MangaAdapter;
+import com.example.appmanga.Adapter.RankingAdapter;
 import com.example.appmanga.Adapter.clickListener;
 import com.example.appmanga.Model.Book;
 import com.example.appmanga.R;
@@ -45,7 +45,7 @@ public class RankingFragment extends Fragment implements  clickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private ArrayList<Book> books;
-    private MangaAdapter adapterBook;
+    private RankingAdapter adapterBook;
     private RecyclerView rcvlistmanga;
     private TextView search_by_follow;
     private TextView search_by_hot;
@@ -94,7 +94,7 @@ public class RankingFragment extends Fragment implements  clickListener {
         View v = inflater.inflate(R.layout.fragment_ranking, container, false);
         rcvlistmanga = v.findViewById(R.id.rcv_item_layout);
         books = new ArrayList<>();
-        adapterBook = new MangaAdapter(getContext(), books,this);
+        adapterBook = new RankingAdapter(getContext(), books,this);
         rcvlistmanga.setAdapter(adapterBook);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         rcvlistmanga.setLayoutManager(layoutManager);
