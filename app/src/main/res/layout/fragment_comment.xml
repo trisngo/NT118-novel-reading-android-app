@@ -22,11 +22,7 @@
                 android:text="Where can I get some?"
                 android:textSize="24sp"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/lorem_text"
-                android:textSize="16sp" />
+
         </LinearLayout>
     </ScrollView>
 
