@@ -10,7 +10,7 @@
 
 
 
-        <RelativeLayout
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageButton
@@ -26,9 +26,12 @@
                 android:padding="5dp"
                 android:src="@drawable/ic_add_comment"/>
 
-
-        </RelativeLayout>
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/addCommentBtn"
+            android:id="@+id/rcvBook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
 
 
 </FrameLayout>
