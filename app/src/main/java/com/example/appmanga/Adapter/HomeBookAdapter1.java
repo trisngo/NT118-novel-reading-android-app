@@ -15,15 +15,14 @@ import com.example.appmanga.Model.Book;
 import com.example.appmanga.R;
 import com.squareup.picasso.Picasso;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class AdapterHomeBook2 extends RecyclerView.Adapter<AdapterHomeBook2.HolderBook> {
+public class HomeBookAdapter1 extends RecyclerView.Adapter<HomeBookAdapter1.HolderBook> {
     Context context;
     public ArrayList<Book> list;
     private clickListener listener;
 
-    public AdapterHomeBook2(Context context, ArrayList<Book> list,clickListener listener) {
+    public HomeBookAdapter1(Context context, ArrayList<Book> list, clickListener listener) {
         this.context = context;
         this.list = list;
         this.listener=listener;
@@ -31,60 +30,47 @@ public class AdapterHomeBook2 extends RecyclerView.Adapter<AdapterHomeBook2.Hold
 
     @NonNull
     @Override
-    public AdapterHomeBook2.HolderBook onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_book_home_2,parent,false);
-        return new AdapterHomeBook2.HolderBook(v);
+    public HomeBookAdapter1.HolderBook onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.item_book_home_1,parent,false);
+        return new HomeBookAdapter1.HolderBook(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterHomeBook2.HolderBook holder, int position) {
+    public void onBindViewHolder(@NonNull HomeBookAdapter1.HolderBook holder, int position) {
         Book book = list.get(position);
         holder.book_title.setText(book.getBook_title());
+        holder.book_description.setText(book.getBook_description());
         holder.book_category.setText(book.getCategories());
-        holder.book_likes.setText(prettyCount(book.getLikes()));
-        holder.book_views.setText(prettyCount(book.getViews()));
-        int i =position;
+        int i = position;
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listener.onItemClick(list.get(i));
             }
         });
+
         String image = book.getThumbnail();
         Picasso.get().load(image).into(holder.thumbnail);
     }
 
     @Override
     public int getItemCount() {
-        return list.size() > 10 ? 10 : list.size();
+        return list.size() > 3 ? 3 : list.size();
     }
 
     public static class HolderBook extends RecyclerView.ViewHolder{
 
-        TextView book_title, book_category, book_likes, book_views;
+        TextView book_title, book_description, book_category;
         CardView cardView;
         ImageView thumbnail;
 
         public HolderBook(@NonNull View itemView) {
             super(itemView);
-            book_title = itemView.findViewById(R.id.tv_title);
+            book_title = itemView.findViewById(R.id.tv_notify_title);
+            book_description = itemView.findViewById(R.id.tv_description);
             book_category = itemView.findViewById(R.id.tv_category);
-            book_likes = itemView.findViewById(R.id.tv_likes_number);
-            book_views = itemView.findViewById(R.id.tv_views);
             thumbnail= itemView.findViewById(R.id.iv_thumbnail);
             cardView = itemView.findViewById(R.id.parent_layout1);
-        }
-    }
-
-    public String prettyCount(Number number) {
-        char[] suffix = {' ', 'k', 'M', 'B', 'T', 'P', 'E'};
-        long numValue = number.longValue();
-        int value = (int) Math.floor(Math.log10(numValue));
-        int base = value / 3;
-        if (value >= 3 && base < suffix.length) {
-            return new DecimalFormat("#0.0").format(numValue / Math.pow(10, base * 3)) + suffix[base];
-        } else {
-            return new DecimalFormat("#,##0").format(numValue);
         }
     }
 }

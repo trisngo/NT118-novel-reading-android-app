@@ -19,6 +19,7 @@ import android.view.View;
 import com.example.appmanga.Model.Book;
 import com.example.appmanga.Fragment.HomeFragment;
 import com.example.appmanga.Fragment.ProfileFragment;
+import com.example.appmanga.Model.Notify;
 import com.example.appmanga.R;
 import com.example.appmanga.Fragment.RankingFragment;
 import com.example.appmanga.Model.User;
@@ -30,6 +31,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ValueEventListener;
 
@@ -47,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference books_database, users_database;
     Map<String,String> id_to_user_list = new HashMap<String,String>();
     Map<String,String> user_comments_list = new HashMap<String,String>();
-
 
 
     // Gọi hàm này để lấy user id từ email
@@ -82,8 +84,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getUIDFromEmail();
-
-
+        FirebaseMessaging.getInstance().subscribeToTopic("MainTopic");
         replaceFragment(new HomeFragment(),key);
         key="home";
         //Sự kiện bấm thay đổi fragmanent
@@ -264,5 +265,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
     }
-
 }

@@ -47,9 +47,15 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'dev.chrisbanes.insetter:insetter:0.6.0'
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:31.1.1')
+
+    // Add the dependencies for the Firebase Cloud Messaging and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-analytics'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
-
 
 }

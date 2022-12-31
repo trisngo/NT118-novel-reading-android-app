@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/edit_line2"  >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="8dp">
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="37dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_notify_bar"
+            android:fontFamily="@font/bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thông báo"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginStart="30dp"
+            android:textSize="30sp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/edit_line"
+        android:orientation="vertical"
+        android:layout_marginTop="0dp"
+        android:paddingRight="1dp"
+        android:paddingLeft="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/layout_nothing"
+            android:gravity="center_vertical"
+            >
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/ami_bung_bu_nothing"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#918887"
+                android:layout_gravity="center_horizontal"
+                android:textSize="35dp"
+                android:layout_marginTop="10dp"
+                android:text="Nothing here :("
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_notify"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+</LinearLayout>

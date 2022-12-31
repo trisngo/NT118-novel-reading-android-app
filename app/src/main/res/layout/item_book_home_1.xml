@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:text="Title\na\nb"
-                android:id="@+id/tv_title"
+                android:id="@+id/tv_notify_title"
                 android:ellipsize = "end"
                 android:fadingEdge = "horizontal"
                 android:scrollHorizontally = "true"

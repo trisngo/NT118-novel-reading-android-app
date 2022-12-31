@@ -42,6 +42,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -211,12 +212,14 @@ public class intro_manga_before_read extends AppCompatActivity {
                         user_liked_books_list.remove(received_book_id);
                         like_number -= 1;
                         like_button.setImageResource(R.drawable.like_on_intro_1);
+                        FirebaseMessaging.getInstance().unsubscribeFromTopic(received_book_id);
                     }
                     else
                     {
                         user_liked_books_list.add(received_book_id);
                         like_number += 1;
                         like_button.setImageResource(R.drawable.like_on_intro_2);
+                        FirebaseMessaging.getInstance().subscribeToTopic(received_book_id);
                     }
                     users_database.child(current_user_id + "/liked_books").setValue(user_liked_books_list);
                     books_database.child(received_book_id + "/likes").setValue(like_number);

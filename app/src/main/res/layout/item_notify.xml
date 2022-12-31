@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:contentPadding="10dp"
+    android:id="@+id/cv_notify">
+
+    <RelativeLayout
+        android:id="@+id/shimmer_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_notify_title"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title\na\nb"
+            android:ellipsize = "end"
+            android:layout_marginEnd="5dp"
+            android:maxLines="1"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_notify_content"
+            style="@style/TextAppearance.MaterialComponents.Body2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_notify_title"
+            android:text="Title\na\nb\nc"
+            android:ellipsize = "end"
+            android:layout_marginEnd="5dp"
+            android:maxLines="3"
+            android:layout_marginTop="10dp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_received_time"
+            style="@style/TextAppearance.MaterialComponents.Body2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_notify_content"
+            android:text="Time\na"
+            android:maxLines="1"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

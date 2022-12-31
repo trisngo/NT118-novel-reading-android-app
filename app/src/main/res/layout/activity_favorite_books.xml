@@ -43,7 +43,7 @@
             android:id="@+id/txtbookshelf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Favorite Books"
+            android:text="Truyện yêu thích"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:layout_marginLeft="30dp"
