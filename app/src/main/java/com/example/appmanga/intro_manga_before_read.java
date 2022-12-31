@@ -36,6 +36,7 @@ import com.example.appmanga.Adapter.ReadingListAdapter;
 import com.example.appmanga.Adapter.TabDetailAdapter;
 import com.example.appmanga.Adapter.commentAdapter;
 import com.example.appmanga.ExtraFeature.MyFuntion;
+import com.example.appmanga.Fragment.CommentFragment;
 import com.example.appmanga.Fragment.Description_BookFragment;
 import com.example.appmanga.Model.Book;
 import com.example.appmanga.Model.User;
@@ -69,11 +70,6 @@ public class intro_manga_before_read extends AppCompatActivity {
     String book_name, image_link, book_category, book_author, book_description, received_book_id, current_user_id;
     int view_number, book_chapters_number, like_number;
     ArrayList<String> user_liked_books_list;
-    RecyclerView rcv_view_comment;
-    commentAdapter comment_Adapter;
-    public ArrayList<comment> list_comment = new ArrayList<>();
-    ArrayList<String> user_comments,content_comments;
-    int a =123;
 
     ImageView image;
     int count_category;
@@ -103,37 +99,6 @@ public class intro_manga_before_read extends AppCompatActivity {
         binding.viewTabDetail.setAdapter(tabDetailAdapter);
         binding.tabLayout.setupWithViewPager(binding.viewTabDetail);
         database = FirebaseDatabase.getInstance().getReference("books");
-       /* database.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int i = 0;
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    book1 = dataSnapshot.getValue(Book.class);
-                    if (book1.getBook_title().equals(name.getText().toString())) {
-                        Set<String> keySet = book1.comments.keySet();
-                        user_comments = new ArrayList<>(keySet);
-                        Collection<String> values = book1.comments.values();
-                        content_comments = new ArrayList<>(values);
-                        break;
-                    }
-                }
-                rcv_view_comment=findViewById(R.id.rcv_show_comment);
-                list_comment= new ArrayList<>();
-                comment_Adapter = new commentAdapter(getApplicationContext(),list_comment);
-                rcv_view_comment.setAdapter(comment_Adapter);
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-                rcv_view_comment.setLayoutManager(layoutManager);
-                for (int j = 0; j < user_comments.size(); j++) {
-                    list_comment.add(new comment(user_comments.get(i),content_comments.get(j)));
-                }
-                comment_Adapter.notifyDataSetChanged();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });*/
     }
 
 
@@ -150,7 +115,6 @@ public class intro_manga_before_read extends AppCompatActivity {
                     if (FirebaseAuth.getInstance().getCurrentUser() != null){
                     if (user.getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
                         Uid = dataSnapshot.getKey();
-
                         break;
                     }
                 }}
@@ -317,6 +281,7 @@ public class intro_manga_before_read extends AppCompatActivity {
                 }
                 else
                 {
+                    Toast.makeText(getApplicationContext(), "Vui lòng đăng nhập để like truyện",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                 }
@@ -328,10 +293,13 @@ public class intro_manga_before_read extends AppCompatActivity {
 
     public void dscsend(){
         Description_BookFragment description_bookFragment = new Description_BookFragment();
+        CommentFragment commentFragment = new CommentFragment();
         Bundle bundle = new Bundle();
         bundle.putString("dsc",book_description);
         description_bookFragment.setArguments(bundle);
-
+        Bundle bundle1 = new Bundle();
+        bundle1.putString("book_id",received_book_id);
+        commentFragment.setArguments(bundle1);
     }
 
     public void getUserLikedBooksFromEmail() {
