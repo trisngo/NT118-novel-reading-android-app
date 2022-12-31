@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.HolderBook>{
     Context context;
-    private String categories ;
+
     public ArrayList<Book> list, filterList;
     //private ItemBookBinding binding;
     private FilterBook filter;
@@ -66,7 +66,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.HolderBook
             public void onClick(View v) {
                 Intent intent = new Intent(context, intro_manga_before_read.class);
                 intent.putExtra("book_id", book.getBookId());
-                Log.d("New comment",""+book.getBookId());
+                intent.putExtra("dsc",book.getBook_description());
                 context.startActivity(intent);
             }
         });

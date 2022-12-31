@@ -1,6 +1,7 @@
 package com.example.appmanga.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmanga.Model.Book;
 import com.example.appmanga.R;
+import com.example.appmanga.intro_manga_before_read;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -41,11 +43,16 @@ public class HomeBookAdapter1 extends RecyclerView.Adapter<HomeBookAdapter1.Hold
         holder.book_title.setText(book.getBook_title());
         holder.book_description.setText(book.getBook_description());
         holder.book_category.setText(book.getCategories());
+        String dsc = book.getBook_description();
         int i = position;
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listener.onItemClick(list.get(i));
+                Intent intent = new Intent(context, intro_manga_before_read.class);
+                intent.putExtra("book_id", book.getBookId());
+                intent.putExtra("dsc",dsc);
+                context.startActivity(intent);
             }
         });
 
@@ -66,7 +73,7 @@ public class HomeBookAdapter1 extends RecyclerView.Adapter<HomeBookAdapter1.Hold
 
         public HolderBook(@NonNull View itemView) {
             super(itemView);
-            book_title = itemView.findViewById(R.id.tv_notify_title);
+            book_title = itemView.findViewById(R.id.tv_title);
             book_description = itemView.findViewById(R.id.tv_description);
             book_category = itemView.findViewById(R.id.tv_category);
             thumbnail= itemView.findViewById(R.id.iv_thumbnail);

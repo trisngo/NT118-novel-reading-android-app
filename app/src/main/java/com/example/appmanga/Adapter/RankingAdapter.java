@@ -1,7 +1,7 @@
 package com.example.appmanga.Adapter;
 
 import android.content.Context;
-import android.util.Log;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +13,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmanga.Model.Book;
-import com.example.appmanga.ExtraFeature.FilterBook;
 import com.example.appmanga.R;
+import com.example.appmanga.intro_manga_before_read;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
-public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MangaViewHolder>{
+public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.MangaViewHolder>{
 
     Context context;
     private clickListener listener;
     public ArrayList<Book> list, filterList;
-    public MangaAdapter(Context context, ArrayList<Book> list,clickListener listener) {
+    public RankingAdapter(Context context, ArrayList<Book> list, clickListener listener) {
         this.context = context;
         this.list = list;
         this.filterList = list;
@@ -43,6 +43,7 @@ public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MangaViewHol
         holder.book_title.setText(book.getBook_title());
         holder.book_category.setText("#" + book.getCategories());
         holder.book_author.setText(book.getAuthor_name());
+        String dsc = book.getBook_description();
         String image = book.getThumbnail();
         Picasso.get().load(image).into(holder.thumbnail);
         int i=position+1;
@@ -65,6 +66,10 @@ public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MangaViewHol
             @Override
             public void onClick(View v) {
                 listener.onItemClick(list.get(i-1));
+                Intent intent = new Intent(context, intro_manga_before_read.class);
+                intent.putExtra("book_id", book.getBookId());
+                intent.putExtra("dsc",dsc);
+                context.startActivity(intent);
             }
         });
     }

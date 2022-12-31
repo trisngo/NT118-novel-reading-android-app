@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
+import android.util.EventLogTags;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,19 +23,25 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmanga.Activity.LoginActivity;
 import com.example.appmanga.Activity.ReadingActivity;
 import com.example.appmanga.Adapter.AdapterViewIntroBeforeRead;
-import com.example.appmanga.Adapter.MangaAdapter;
-import com.example.appmanga.Adapter.ReadingAdapter;
+import com.example.appmanga.Adapter.RankingAdapter;
+import com.example.appmanga.Adapter.ReadingListAdapter;
+import com.example.appmanga.Adapter.TabDetailAdapter;
 import com.example.appmanga.Adapter.commentAdapter;
 import com.example.appmanga.ExtraFeature.MyFuntion;
+import com.example.appmanga.Fragment.Description_BookFragment;
 import com.example.appmanga.Model.Book;
 import com.example.appmanga.Model.User;
 import com.example.appmanga.Model.comment;
+
+import com.example.appmanga.databinding.ActivityBookDetailBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -54,8 +61,9 @@ import java.util.Set;
 import java.util.TooManyListenersException;
 
 public class intro_manga_before_read extends AppCompatActivity {
+    ActivityBookDetailBinding binding;
 
-    RelativeLayout btnRead;
+    Button btnRead;
     TextView name,category,chapter,author,dsc, view;
     RelativeLayout background_intro_read_manga;
     ImageButton like_button;
@@ -80,12 +88,23 @@ public class intro_manga_before_read extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_intro_manga_before_read);
 
+        binding = ActivityBookDetailBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         like_button = findViewById(R.id.btn_like);
         getBookDataFromBookId();
+        dscsend();
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        TabDetailAdapter tabDetailAdapter = new TabDetailAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        binding.viewTabDetail.setAdapter(tabDetailAdapter);
+        binding.tabLayout.setupWithViewPager(binding.viewTabDetail);
         database = FirebaseDatabase.getInstance().getReference("books");
-        database.addValueEventListener(new ValueEventListener() {
+       /* database.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -115,7 +134,95 @@ public class intro_manga_before_read extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
+        });*/
+    }
+
+
+
+    public void getUIDFromEmail() {
+        DatabaseReference users_database;
+        users_database = FirebaseDatabase.getInstance().getReference("users");
+        users_database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    User user = dataSnapshot.getValue(User.class);
+                    if (FirebaseAuth.getInstance().getCurrentUser() != null){
+                    if (user.getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+                        Uid = dataSnapshot.getKey();
+
+                        break;
+                    }
+                }}
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
         });
+    }
+
+    private void getCurrentBook() {
+        database = FirebaseDatabase.getInstance().getReference("books");
+        database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int i = 0;
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    book = dataSnapshot.getValue(Book.class);
+                    if (book.getBook_title().equals(name.getText().toString())) {
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+    }
+
+    public void getBookDataFromBookId() {
+        Intent intent = getIntent();
+        received_book_id = intent.getStringExtra("book_id");
+
+        books_database = FirebaseDatabase.getInstance().getReference("books");
+        books_database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.getKey().equals(received_book_id)) {
+                        Book book = dataSnapshot.getValue(Book.class);
+                        book_name = book.getBook_title();
+                        book_author = book.getAuthor_name();
+                        book_category = book.getCategories();
+                        image_link = book.getThumbnail();
+                        view_number = book.getViews();
+                        like_number = book.getLikes();
+                        book_chapters_number = book.getChapters().size();
+                        book_description = book.getBook_description();
+                        initButton();
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            getUserLikedBooksFromEmail();
+        } else {
+            like_button.setImageResource(R.drawable.like_on_intro_1);
+        }
     }
 
     public void initButton() {
@@ -126,7 +233,7 @@ public class intro_manga_before_read extends AppCompatActivity {
         image = findViewById(R.id.thumbnailintro);
         btnRead = findViewById(R.id.btnRead_Manga);
         author = findViewById(R.id.author);
-        view = findViewById(R.id.view_number);
+
         background_intro_read_manga = findViewById(R.id.background_intro_read_manga);
         name.setText("");
         category.setText("");
@@ -142,29 +249,16 @@ public class intro_manga_before_read extends AppCompatActivity {
         name.setSingleLine(true);
 
         Picasso.get().load(image_link).into(image);
-        Picasso.get().load(image_link).into(new Target() {
-            @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                background_intro_read_manga.setBackground(new BitmapDrawable(bitmap));
-            }
 
-            @Override
-            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-            }
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-            }
-        });
 
         count_category = intent.getIntExtra("count_category",0);
         category.setText("Thể loại: "+ book_category +" ");
-        view.setText("Số lượt xem: "+ String.valueOf(view_number));
+
 
         chapter.setText("Số chương: " + String.valueOf(book_chapters_number));
         author.setText("Tác giả: "+ book_author);
-        dsc.setText(book_description);
-        dsc.setMovementMethod(new ScrollingMovementMethod());
+        // dsc.setText(book_description);
+        //     dsc.setMovementMethod(new ScrollingMovementMethod());
 
 
         btnRead.setOnClickListener(new View.OnClickListener() {
@@ -235,90 +329,12 @@ public class intro_manga_before_read extends AppCompatActivity {
 
     }
 
-    public void getUIDFromEmail() {
-        DatabaseReference users_database;
-        users_database = FirebaseDatabase.getInstance().getReference("users");
-        users_database.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User user = dataSnapshot.getValue(User.class);
-                    if (FirebaseAuth.getInstance().getCurrentUser() != null){
-                    if (user.getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
-                        Uid = dataSnapshot.getKey();
+    public void dscsend(){
+        Description_BookFragment description_bookFragment = new Description_BookFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("dsc",book_description);
+        description_bookFragment.setArguments(bundle);
 
-                        break;
-                    }
-                }}
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-    private void getCurrentBook() {
-        database = FirebaseDatabase.getInstance().getReference("books");
-        database.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int i = 0;
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    book = dataSnapshot.getValue(Book.class);
-                    if (book.getBook_title().equals(name.getText().toString())) {
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-    }
-
-    public void getBookDataFromBookId() {
-        Intent intent = getIntent();
-        received_book_id = intent.getStringExtra("book_id");
-        Log.d("msg",received_book_id);
-        books_database = FirebaseDatabase.getInstance().getReference("books");
-        books_database.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    if (dataSnapshot.getKey().equals(received_book_id)) {
-                        Book book = dataSnapshot.getValue(Book.class);
-                        book_name = book.getBook_title();
-                        book_author = book.getAuthor_name();
-                        book_category = book.getCategories();
-                        image_link = book.getThumbnail();
-                        view_number = book.getViews();
-                        like_number = book.getLikes();
-                        book_chapters_number = book.getChapters().size();
-                        book_description = book.getBook_description();
-                        initButton();
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            getUserLikedBooksFromEmail();
-        } else {
-            like_button.setImageResource(R.drawable.like_on_intro_1);
-        }
     }
 
     public void getUserLikedBooksFromEmail() {

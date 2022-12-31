@@ -63,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User user = dataSnapshot.getValue(User.class);
                     if (FirebaseAuth.getInstance().getCurrentUser() != null){
-                    if (user.getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+                        assert user != null;
+                        if (user.getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
                         Uid= dataSnapshot.getKey();
                         break;
                     }

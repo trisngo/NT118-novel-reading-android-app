@@ -2,6 +2,8 @@ package com.example.appmanga.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmanga.Model.Book;
+
 
 import com.example.appmanga.databinding.ItemBookBinding;
 import com.example.appmanga.intro_manga_before_read;
@@ -24,14 +27,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class ReadingAdapter extends RecyclerView.Adapter<ReadingAdapter.HolderBookReading>{
+public class ReadingListAdapter extends RecyclerView.Adapter<ReadingListAdapter.HolderBookReading>{
 
     private final Context context;
     private final ArrayList<Book> bookArrayList;
 
     private ItemBookBinding binding;
 
-    public ReadingAdapter(Context context, ArrayList<Book> bookArrayList) {
+    public ReadingListAdapter(Context context, ArrayList<Book> bookArrayList) {
         this.context = context;
         this.bookArrayList = bookArrayList;
     }
@@ -45,22 +48,27 @@ public class ReadingAdapter extends RecyclerView.Adapter<ReadingAdapter.HolderBo
 
     @Override
     public void onBindViewHolder(@NonNull HolderBookReading holder, int position) {
-        Book model = bookArrayList.get(position);
+        Book book = bookArrayList.get(position);
 
-        loadBookDetail(model, holder);
+        loadBookDetail(book, holder);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, intro_manga_before_read.class);
-                intent.putExtra("book_id", model.getBookId());
+                intent.putExtra("book_id", book.getBookId());
+
+
+                intent.putExtra("dsc",book.getBook_description());
+
                 context.startActivity(intent);
             }
         });
     }
 
-    private void loadBookDetail(Book model, HolderBookReading holder) {
-        String book_id = model.getBookId();
+    private void loadBookDetail(Book book, HolderBookReading holder) {
+        String book_id = book.getBookId();
+
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("books");
         ref.child(book_id)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -71,17 +79,18 @@ public class ReadingAdapter extends RecyclerView.Adapter<ReadingAdapter.HolderBo
                         String category = ""+snapshot.child("categories").getValue().toString();
                         String url = ""+snapshot.child("thumbnail").getValue().toString();
 
+
                         //
-                        model.setBook_title(booktitle);
-                        model.setAuthor_name(bookAuthor);
-                        model.setCategories(category);
-                        model.setThumbnail(url);
+                        book.setBook_title(booktitle);
+                        book.setAuthor_name(bookAuthor);
+                        book.setCategories(category);
+                        book.setThumbnail(url);
                         //
                         holder.titleTv.setText(booktitle);
                         holder.authorTv.setText(bookAuthor);
                         holder.categoryTv.setText(category);
                         //
-                        String image = model.getThumbnail();
+                        String image = book.getThumbnail();
                         Picasso.get().load(image).into(holder.thumbnail);
                     }
 

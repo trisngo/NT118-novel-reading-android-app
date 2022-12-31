@@ -2,7 +2,6 @@ package com.example.appmanga.Adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +12,10 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmanga.Model.Notify;
-import com.example.appmanga.Model.comment;
 import com.example.appmanga.R;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
 
 public class NotifyAdapter extends RecyclerView.Adapter<NotifyAdapter.HolderNotify>{
     Context context;
@@ -108,7 +104,7 @@ public class NotifyAdapter extends RecyclerView.Adapter<NotifyAdapter.HolderNoti
 
         public HolderNotify(@NonNull View itemView) {
             super(itemView);
-            notify_title = itemView.findViewById(R.id.tv_notify_title);
+            notify_title = itemView.findViewById(R.id.tv_title);
             notify_content = itemView.findViewById(R.id.tv_notify_content);
             received_time = itemView.findViewById(R.id.tv_received_time);
             cardView = itemView.findViewById(R.id.cv_notify);
