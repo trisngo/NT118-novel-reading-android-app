@@ -8,30 +8,106 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
 
-        <RelativeLayout
-            android:id="@+id/background_intro_read_manga"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <RelativeLayout
+
+                android:id="@+id/background_intro_read_manga"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="#34FFFFFF">
 
-                <ImageButton
-                    android:id="@+id/btn_like"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_below="@id/view_number"
+                <ImageView
+                    android:id="@+id/thumbnailintro"
+                    android:layout_width="131dp"
+                    android:layout_height="226dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:id="@+id/tvNameManga"
+                    android:layout_width="180dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
                     android:layout_toRightOf="@id/thumbnailintro"
+                    android:singleLine="true"
+                    android:text="TÊN TRUYỆN"
+                    android:textColor="#000000"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+                <TextView
+                    android:id="@+id/author"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:text="Tác giả:  "
+                    android:layout_below="@id/tvNameManga"
+                    android:layout_toRightOf="@id/thumbnailintro"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="22dp"
+                    tools:ignore="HardcodedText" />
+                <TextView
+                    android:id="@+id/category"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/author"
+                    android:layout_toRightOf="@id/thumbnailintro"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Thể loại:  "
+                    android:textSize="22dp" />
+                <TextView
+                    android:id="@+id/chapter"
+                    android:layout_width="170dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@id/thumbnailintro"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@id/category"
+                    android:text="Số chương:  "
+                    android:textSize="22sp"
+                    tools:ignore="HardcodedText" />
+
+
+
+
+                <ImageButton
+                    android:id="@+id/btn_like"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/chapter"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_toEndOf="@id/btnRead_Manga"
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:gravity="center"
                     android:scaleType="centerInside" />
+
+
+                <RelativeLayout
+                    android:id="@+id/btnRead_Manga"
+                    android:layout_width="150dp"
+                    android:layout_height="38dp"
+                    android:layout_below="@id/chapter"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_toRightOf="@id/thumbnailintro"
+                    android:background="@drawable/button_read">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Đọc truyện"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/layout_below"
@@ -41,34 +117,6 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/rounded_corner1">
 
-                    <TextView
-                        android:id="@+id/chapter"
-                        android:layout_width="170dp"
-                        android:layout_height="30dp"
-                        android:layout_below="@id/author"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:text="Số chương:  "
-                        android:textSize="22dp" />
-
-                    <TextView
-                        android:id="@+id/status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_below="@id/category"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:text="Trạng thái: Đang ra "
-                        android:textSize="22dp" />
-
-                    <TextView
-                        android:id="@+id/author"
-                        android:layout_width="250dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:text="Tác giả:  "
-                        android:textSize="22dp" />
 
                     <TextView
                         android:id="@+id/dsc"
@@ -89,21 +137,12 @@
                         android:id="@+id/tvdsc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/status"
+
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="5dp"
-                        android:text="Mô tả :"
+                        android:text="Tóm lược"
                         android:textSize="24dp" />
 
-                    <TextView
-                        android:id="@+id/category"
-                        android:layout_width="300dp"
-                        android:layout_height="30dp"
-                        android:layout_below="@id/chapter"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:text="Thể loại:  "
-                        android:textSize="22dp" />
 
                     <EditText
                         android:id="@+id/input_comment"
@@ -143,61 +182,8 @@
                         android:layout_marginTop="4dp"
                         android:background="@drawable/border1" />
                 </RelativeLayout>
-
-                <ImageView
-                    android:id="@+id/thumbnailintro"
-                    android:layout_width="160dp"
-                    android:layout_height="230dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp" />
-
-                <RelativeLayout
-                    android:id="@+id/btnRead_Manga"
-                    android:layout_width="165dp"
-                    android:layout_height="45dp"
-                    android:layout_below="@id/btn_like"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="25dp"
-                    android:layout_toRightOf="@id/thumbnailintro"
-                    android:background="@drawable/button_read">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="Đọc truyện"
-                        android:textSize="28sp"
-                        android:textStyle="bold"
-                        tools:ignore="HardcodedText" />
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/tvNameManga"
-                    android:layout_width="180dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_toRightOf="@id/thumbnailintro"
-                    android:singleLine="true"
-                    android:text="TÊN TRUYỆN"
-                    android:textColor="@color/white"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/view_number"
-                    android:layout_width="200dp"
-                    android:layout_height="30dp"
-                    android:layout_below="@id/tvNameManga"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toRightOf="@id/thumbnailintro"
-                    android:text="Số lượt xem: "
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
             </RelativeLayout>
-        </RelativeLayout>
+
     </ScrollView>
 
 </RelativeLayout>
