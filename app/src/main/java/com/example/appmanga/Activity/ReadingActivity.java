@@ -127,10 +127,10 @@ public class ReadingActivity extends AppCompatActivity {
                 int size = getIntent().getIntExtra("chapter_size", 0);
                 Log.d("debug", String.valueOf(size));
                 if (currentPageNumber > size-1){
-                    Toast.makeText(ReadingActivity.this, "Do not have any next chapter", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ReadingActivity.this, "Không có chương nào tiếp theo", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(ReadingActivity.this, "Next chapter", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ReadingActivity.this, "Chương tiếp theo", Toast.LENGTH_SHORT).show();
                     showPage(currentPageNumber + 1);
                 }
 //                mBookmarkFab.hide();
@@ -141,10 +141,10 @@ public class ReadingActivity extends AppCompatActivity {
         mPreviousFab.setOnClickListener(
             view -> {
                 if (currentPageNumber == 1){
-                    Toast.makeText(ReadingActivity.this, "Do not have any previous chapter", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ReadingActivity.this, "Không có chương nào trước", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(ReadingActivity.this, "Previous chapter", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ReadingActivity.this, "Chương trước", Toast.LENGTH_SHORT).show();
                     showPage(currentPageNumber - 1);
                 }
 //                mBookmarkFab.hide();
