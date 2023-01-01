@@ -43,7 +43,7 @@ public class LibraryAdapter extends FragmentStatePagerAdapter {
                 title ="Đang Đọc" ;
                 break;
             case 1:
-                title = "Yêu Thích";
+                title = "Hoàn Thành";
                 break;
             default:
                 return null;
