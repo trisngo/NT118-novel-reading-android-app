@@ -13,15 +13,19 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
+            android:background="@drawable/light_orange_rounded_shape"
+            android:textStyle="bold|italic"
             android:text="Name :"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:padding="5dp"
+            android:layout_marginBottom="3dp"/>
 
         <TextView
             android:id="@+id/content_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/name_user_comment"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="2dp"
             android:text="comment text"
             android:textSize="16dp" />

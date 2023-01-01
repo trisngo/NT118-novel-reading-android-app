@@ -36,6 +36,7 @@ import com.example.appmanga.Adapter.ReadingListAdapter;
 import com.example.appmanga.Adapter.TabDetailAdapter;
 import com.example.appmanga.Adapter.commentAdapter;
 import com.example.appmanga.ExtraFeature.MyFuntion;
+import com.example.appmanga.Fragment.Chapter_BookFragment;
 import com.example.appmanga.Fragment.CommentFragment;
 import com.example.appmanga.Fragment.Description_BookFragment;
 import com.example.appmanga.Model.Book;
@@ -294,12 +295,16 @@ public class intro_manga_before_read extends AppCompatActivity {
     public void dscsend(){
         Description_BookFragment description_bookFragment = new Description_BookFragment();
         CommentFragment commentFragment = new CommentFragment();
+        Chapter_BookFragment chapter_bookFragment = new Chapter_BookFragment();
         Bundle bundle = new Bundle();
         bundle.putString("dsc",book_description);
         description_bookFragment.setArguments(bundle);
         Bundle bundle1 = new Bundle();
         bundle1.putString("book_id",received_book_id);
         commentFragment.setArguments(bundle1);
+        Bundle bundle2 = new Bundle();
+        bundle2.putString("book_id",received_book_id);
+        chapter_bookFragment.setArguments(bundle2);
     }
 
     public void getUserLikedBooksFromEmail() {
