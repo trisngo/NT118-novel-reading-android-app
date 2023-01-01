@@ -23,9 +23,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Description"
-                android:paddingLeft="2dp"
-                android:paddingTop="6dp"
-                android:paddingRight="2dp"
+                android:paddingLeft="3dp"
+                android:paddingTop="10dp"
+                android:paddingRight="3dp"
                 android:scrollbars="vertical"
                 android:textSize="20dp"
                 tools:ignore="HardcodedText" />

@@ -3,13 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+<LinearLayout
+    android:padding="30dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    >
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcvBook"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvNameManga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:text="Tính năng đang được phát triển."
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        android:transitionName="booknameTN"
+        tools:ignore="HardcodedText" />
 
-        android:layout_height="match_parent"/>
-
+</LinearLayout>
 </LinearLayout>

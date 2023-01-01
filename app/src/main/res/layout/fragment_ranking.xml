@@ -7,6 +7,7 @@
     android:background="@color/bottom_nav"
     tools:context=".Fragment.RankingFragment">
 
+
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
