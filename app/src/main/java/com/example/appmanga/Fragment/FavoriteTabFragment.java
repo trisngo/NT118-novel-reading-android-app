@@ -25,10 +25,7 @@ public class FavoriteTabFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.tab_vote, container, false);
-        rvbooks = root.findViewById(R.id.rcvBook);
-        firebaseAuth = FirebaseAuth.getInstance();
-        rvbooks.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+       firebaseAuth = FirebaseAuth.getInstance();
         return root;
     }
 
