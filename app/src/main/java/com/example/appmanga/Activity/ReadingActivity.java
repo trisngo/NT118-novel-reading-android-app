@@ -43,6 +43,7 @@ public class ReadingActivity extends AppCompatActivity {
     private static int currentPageNumber = 1;
 
     private int charSize = 16;
+    private long book_views;
 
     FirebaseDatabase db = FirebaseDatabase.getInstance();
     DatabaseReference root = db.getReference();
@@ -157,10 +158,22 @@ public class ReadingActivity extends AppCompatActivity {
 
     private void showPage(int currentPN) {
         Intent intent = getIntent();
+        Query views_query = booksRef.child(intent.getStringExtra("book_id")).child("views");
+        views_query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(final DataSnapshot dataSnapshot) {
+                book_views = (long) dataSnapshot.getValue();
+            }
+            @Override
+            public void onCancelled(final DatabaseError databaseError) {
+                Log.w("error", "loadPost:onCancelled", databaseError.toException());
+            }
+        });
         Query query = booksRef.child(intent.getStringExtra("book_id")).child("chapters");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
+                booksRef.child(intent.getStringExtra("book_id") + "/views").setValue(book_views+1);
                 Log.d("json", dataSnapshot.child("chapter" + currentPN).getValue().toString());
                 getSupportActionBar().setTitle(intent.getStringExtra("name"));
                 getSupportActionBar().setSubtitle("Chapter " + currentPN);

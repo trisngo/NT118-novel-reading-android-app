@@ -33,8 +33,6 @@ public class Description_BookFragment extends Fragment {
         dsc.setText(dsc1);
 
 
-
-        // Inflate the layout for this fragment
         return root;
     }
 }
