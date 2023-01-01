@@ -69,18 +69,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_bookmark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:fabSize="normal"
-        app:backgroundTint="@color/bottom_nav"
-        app:tint="?attr/colorOnSecondary"
-        app:srcCompat="@drawable/heart_solid"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/fab_feature"
-        app:layout_constraintEnd_toEndOf="@+id/fab_feature"
-        app:layout_constraintStart_toStartOf="@+id/fab_feature"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_previous_chap"
@@ -91,9 +79,9 @@
         app:tint="?attr/colorOnSecondary"
         app:srcCompat="@drawable/backward_solid"
         android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/fab_bookmark"
-        app:layout_constraintEnd_toEndOf="@+id/fab_bookmark"
-        app:layout_constraintStart_toStartOf="@+id/fab_bookmark" />
+        app:layout_constraintBottom_toTopOf="@+id/fab_feature"
+        app:layout_constraintEnd_toEndOf="@+id/fab_feature"
+        app:layout_constraintStart_toStartOf="@+id/fab_feature" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_next_chap"

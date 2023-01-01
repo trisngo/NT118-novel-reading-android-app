@@ -234,6 +234,7 @@ public class intro_manga_before_read extends AppCompatActivity {
 //                String chapter = String.valueOf(book.getChapters().size());
 //                Log.d("debug",  book_id);
                 intent1.putExtra("book_id", book_id);
+                intent1.putExtra("chapter_id", "chapter1");
                 intent1.putExtra("Uid", Uid);
                 intent1.putExtra("name", book_name);
 //                Log.d("debug", String.valueOf(Integer.valueOf(intent.getStringExtra("chapter"))));

@@ -81,14 +81,18 @@ public class ReadingActivity extends AppCompatActivity {
 //                } else return false;
 //            }
 //        });
+        Intent intent = getIntent();
+        String chapter_id = intent.getStringExtra("chapter_id");
+        Log.d("PN", chapter_id.split("chapter")[1]);
+        currentPageNumber = Integer.valueOf(chapter_id.split("chapter")[1]);
         showPage(currentPageNumber);
 
         mFeatureFab = findViewById(R.id.fab_feature);
-        mBookmarkFab = findViewById(R.id.fab_bookmark);
+//        mBookmarkFab = findViewById(R.id.fab_bookmark);
         mNextFab = findViewById(R.id.fab_next_chap);
         mPreviousFab = findViewById(R.id.fab_previous_chap);
 
-        mBookmarkFab.setVisibility(View.GONE);
+//        mBookmarkFab.setVisibility(View.GONE);
         mNextFab.setVisibility(View.GONE);
         mPreviousFab.setVisibility(View.GONE);
 
@@ -96,13 +100,13 @@ public class ReadingActivity extends AppCompatActivity {
 
         mFeatureFab.setOnClickListener(view -> {
             if (!isAllFabsVisible) {
-                mBookmarkFab.show();
+//                mBookmarkFab.show();
                 mNextFab.show();
                 mPreviousFab.show();
 
                 isAllFabsVisible = true;
             } else {
-                mBookmarkFab.hide();
+//                mBookmarkFab.hide();
                 mNextFab.hide();
                 mPreviousFab.hide();
 
@@ -110,14 +114,14 @@ public class ReadingActivity extends AppCompatActivity {
             }
         });
 
-        mBookmarkFab.setOnClickListener(
-            view -> {
-                Toast.makeText(ReadingActivity.this, "Bookmark Added", Toast.LENGTH_SHORT).show();
-                mBookmarkFab.hide();
-                mNextFab.hide();
-                mPreviousFab.hide();
-                isAllFabsVisible = false;
-            });
+//        mBookmarkFab.setOnClickListener(
+//            view -> {
+//                Toast.makeText(ReadingActivity.this, "Bookmark Added", Toast.LENGTH_SHORT).show();
+//                mBookmarkFab.hide();
+//                mNextFab.hide();
+//                mPreviousFab.hide();
+//                isAllFabsVisible = false;
+//            });
         mNextFab.setOnClickListener(
             view -> {
                 int size = getIntent().getIntExtra("chapter_size", 0);
@@ -129,7 +133,7 @@ public class ReadingActivity extends AppCompatActivity {
                     Toast.makeText(ReadingActivity.this, "Next chapter", Toast.LENGTH_SHORT).show();
                     showPage(currentPageNumber + 1);
                 }
-                mBookmarkFab.hide();
+//                mBookmarkFab.hide();
                 mNextFab.hide();
                 mPreviousFab.hide();
                 isAllFabsVisible = false;
@@ -143,7 +147,7 @@ public class ReadingActivity extends AppCompatActivity {
                     Toast.makeText(ReadingActivity.this, "Previous chapter", Toast.LENGTH_SHORT).show();
                     showPage(currentPageNumber - 1);
                 }
-                mBookmarkFab.hide();
+//                mBookmarkFab.hide();
                 mNextFab.hide();
                 mPreviousFab.hide();
                 isAllFabsVisible = false;

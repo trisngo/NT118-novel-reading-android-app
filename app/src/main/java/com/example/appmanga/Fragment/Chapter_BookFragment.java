@@ -35,7 +35,7 @@ import java.util.Collections;
 public class Chapter_BookFragment extends Fragment{
     private ListView listView;
     private View view;
-    private String received_book_id;
+    private String received_book_id, book_name;
     private DatabaseReference books_database;
     private ArrayList<String> book_chapters;
 
@@ -64,6 +64,7 @@ public class Chapter_BookFragment extends Fragment{
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     if (dataSnapshot.getKey().equals(received_book_id)) {
                         Book book = dataSnapshot.getValue(Book.class);
+                        book_name = book.getBook_title();
                         book_chapters = new ArrayList<String>(book.getChapters().keySet());
                         Collections.sort(book_chapters);
                         initLayout();
@@ -88,8 +89,10 @@ public class Chapter_BookFragment extends Fragment{
                 String chapter_id = (String) parent.getItemAtPosition(position);
                 Intent intent = new Intent(getContext(), ReadingActivity.class);
                 intent.putExtra("book_id",received_book_id);
+                intent.putExtra("name", book_name);
                 intent.putExtra("chapter_id",chapter_id);
-                //startActivity(intent);
+                intent.putExtra("chapter_size", Integer.valueOf(book_chapters.size()));
+                startActivity(intent);
             }
         });
     }
