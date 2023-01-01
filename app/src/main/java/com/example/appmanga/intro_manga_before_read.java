@@ -301,7 +301,7 @@ public class intro_manga_before_read extends AppCompatActivity {
         CommentFragment commentFragment = new CommentFragment();
         Chapter_BookFragment chapter_bookFragment = new Chapter_BookFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("dsc",book_description);
+        bundle.putString("book_id",received_book_id);
         description_bookFragment.setArguments(bundle);
         Bundle bundle1 = new Bundle();
         bundle1.putString("book_id",received_book_id);
